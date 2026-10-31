@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://b6b4xle2dow7l"]
+
+[ext_resource type="Script" uid="uid://clj3a1hls2j6c" path="res://ui/options/config_menu.gd" id="1_wme62"]
+[ext_resource type="Resource" uid="uid://ovnirtsq5t3y" path="res://_autoload/config/display_config_resource.tres" id="2_8th1r"]
+[ext_resource type="PackedScene" uid="uid://nj5o0xkeegam" path="res://ui/options/controls/value_spinner_control.tscn" id="2_jt0n4"]
+[ext_resource type="Script" uid="uid://dprh1wryy3qxa" path="res://ui/options/config_menu_control_rule.gd" id="3_ebjd3"]
+[ext_resource type="Script" uid="uid://coxuki247d50e" path="res://ui/hide_non_web_control.gd" id="4_r4mdo"]
+[ext_resource type="PackedScene" uid="uid://bd8wqhxgjr0nt" path="res://ui/options/controls/slider_control.tscn" id="4_t7ssb"]
+
+[sub_resource type="Resource" id="Resource_r4mdo"]
+script = ExtResource("3_ebjd3")
+source_key = "window_mode"
+expected_values = [3]
+target_key = "resolution"
+metadata/_custom_type_script = "uid://b82d8peuolwss"
+
+[node name="DisplayConfigMenu" type="VBoxContainer" unique_id=1180570212 node_paths=PackedStringArray("reset_button")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -64.0
+offset_right = 206.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wme62")
+resource = ExtResource("2_8th1r")
+control_rules = Array[ExtResource("3_ebjd3")]([SubResource("Resource_r4mdo")])
+reset_button = NodePath("ResetAllButton")
+
+[node name="FullscreenSpinnerControl" parent="." unique_id=1031326430 instance=ExtResource("2_jt0n4")]
+layout_mode = 2
+_values = {
+0: "off",
+3: "on"
+}
+key = "window_mode"
+title = "fullscreen"
+
+[node name="HideNonWebControl" type="Node" parent="FullscreenSpinnerControl" unique_id=422323408 node_paths=PackedStringArray("target")]
+script = ExtResource("4_r4mdo")
+target = NodePath("..")
+
+[node name="ResolutionSpinnerControl" parent="." unique_id=1741036436 instance=ExtResource("2_jt0n4")]
+layout_mode = 2
+_values = {
+Vector2i(640, 360): "640 x 360",
+Vector2i(960, 540): "960 x 540",
+Vector2i(1024, 576): "1024 x 576",
+Vector2i(1152, 648): "1152 x 647",
+Vector2i(1280, 720): "1280 x 720",
+Vector2i(1600, 900): "1600 x 900",
+Vector2i(1920, 1080): "1920 x 1080",
+Vector2i(2048, 1152): "2048 x 1152",
+Vector2i(2560, 1440): "2560 x 1440",
+Vector2i(3200, 1800): "3200 x 1800",
+Vector2i(3840, 2160): "3840 x 2160"
+}
+key = "resolution"
+title = "resolution"
+
+[node name="HideNonWebControl" type="Node" parent="ResolutionSpinnerControl" unique_id=1670385210 node_paths=PackedStringArray("target")]
+script = ExtResource("4_r4mdo")
+target = NodePath("..")
+
+[node name="VsyncSpinnerControl" parent="." unique_id=1443483308 instance=ExtResource("2_jt0n4")]
+layout_mode = 2
+_values = {
+0: "off",
+1: "on"
+}
+key = "vsync_mode"
+title = "vsync"
+
+[node name="HideNonWebControl" type="Node" parent="VsyncSpinnerControl" unique_id=215455763 node_paths=PackedStringArray("target")]
+script = ExtResource("4_r4mdo")
+target = NodePath("..")
+
+[node name="BrightnessSliderControl" parent="." unique_id=607555833 instance=ExtResource("4_t7ssb")]
+layout_mode = 2
+max_value = 200.0
+step = 1.0
+key = "brightness"
+title = "brightness"
+
+[node name="FOVSliderControl" parent="." unique_id=1429480646 instance=ExtResource("4_t7ssb")]
+layout_mode = 2
+min_value = 7000.0
+max_value = 9000.0
+step = 100.0
+key = "field_of_view"
+title = "field of view"
+
+[node name="ResetAllButton" type="Button" parent="." unique_id=473693551]
+layout_mode = 2
+text = "Reset All"

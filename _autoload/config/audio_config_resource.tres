@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AudioConfigResource" format=3 uid="uid://dadbajkayq6vk"]
+
+[ext_resource type="Script" uid="uid://bf3wa67tag44g" path="res://_autoload/config/audio_config_resource.gd" id="1_hkrai"]
+
+[resource]
+script = ExtResource("1_hkrai")
+master_volume = 0.6
+sfx_volume = 1.0
+music_volume = 1.0
+ui_volume = 0.6
+ambient_volume = 1.0
+metadata/_custom_type_script = "uid://bf3wa67tag44g"

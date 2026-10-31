@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cgyopjxyixneo"]
+
+[ext_resource type="Script" uid="uid://ct15jyyh5yvj8" path="res://_autoload/menu.gd" id="1_bxvrb"]
+[ext_resource type="PackedScene" uid="uid://cnnt08qldu1nf" path="res://ui/options.tscn" id="2_tickj"]
+
+[node name="Menu" type="CanvasLayer" unique_id=1980467688 node_paths=PackedStringArray("resume_game_menu_button", "options_menu_button", "return_to_main_menu_button", "back_button", "options_menu")]
+layer = 10
+script = ExtResource("1_bxvrb")
+resume_game_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/ResumeGameMenuButton")
+options_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/OptionsMenuButton")
+return_to_main_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/ReturnToMainMenuButton")
+back_button = NodePath("MarginContainer/VBoxContainer/BackButton")
+options_menu = NodePath("MarginContainer/VBoxContainer/OptionsMenu")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=486860872]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7764706)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=360692389]
+custom_minimum_size = Vector2(0, 180)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -90.0
+offset_right = 200.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1049850135]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1091362025]
+layout_mode = 2
+
+[node name="ResumeGameMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1086945809]
+layout_mode = 2
+text = "Resume"
+
+[node name="OptionsMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1625029114]
+layout_mode = 2
+text = "Options"
+
+[node name="ReturnToMainMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=918656008]
+layout_mode = 2
+text = "Return to main menu"
+
+[node name="OptionsMenu" parent="MarginContainer/VBoxContainer" unique_id=2083225805 instance=ExtResource("2_tickj")]
+visible = false
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1688089533]
+visible = false
+layout_mode = 2
+text = "Back"

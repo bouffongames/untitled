@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="ControlsConfigResource" format=3 uid="uid://crgq3b67wq18l"]
+
+[ext_resource type="Script" uid="uid://d0r1gmfwn2i6i" path="res://_autoload/config/input_action.gd" id="1_bvnpp"]
+[ext_resource type="Script" uid="uid://qt1us4fbnn8m" path="res://_autoload/config/controls_config_resource.gd" id="2_bvnpp"]
+
+[sub_resource type="Resource" id="Resource_re2ha"]
+script = ExtResource("1_bvnpp")
+input_code = 1
+input_type = 1
+metadata/_custom_type_script = "uid://b4at2vwqoxros"
+
+[sub_resource type="Resource" id="Resource_gxx8e"]
+script = ExtResource("1_bvnpp")
+input_code = 83
+metadata/_custom_type_script = "uid://b4at2vwqoxros"
+
+[sub_resource type="Resource" id="Resource_c6d8g"]
+script = ExtResource("1_bvnpp")
+input_code = 87
+metadata/_custom_type_script = "uid://b4at2vwqoxros"
+
+[sub_resource type="Resource" id="Resource_48t76"]
+script = ExtResource("1_bvnpp")
+input_code = 65
+metadata/_custom_type_script = "uid://b4at2vwqoxros"
+
+[sub_resource type="Resource" id="Resource_vg2yr"]
+script = ExtResource("1_bvnpp")
+input_code = 68
+metadata/_custom_type_script = "uid://b4at2vwqoxros"
+
+[resource]
+script = ExtResource("2_bvnpp")
+mouse_sensitivity = 0.5
+actions = Dictionary[String, ExtResource("1_bvnpp")]({
+"interact": SubResource("Resource_re2ha"),
+"move_backward": SubResource("Resource_gxx8e"),
+"move_forward": SubResource("Resource_c6d8g"),
+"move_left": SubResource("Resource_48t76"),
+"move_right": SubResource("Resource_vg2yr")
+})

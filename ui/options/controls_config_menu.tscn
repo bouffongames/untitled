@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://c4528yvuaa48x"]
+
+[ext_resource type="Script" uid="uid://clj3a1hls2j6c" path="res://ui/options/config_menu.gd" id="1_sxfs0"]
+[ext_resource type="Resource" uid="uid://crgq3b67wq18l" path="res://_autoload/config/controls_config_resource.tres" id="2_irxsj"]
+[ext_resource type="PackedScene" uid="uid://nj5o0xkeegam" path="res://ui/options/controls/value_spinner_control.tscn" id="4_4dhgt"]
+[ext_resource type="PackedScene" uid="uid://dwwrjxp3yrrt4" path="res://ui/options/controls/rebind_control.tscn" id="4_c6d8g"]
+[ext_resource type="PackedScene" uid="uid://bd8wqhxgjr0nt" path="res://ui/options/controls/slider_control.tscn" id="5_kyrts"]
+
+[node name="ControlsConfigMenu" type="VBoxContainer" unique_id=2095500092 node_paths=PackedStringArray("reset_button")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sxfs0")
+resource = ExtResource("2_irxsj")
+reset_button = NodePath("ResetAllButton")
+
+[node name="MouseSensitivitySliderControl" parent="." unique_id=1925440414 instance=ExtResource("5_kyrts")]
+layout_mode = 2
+key = "mouse_sensitivity"
+title = "mouse sensitivity"
+
+[node name="InvertHorizontalAimSpinnerControl" parent="." unique_id=723793488 instance=ExtResource("4_4dhgt")]
+layout_mode = 2
+_values = {
+false: "off",
+true: "on"
+}
+key = "is_horizontal_aim_inverted"
+title = "invert horizontal aim"
+
+[node name="InvertVerticalAimSpinnerControl" parent="." unique_id=1276530232 instance=ExtResource("4_4dhgt")]
+layout_mode = 2
+_values = {
+false: "off",
+true: "on"
+}
+key = "is_vertical_aim_inverted"
+title = "invert vertical aim"
+
+[node name="RunTypeSpinnerControl" parent="." unique_id=1257029623 instance=ExtResource("4_4dhgt")]
+layout_mode = 2
+_values = {
+false: "hold",
+true: "toggle"
+}
+key = "is_run_toggled"
+title = "run type"
+
+[node name="CrouchTypeSpinnerControl" parent="." unique_id=1002101801 instance=ExtResource("4_4dhgt")]
+layout_mode = 2
+_values = {
+false: "hold",
+true: "toggle"
+}
+key = "is_crouch_toggled"
+title = "crouch type"
+
+[node name="MoveForwardRebindControl" parent="." unique_id=1596522751 instance=ExtResource("4_c6d8g")]
+layout_mode = 2
+key = "actions.move_forward"
+title = "move forward"
+
+[node name="MoveBackwardRebindControl" parent="." unique_id=1345186503 instance=ExtResource("4_c6d8g")]
+layout_mode = 2
+key = "actions.move_backward"
+title = "move backward"
+
+[node name="MoveLeftRebindControl" parent="." unique_id=549274095 instance=ExtResource("4_c6d8g")]
+layout_mode = 2
+key = "actions.move_left"
+title = "move left"
+
+[node name="MoveRightRebindControl" parent="." unique_id=891320452 instance=ExtResource("4_c6d8g")]
+layout_mode = 2
+key = "actions.move_right"
+title = "move right"
+
+[node name="InteractRebindControl" parent="." unique_id=797268006 instance=ExtResource("4_c6d8g")]
+layout_mode = 2
+key = "actions.interact"
+title = "interact"
+
+[node name="ResetAllButton" type="Button" parent="." unique_id=1302382929]
+layout_mode = 2
+text = "Reset All"

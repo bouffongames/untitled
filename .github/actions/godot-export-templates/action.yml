@@ -1,0 +1,18 @@
+name: Godot Export Templates
+description: Setup Godot export templates
+
+inputs:
+  godot-version:
+    description: Godot version
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Setup export templates
+      shell: bash
+      run: |
+        mkdir -v -p ~/.local/share/godot/export_templates/
+        mkdir -v -p ~/.config/
+        mv /root/.config/godot ~/.config/godot
+        mv /root/.local/share/godot/export_templates/${{ inputs.godot-version }}.stable ~/.local/share/godot/export_templates/${{ inputs.godot-version }}.stable

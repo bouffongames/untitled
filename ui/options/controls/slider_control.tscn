@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bd8wqhxgjr0nt"]
+
+[ext_resource type="Script" uid="uid://beb1p6iegjss4" path="res://ui/options/controls/slider_control.gd" id="1_i1tmf"]
+
+[node name="SliderControl" type="HBoxContainer" unique_id=1429480646 node_paths=PackedStringArray("_title_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -708.0
+offset_bottom = -595.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i1tmf")
+step = 0.1
+_title_label = NodePath("TitleLabel")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1489668923]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="Slider" type="HSlider" parent="." unique_id=566629843]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1

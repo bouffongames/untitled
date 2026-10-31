@@ -1,0 +1,13 @@
+name: Godot Import Restore
+description: Restore Godot imported asset cache
+
+runs:
+  using: composite
+  steps:
+    - name: Restore Godot imported asset cache
+      uses: actions/cache/restore@v6
+      with:
+        path: .godot/imported
+        key: godot-imported-${{ runner.os }}-${{ hashFiles('**/*.import', '**/*.gd', 'project.godot') }}
+        restore-keys: |
+          godot-imported-${{ runner.os }}-

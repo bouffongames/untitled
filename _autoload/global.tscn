@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ctrvyy3ig3g2p"]
+
+[ext_resource type="Script" uid="uid://cw55ovkbxg8fk" path="res://_autoload/global.gd" id="1_sjiu5"]
+[ext_resource type="Resource" uid="uid://dfp2wds8k3h7s" path="res://_autoload/config/gameplay_config_resource.tres" id="2_r120n"]
+[ext_resource type="Resource" uid="uid://ovnirtsq5t3y" path="res://_autoload/config/display_config_resource.tres" id="3_ffjtq"]
+[ext_resource type="Resource" uid="uid://dadbajkayq6vk" path="res://_autoload/config/audio_config_resource.tres" id="4_7wh8d"]
+[ext_resource type="Resource" uid="uid://crgq3b67wq18l" path="res://_autoload/config/controls_config_resource.tres" id="5_rfc6n"]
+[ext_resource type="PackedScene" uid="uid://delvnp032qckf" path="res://_autoload/scene_loader.tscn" id="6_kn31d"]
+[ext_resource type="Script" uid="uid://b3yqdrnkaencm" path="res://_autoload/game.gd" id="7_yujey"]
+[ext_resource type="PackedScene" uid="uid://cgyopjxyixneo" path="res://_autoload/menu.tscn" id="8_iyqih"]
+[ext_resource type="PackedScene" uid="uid://7c7pscfiq7mm" path="res://_autoload/fps_counter.tscn" id="9_eduou"]
+
+[node name="Global" type="Node" unique_id=1889965175 node_paths=PackedStringArray("scene", "game", "menu", "fps_counter")]
+process_mode = 3
+script = ExtResource("1_sjiu5")
+gameplay_resource = ExtResource("2_r120n")
+display_resource = ExtResource("3_ffjtq")
+audio_resource = ExtResource("4_7wh8d")
+controls_resource = ExtResource("5_rfc6n")
+scene = NodePath("SceneLoader")
+game = NodePath("Game")
+menu = NodePath("Menu")
+fps_counter = NodePath("FPSCounter")
+
+[node name="SceneLoader" parent="." unique_id=357581984 instance=ExtResource("6_kn31d")]
+
+[node name="Game" type="Node" parent="." unique_id=82427708]
+script = ExtResource("7_yujey")
+
+[node name="Menu" parent="." unique_id=1980467688 instance=ExtResource("8_iyqih")]
+
+[node name="FPSCounter" parent="." unique_id=1290143388 instance=ExtResource("9_eduou")]

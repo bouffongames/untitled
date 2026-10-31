@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://duqrumubsfyot"]
+
+[ext_resource type="Script" uid="uid://clj3a1hls2j6c" path="res://ui/options/config_menu.gd" id="1_5y1rf"]
+[ext_resource type="Resource" uid="uid://dfp2wds8k3h7s" path="res://_autoload/config/gameplay_config_resource.tres" id="2_gomqj"]
+[ext_resource type="PackedScene" uid="uid://nj5o0xkeegam" path="res://ui/options/controls/value_spinner_control.tscn" id="3_pfkaw"]
+
+[node name="GameplayConfigMenu" type="VBoxContainer" unique_id=27677380 node_paths=PackedStringArray("reset_button")]
+visible = false
+size_flags_vertical = 3
+script = ExtResource("1_5y1rf")
+resource = ExtResource("2_gomqj")
+reset_button = NodePath("ResetAllButton")
+
+[node name="HideHUDControl" parent="." unique_id=723793488 instance=ExtResource("3_pfkaw")]
+layout_mode = 2
+_values = {
+false: "off",
+true: "on"
+}
+key = "is_hud_hidden"
+title = "hide hud"
+
+[node name="ShowFPSCounterControl" parent="." unique_id=627416858 instance=ExtResource("3_pfkaw")]
+layout_mode = 2
+_values = {
+false: "off",
+true: "on"
+}
+key = "is_fps_counter_visible"
+title = "show fps counter"
+
+[node name="ResetAllButton" type="Button" parent="." unique_id=242446803]
+layout_mode = 2
+text = "Reset All"

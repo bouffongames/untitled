@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://ks6qjn8hy4ut"]
+
+[ext_resource type="Script" uid="uid://clj3a1hls2j6c" path="res://ui/options/config_menu.gd" id="1_d0eks"]
+[ext_resource type="Resource" uid="uid://dadbajkayq6vk" path="res://_autoload/config/audio_config_resource.tres" id="2_jecss"]
+[ext_resource type="PackedScene" uid="uid://bd8wqhxgjr0nt" path="res://ui/options/controls/slider_control.tscn" id="4_n0xj0"]
+
+[node name="AudioConfigMenu" type="VBoxContainer" unique_id=819287872 node_paths=PackedStringArray("reset_button")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -222.0
+offset_top = -140.5
+offset_right = 222.0
+offset_bottom = 140.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d0eks")
+resource = ExtResource("2_jecss")
+reset_button = NodePath("ResetAllButton")
+
+[node name="MasterVolumeSliderControl" parent="." unique_id=1277753520 instance=ExtResource("4_n0xj0")]
+layout_mode = 2
+key = "master_volume"
+title = "master"
+
+[node name="UIVolumeSliderControl" parent="." unique_id=1137731830 instance=ExtResource("4_n0xj0")]
+layout_mode = 2
+key = "ui_volume"
+title = "ui"
+
+[node name="MusicVolumeSliderControl" parent="." unique_id=21750273 instance=ExtResource("4_n0xj0")]
+layout_mode = 2
+key = "music_volume"
+title = "music"
+
+[node name="AmbientVolumeSliderControl" parent="." unique_id=111419675 instance=ExtResource("4_n0xj0")]
+layout_mode = 2
+key = "ambient_volume"
+title = "ambient"
+
+[node name="SFXVolumeSliderControl" parent="." unique_id=2090743899 instance=ExtResource("4_n0xj0")]
+layout_mode = 2
+key = "sfx_volume"
+title = "sfx"
+
+[node name="ResetAllButton" type="Button" parent="." unique_id=807598856]
+layout_mode = 2
+text = "Reset All"

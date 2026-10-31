@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cnnt08qldu1nf"]
+
+[ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="1_04syq"]
+[ext_resource type="Script" uid="uid://mnxdyivgvkkd" path="res://ui/options.gd" id="1_61pji"]
+[ext_resource type="PackedScene" uid="uid://ks6qjn8hy4ut" path="res://ui/options/audio_config_menu.tscn" id="2_aeuu6"]
+[ext_resource type="PackedScene" uid="uid://c4528yvuaa48x" path="res://ui/options/controls_config_menu.tscn" id="3_87q5s"]
+[ext_resource type="PackedScene" uid="uid://duqrumubsfyot" path="res://ui/options/gameplay_config_menu.tscn" id="3_bnx2y"]
+[ext_resource type="PackedScene" uid="uid://b6b4xle2dow7l" path="res://ui/options/display_config_menu.tscn" id="4_7obbp"]
+
+[node name="Options" type="VBoxContainer" unique_id=2083225805 node_paths=PackedStringArray("gameplay_menu_button", "display_menu_button", "audio_menu_button", "controls_menu_button", "back_button", "gameplay_menu", "display_menu", "audio_menu", "controls_menu")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.5
+offset_right = 200.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme = ExtResource("1_04syq")
+script = ExtResource("1_61pji")
+gameplay_menu_button = NodePath("VBoxContainer/GameplayMenuButton")
+display_menu_button = NodePath("VBoxContainer/DisplayMenuButton")
+audio_menu_button = NodePath("VBoxContainer/AudioMenuButton")
+controls_menu_button = NodePath("VBoxContainer/ControlsMenuButton")
+back_button = NodePath("BackButton")
+gameplay_menu = NodePath("GameplayMenu")
+display_menu = NodePath("DisplayMenu")
+audio_menu = NodePath("AudioMenu")
+controls_menu = NodePath("ControlsMenu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=136374453]
+layout_mode = 2
+
+[node name="GameplayMenuButton" type="Button" parent="VBoxContainer" unique_id=1489226727]
+layout_mode = 2
+text = "Gameplay"
+
+[node name="DisplayMenuButton" type="Button" parent="VBoxContainer" unique_id=2048892653]
+layout_mode = 2
+text = "Display"
+
+[node name="AudioMenuButton" type="Button" parent="VBoxContainer" unique_id=1170752938]
+layout_mode = 2
+text = "Audio"
+
+[node name="ControlsMenuButton" type="Button" parent="VBoxContainer" unique_id=1515677787]
+layout_mode = 2
+text = "Controls"
+
+[node name="GameplayMenu" parent="." unique_id=27677380 instance=ExtResource("3_bnx2y")]
+layout_mode = 2
+
+[node name="DisplayMenu" parent="." unique_id=1886574239 instance=ExtResource("4_7obbp")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AudioMenu" parent="." unique_id=1681666487 instance=ExtResource("2_aeuu6")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ControlsMenu" parent="." unique_id=307269261 instance=ExtResource("3_87q5s")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BackButton" type="Button" parent="." unique_id=688415665]
+visible = false
+layout_mode = 2
+text = "Back"

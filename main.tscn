@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://dcj8i1iuuxwol"]
+
+[ext_resource type="Script" uid="uid://dlnvnhmdq57n8" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cc2wi6cmg5xw1" path="res://ui/credits.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cnnt08qldu1nf" path="res://ui/options.tscn" id="3_h2yge"]
+
+[node name="Main" type="Control" unique_id=295659653 node_paths=PackedStringArray("version_label", "play_menu_button", "options_menu_button", "credits_menu_button", "exit_menu_button", "back_button", "options_menu", "credits") groups=["loadable"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ig7tw")
+version_label = NodePath("VersionLabel")
+play_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/PlayMenuButton")
+options_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/OptionsMenuButton")
+credits_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/CreditsMenuButton")
+exit_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/ExitMenuButton")
+back_button = NodePath("MarginContainer/VBoxContainer/BackButton")
+options_menu = NodePath("MarginContainer/VBoxContainer/OptionsMenu")
+credits = NodePath("Credits")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1087950935]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -90.0
+offset_right = 200.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2083225805]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=136374453]
+layout_mode = 2
+
+[node name="PlayMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1515677787]
+layout_mode = 2
+text = "Play"
+
+[node name="OptionsMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=2128485731]
+layout_mode = 2
+text = "Options"
+
+[node name="CreditsMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=749066692]
+layout_mode = 2
+text = "Credits"
+
+[node name="ExitMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1563592612]
+layout_mode = 2
+text = "Exit"
+
+[node name="OptionsMenu" parent="MarginContainer/VBoxContainer" unique_id=1883654004 instance=ExtResource("3_h2yge")]
+visible = false
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=688415665]
+visible = false
+layout_mode = 2
+text = "Back"
+
+[node name="VersionLabel" type="Label" parent="." unique_id=580460451]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 12
+text = "v.0.0.0"
+
+[node name="Credits" parent="." unique_id=75008228 instance=ExtResource("2_h2yge")]
+visible = false
+layout_mode = 1

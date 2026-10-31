@@ -1,0 +1,18 @@
+name: Godot Buildnumber
+description: Update Godot build number
+
+runs:
+  using: composite
+  steps:
+    - name: Update Godot build version
+      shell: bash
+      run: |
+        version="$(
+          grep '^config/version=' project.godot \
+            | cut -d '=' -f 2 \
+            | tr -d '"' \
+            | sed "s/{BUILD_NUMBER}/${{ github.run_number }}/g"
+        )"
+        sed -i "s/config\/version\s*=\s*.*/config\/version=\"${version:-1.0.0}\"/" project.godot
+        echo $(grep '^config/version=' project.godot | cut -d '=' -f 2 | tr -d '"') > buildnumber.txt
+        grep '^config/version=' project.godot

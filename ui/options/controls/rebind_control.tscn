@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dwwrjxp3yrrt4"]
+
+[ext_resource type="Script" uid="uid://4bgcbw7t1phf" path="res://ui/options/controls/rebind_control.gd" id="1_bexmo"]
+
+[node name="RebindControl" type="BoxContainer" unique_id=1596522751 node_paths=PackedStringArray("_button", "_title_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -708.0
+offset_bottom = -595.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bexmo")
+_button = NodePath("Button")
+_title_label = NodePath("TitleLabel")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1482773080]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=481705911]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "unbound"

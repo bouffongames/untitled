@@ -1,0 +1,18 @@
+name: Godot Import
+description: Run import and save Godot imported assets to cache
+
+runs:
+  using: composite
+  steps:
+    - name: Restore and Save Godot imported asset cache
+      uses: actions/cache@v6
+      with:
+        path: .godot/imported
+        key: godot-imported-${{ runner.os }}-${{ hashFiles('**/*.import', '**/*.gd', 'project.godot') }}
+        restore-keys: |
+          godot-imported-${{ runner.os }}-
+
+    - name: Import Godot assets
+      shell: bash
+      run: |
+        godot --headless --verbose --import

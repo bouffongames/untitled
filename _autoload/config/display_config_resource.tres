@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DisplayConfigResource" format=3 uid="uid://ovnirtsq5t3y"]
+
+[ext_resource type="Script" uid="uid://iom6w6innpit" path="res://_autoload/config/display_config_resource.gd" id="1_3mrwo"]
+
+[resource]
+script = ExtResource("1_3mrwo")
+brightness = 1.0
+field_of_view = 70.0
+window_mode = 3
+resolution = Vector2i(1920, 1080)
+vsync_mode = 1
