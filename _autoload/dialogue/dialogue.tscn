@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://c3kgblex5wnxt"]
+
+[ext_resource type="Script" uid="uid://dtbhdkr2v56rl" path="res://_autoload/dialogue/dialogue.gd" id="1_hstrk"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1432498365 node_paths=PackedStringArray("speaker_label", "text_label", "response_container", "continue_container", "continue_arrow_label")]
+layer = 9
+script = ExtResource("1_hstrk")
+speaker_label = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SpeakerLabel")
+text_label = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TextLabel")
+response_container = NodePath("VBoxContainer/ResponseContainer")
+text_speed_multiplier = 3.0
+continue_container = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer")
+continue_arrow_label = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer/ContinueArrowLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2139262146]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.5
+offset_top = -55.0
+offset_right = 16.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ResponseContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1891265771]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1326656581]
+layout_mode = 2
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer" unique_id=299697452]
+custom_minimum_size = Vector2(400, 160)
+custom_maximum_size = Vector2(400, 160)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/PanelContainer" unique_id=418392808]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer" unique_id=992734869]
+layout_mode = 2
+
+[node name="SpeakerLabel" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=331967853]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.7162962, 0.7162962, 0.7162962, 1)
+
+[node name="TextLabel" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=380433813]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+autowrap_mode = 2
+
+[node name="ContinueContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1168338291]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="ContinueLabel" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer" unique_id=1663925635]
+layout_mode = 2
+text = "Press Space / Enter"
+
+[node name="ContinueArrowLabel" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer" unique_id=466412149]
+layout_mode = 2
+text = "▼"

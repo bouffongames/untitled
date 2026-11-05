@@ -1,0 +1,13 @@
+Guard: Stop! What are you doing here?
+- I’m the new candle inspector.
+	Guard: Nobody told me about an inspector.
+	He leaves to check the roster. The hallway is clear. [emit guard_walks_away]
+- I'm looking for the kitchen.
+	Guard: The kitchen is downstairs. Keep moving.
+	He lets you pass, but points you away from your objective. [emit guard_gestures]
+- Cast a spell. [emit cast_spell]
+	Guard: What was that noise?
+	He turns to investigate. You can sneak past.
+- Say nothing.
+	Guard: You there! Answer me!
+	He steps closer. You have a moment to run. [emit guard_steps_closer]
