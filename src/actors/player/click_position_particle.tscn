@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://7lcjf6g22ofl"]
+
+[ext_resource type="Texture2D" uid="uid://l7paxgecp7qb" path="res://src/particle_sprites/circle_03.png" id="1_qkjek"]
+
+[sub_resource type="Curve" id="Curve_7ygf3"]
+_data = [Vector2(0.014957264, 0.01101923), 0.0, 1.9114625, 0, 1, Vector2(0.5064102, 0.9504131), 0.0, 0.0, 0, 0, Vector2(0.9893161, 0), -1.9681123, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_whlgl"]
+curve = SubResource("Curve_7ygf3")
+
+[sub_resource type="Curve" id="Curve_g3x3k"]
+_data = [Vector2(0, 0), 0.0, 2.757576, 0, 0, Vector2(0.28846154, 0.45454538), 1.5712812, 1.5712812, 0, 0, Vector2(0.5491452, 0.7961432), 0.0, 0.0, 0, 0, Vector2(0.80555546, 0.3911845), -1.4013658, -1.4013658, 0, 0, Vector2(1, 0.008264422), -3.699601, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_bgm13"]
+curve = SubResource("Curve_g3x3k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_og1q0"]
+use_rotation_3d = true
+rotation_3d_min = Vector3(-90, 0, 0)
+rotation_3d_max = Vector3(-90, 0, 0)
+gravity = Vector3(0, 10, 0)
+scale_curve = SubResource("CurveTexture_bgm13")
+alpha_curve = SubResource("CurveTexture_whlgl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkan1"]
+transparency = 1
+cull_mode = 2
+no_depth_test = true
+shading_mode = 0
+albedo_texture = ExtResource("1_qkjek")
+
+[sub_resource type="QuadMesh" id="QuadMesh_cyf0t"]
+material = SubResource("StandardMaterial3D_hkan1")
+
+[node name="ClickPositionParticle" type="GPUParticles3D" unique_id=1959291794]
+emitting = false
+amount = 5
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.88
+process_material = SubResource("ParticleProcessMaterial_og1q0")
+draw_pass_1 = SubResource("QuadMesh_cyf0t")

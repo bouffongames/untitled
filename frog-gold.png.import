@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvwhx0km6c6ak"
-path="res://.godot/imported/frog-gold.png-2c62f86e0b3d4f9473c68471d897fd27.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://frog-gold.png"
-dest_files=["res://.godot/imported/frog-gold.png-2c62f86e0b3d4f9473c68471d897fd27.ctex"]
 
 [params]
 

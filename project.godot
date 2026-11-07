@@ -48,6 +48,7 @@ folder_colors={
 [global_group]
 
 loadable=""
+Player=""
 
 [gui]
 
@@ -75,6 +76,12 @@ interact={
 "deadzone": 0.2,
 "events": []
 }
+
+[layer_names]
+
+3d_physics/layer_1="Ground"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Obstacle"
 
 [physics]
 
