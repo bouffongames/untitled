@@ -1,0 +1,10 @@
+[gd_resource type="AnimationLibrary" format=3 uid="uid://k45w5evgjbtp"]
+
+[ext_resource type="Animation" path="res://src/3d_models/gdquest_gobot/custom_animations/hurt.tres" id="1_qutpd"]
+[ext_resource type="Animation" path="res://src/3d_models/gdquest_gobot/custom_animations/step.tres" id="2_jlgoh"]
+
+[resource]
+_data = {
+&"hurt": ExtResource("1_qutpd"),
+&"step": ExtResource("2_jlgoh")
+}

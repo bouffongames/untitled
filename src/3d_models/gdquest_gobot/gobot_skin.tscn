@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://02pjlm1ilk3w" path="res://src/3d_models/gdquest_gobot/gobot_skin.gd" id="1_rwke8"]
 [ext_resource type="Texture2D" uid="uid://cfdf62ci74tew" path="res://src/3d_models/gdquest_gobot/model/textures/closed_eyes.png" id="3_atmtp"]
 [ext_resource type="Texture2D" uid="uid://dq675fmt1rg8c" path="res://src/3d_models/gdquest_gobot/model/textures/open_eye.png" id="3_aysq5"]
-[ext_resource type="AnimationLibrary" uid="uid://k45w5evgjbtp" path="res://src/3d_models/gdquest_gobot/custom_animations/custom_lib.res" id="6_vjupt"]
+[ext_resource type="AnimationLibrary" uid="uid://k45w5evgjbtp" path="res://src/3d_models/gdquest_gobot/custom_animations/custom_lib.tres" id="6_vjupt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t4001"]
 render_priority = 1
