@@ -81,9 +81,16 @@ use_collision = true
 collision_layer = 4
 collision_mask = 2
 
+[node name="Camera3D" type="Camera3D" parent="." unique_id=728907212]
+transform = Transform3D(1, 0, 0, 0, 0.78697, 0.61699134, 0, -0.61699134, 0.78697, -5.205117, 9, 5.316842)
+current = true
+script = ExtResource("2_a3ifo")
+
 [node name="Player" parent="." unique_id=1597008775 instance=ExtResource("1_mllua")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.205117, 0, -6.363158)
 
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=728907212]
-transform = Transform3D(1, 0, 0, 0, 0.60995394, 0.792437, 0, -0.792437, 0.60995394, 0, 7.894624, 9.418434)
-script = ExtResource("2_a3ifo")
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=2064581991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 11.68)
+remote_path = NodePath("../../Camera3D")
+update_rotation = false
+update_scale = false

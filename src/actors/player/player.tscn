@@ -14,13 +14,13 @@ script = ExtResource("1_1x8di")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=551061462]
 unique_name_in_owner = true
-path_desired_distance = 0.6
-debug_enabled = true
+target_desired_distance = 0.3
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 debug_path_custom_point_size = 5.16
 
 [node name="GobotSkin" parent="." unique_id=387738634 instance=ExtResource("1_tps1c")]
+unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1043362773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68030703, 0)
