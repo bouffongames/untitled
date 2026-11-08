@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://qxt8gh0jjaw5"]
+
+[ext_resource type="Script" uid="uid://b5hvr4v56puru" path="res://src/actors/guard/guard.gd" id="1_fwpfe"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cyf0t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cyf0t"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_og1q0"]
+size = Vector3(0.54626465, 0.2442627, 0.3914795)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cyf0t"]
+
+[node name="Guard" type="CharacterBody3D" unique_id=1592633665]
+script = ExtResource("1_fwpfe")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1897320302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_cyf0t")
+
+[node name="Face" type="MeshInstance3D" parent="Body" unique_id=912703336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011047363, 0.54472125, 0.34744585)
+material_overlay = SubResource("StandardMaterial3D_cyf0t")
+mesh = SubResource("BoxMesh_og1q0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1254581376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_cyf0t")
