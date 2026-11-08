@@ -14,6 +14,12 @@ size = Vector3(0.54626465, 0.2442627, 0.3914795)
 
 [node name="Guard" type="CharacterBody3D" unique_id=1592633665]
 script = ExtResource("1_fwpfe")
+vision_obstacle_layer = 4
+
+[node name="Eyes" type="Marker3D" parent="." unique_id=219243429]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5751698, 0)
+gizmo_extents = 1.77
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1897320302]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
