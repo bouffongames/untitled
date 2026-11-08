@@ -6,11 +6,6 @@ enum States {
 	CAUGHT
 }
 
-enum SenseFlags {
-	NOTICED,
-	CAUGHT
-}
-
 @export_range(60.0, 120.0) var fov_degrees := 90.0
 @export_range(0.0, 20.0) var max_vision_range := 10.0
 @export_range(0.0, 20.0) var near_vision_range := 4.0
@@ -21,8 +16,10 @@ var _detection_min_dot_value := 0.0 # set in _ready once
 var _current_state: States = States.PATROL
 
 @onready var _eyes: Marker3D = %Eyes
+@onready var state_label: Label = %StateLabel
 
 func _ready() -> void:
+	state_label.text = state_label.text % States.find_key(_current_state)
 	_detection_min_dot_value = cos(deg_to_rad(fov_degrees * 0.5))
 	_player_instance = get_tree().get_first_node_in_group("Player")
 
@@ -69,12 +66,13 @@ func _think(sense_result) -> void:
 			#elif patrol_timer <= 0.0:
 				#_enter(States.PATROL)
 		States.CAUGHT:
+			get_tree().reload_current_scene()
 			return
 
 
 func _enter(new_state: States) -> void:
-	print(States.keys()[_current_state], " -> ", States.keys()[new_state])
 	_current_state = new_state
+	state_label.text = "STATE: %s" % States.find_key(_current_state)
 
 
 func _can_see(target_pos: Vector3) -> bool:
