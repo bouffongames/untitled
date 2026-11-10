@@ -11,6 +11,7 @@ enum States {
 @export_range(60.0, 120.0) var fov_degrees := 90.0
 @export_range(0.0, 20.0) var max_vision_range := 10.0
 @export_range(0.0, 20.0) var near_vision_range := 4.0
+@export_range(0.5, 3.0) var alert_pause_time := 1.5
 @export_flags_3d_physics var vision_obstacle_layer
 
 @export_category("Navigation & Movement")
@@ -23,14 +24,18 @@ var _player_instance: Player
 var _detection_min_dot_value := 0.0 # set in _ready once
 var _current_state: States = States.PATROL
 var _target_patrolling_point_index: int = 0
+var _survey_tween: Tween
 
 @onready var _eyes: Marker3D = %Eyes
 @onready var _navigation_agent_3d: NavigationAgent3D = %NavigationAgent3D
 @onready var _body: MeshInstance3D = %Body
 @onready var _survey_timer: Timer = %SurveyTimer
+@onready var _alert_icon: Sprite3D = %AlertIcon
+@onready var _alert_sound: AudioStreamPlayer = %AlertSound
 
 
 func _ready() -> void:
+	_alert_icon.visible = false
 	_navigation_agent_3d.navigation_finished.connect(func() -> void:
 		_enter(States.SURVEY)
 	)
@@ -130,16 +135,20 @@ func _sense() -> Dictionary:
 func _think(sense_result) -> void:
 	match _current_state:
 		States.PATROL:
-			if sense_result["noticed"]:
-				_enter(States.INVESTIGATE)
-			elif sense_result["clear_sight"]:
+			if sense_result["clear_sight"]:
 				_enter(States.CAUGHT)
+			elif sense_result["noticed"]:
+				_enter(States.INVESTIGATE)
 		States.INVESTIGATE:
 			if sense_result["clear_sight"]:
 				_enter(States.CAUGHT)
 		States.CAUGHT:
 			get_tree().reload_current_scene()
 			return
+		States.SURVEY:
+			if sense_result["noticed"]:
+				_survey_tween.kill()
+				_enter(States.INVESTIGATE)
 
 
 func _enter(new_state: States) -> void:
@@ -150,12 +159,22 @@ func _enter(new_state: States) -> void:
 		if _survey_timer.time_left == 0:
 				_survey_timer.start()
 
-		var tween := create_tween().set_parallel(false)
-		tween.tween_property(_body, "global_rotation:y", deg_to_rad(rad_to_deg(_body.global_rotation.y) + 40), _survey_timer.wait_time / 2.0)
-		tween.tween_property(_body, "global_rotation:y", deg_to_rad(rad_to_deg(_body.global_rotation.y) - 40), _survey_timer.wait_time / 2.0)
-		tween.play()
+		if _survey_tween != null:
+			_survey_tween.kill()
+			_survey_tween = null
+
+		_survey_tween = create_tween().set_parallel(false)
+		_survey_tween.tween_property(_body, "global_rotation:y", deg_to_rad(rad_to_deg(_body.global_rotation.y) + 40), _survey_timer.wait_time / 2.0)
+		_survey_tween.tween_property(_body, "global_rotation:y", deg_to_rad(rad_to_deg(_body.global_rotation.y) - 40), _survey_timer.wait_time / 2.0)
+		_survey_tween.play()
 	elif new_state == States.INVESTIGATE:
+		_make_alert_icon_visible()
 		_navigation_agent_3d.target_position = _player_instance.global_position
+
+		set_physics_process(false)
+		await get_tree().create_timer(alert_pause_time).timeout
+		set_physics_process(true)
+
 	elif new_state == States.PATROL:
 		var target_pos := (get_node(patrolling_points[_target_patrolling_point_index]) as Marker3D).global_position
 		_navigation_agent_3d.target_position = target_pos
@@ -186,3 +205,10 @@ func _can_see(target_pos: Vector3) -> bool:
 			return false
 
 	return false
+
+
+func _make_alert_icon_visible() -> void:
+	_alert_icon.visible = true
+	_alert_sound.play()
+	await get_tree().create_timer(1.5).timeout
+	_alert_icon.visible = false

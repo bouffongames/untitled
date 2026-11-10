@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://qxt8gh0jjaw5"]
 
 [ext_resource type="Script" uid="uid://b5hvr4v56puru" path="res://src/actors/guard/guard.gd" id="1_fwpfe"]
+[ext_resource type="Texture2D" uid="uid://dcuihs6i5rhqr" path="res://src/sprites/alert_icon.png" id="2_7eg61"]
+[ext_resource type="AudioStream" uid="uid://dmvdi57my3035" path="res://src/sounds/bleep.wav" id="3_6ewyv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cyf0t"]
 
@@ -43,3 +45,14 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 wait_time = 4.0
 one_shot = true
+
+[node name="AlertIcon" type="Sprite3D" parent="." unique_id=1224348399]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.7411266, 0.6713653, 0, -0.6713653, 0.7411266, 0, 2.5660567, 0)
+visible = false
+billboard = 1
+texture = ExtResource("2_7eg61")
+
+[node name="AlertSound" type="AudioStreamPlayer" parent="." unique_id=1171141708]
+unique_name_in_owner = true
+stream = ExtResource("3_6ewyv")
