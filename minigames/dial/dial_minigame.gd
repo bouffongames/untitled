@@ -289,7 +289,7 @@ func _animate_failure() -> void:
 	letters.append(_letter_texture)
 
 	var tween: Tween = create_tween()
-	tween.set_parallel( )
+	tween.set_parallel()
 	for texture: TextureRect in letters:
 		texture.modulate = FAILURE_COLOR
 		tween.parallel()

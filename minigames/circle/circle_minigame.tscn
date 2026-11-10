@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://jwjvgs3cvshm"]
+
+[ext_resource type="Script" uid="uid://lv0ouebpfqgg" path="res://minigames/circle/circle_minigame.gd" id="1_id8fv"]
+[ext_resource type="Texture2D" uid="uid://bktf73tquq1f4" path="res://assets/icons/keyboard/keyboard_space.svg" id="2_tvv3i"]
+[ext_resource type="Texture2D" uid="uid://hov0f5swyoyy" path="res://minigames/circle/thick_circle.svg" id="3_tvv3i"]
+[ext_resource type="Texture2D" uid="uid://goe7lvj57trr" path="res://minigames/circle/circular_progress.svg" id="5_tvv3i"]
+[ext_resource type="Texture2D" uid="uid://ddufagmp2ukp4" path="res://minigames/circle/thin_circle.svg" id="6_7aw4x"]
+
+[node name="CircleMinigame" type="Control" unique_id=1173071097 node_paths=PackedStringArray("_inner_texture", "_outer_texture", "_progress_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_id8fv")
+_inner_texture = NodePath("InnerTexture")
+_outer_texture = NodePath("OuterTexture")
+_progress_bar = NodePath("TextureProgressBar")
+
+[node name="InputTexture" type="TextureRect" parent="." unique_id=853047972]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24, 24)
+texture = ExtResource("2_tvv3i")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="InnerTexture" type="TextureRect" parent="." unique_id=127337975]
+modulate = Color(0.39607844, 0.8156863, 0.38039216, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("3_tvv3i")
+
+[node name="OuterTexture" type="TextureRect" parent="." unique_id=1049578123]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("6_7aw4x")
+expand_mode = 4
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1498271591]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.01
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("5_tvv3i")
+tint_under = Color(0.7411765, 0.7411765, 0.7411765, 1)
+tint_progress = Color(0.9411765, 0.93333334, 0.44313726, 1)

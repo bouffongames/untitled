@@ -115,7 +115,11 @@ func _create_new_sequence() -> Array[Key]:
 	var sequence: Array[Key] = []
 	var num_keys: float = stage_sequence_length[_current_stage]
 	for i: int in range(num_keys):
+		# start with a random key so the sequence does can still be unpredictable.
 		var new_key: Key = _icons.keys().pick_random()
+		# on alternating steps after the first key, create a simple pattern:
+		# either repeat the previous key, or the opposite direction of the previous key.
+		# this makes the sequence feel easier.
 		if i >= 1:
 			if i % 2:
 				if randi() % 2:
