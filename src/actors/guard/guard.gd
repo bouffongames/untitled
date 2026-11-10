@@ -72,6 +72,22 @@ func _act() -> void:
 			move_and_slide()
 		States.SURVEY:
 			return
+		States.INVESTIGATE:
+			if _navigation_agent_3d.is_navigation_finished():
+				_enter(States.SURVEY)
+				return
+
+			var direction := global_position\
+				.direction_to(_navigation_agent_3d.get_next_path_position())
+			var body_rotation = _body.global_rotation.y
+			var target_rotation = atan2(direction.x, direction.z)
+			var desired_velocity = direction * max_movement_speed
+			velocity = velocity.move_toward(
+				desired_velocity,
+				acceleration * get_physics_process_delta_time()
+			)
+			_body.global_rotation.y = rotate_toward(body_rotation, target_rotation, torque * get_process_delta_time())
+			move_and_slide()
 
 
 func _choose_next_position() -> void:
@@ -121,15 +137,13 @@ func _think(sense_result) -> void:
 		States.INVESTIGATE:
 			if sense_result["clear_sight"]:
 				_enter(States.CAUGHT)
-			#elif patrol_timer <= 0.0:
-				#_enter(States.PATROL)
 		States.CAUGHT:
 			get_tree().reload_current_scene()
 			return
 
 
 func _enter(new_state: States) -> void:
-	if _current_state == States.SURVEY and new_state != States.PATROL:
+	if new_state != States.SURVEY:
 		_survey_timer.stop()
 
 	if new_state == States.SURVEY:
@@ -140,6 +154,11 @@ func _enter(new_state: States) -> void:
 		tween.tween_property(_body, "global_rotation:y", deg_to_rad(rad_to_deg(_body.global_rotation.y) + 40), _survey_timer.wait_time / 2.0)
 		tween.tween_property(_body, "global_rotation:y", deg_to_rad(rad_to_deg(_body.global_rotation.y) - 40), _survey_timer.wait_time / 2.0)
 		tween.play()
+	elif new_state == States.INVESTIGATE:
+		_navigation_agent_3d.target_position = _player_instance.global_position
+	elif new_state == States.PATROL:
+		var target_pos := (get_node(patrolling_points[_target_patrolling_point_index]) as Marker3D).global_position
+		_navigation_agent_3d.target_position = target_pos
 
 	_current_state = new_state
 
