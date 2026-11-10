@@ -41,6 +41,7 @@ window/stretch/aspect="expand"
 
 folder_colors={
 "res://_autoload/": "red",
+"res://assets/": "yellow",
 "res://common/": "gray",
 "res://ui/": "blue"
 }

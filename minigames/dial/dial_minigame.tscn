@@ -1,0 +1,270 @@
+[gd_scene format=3 uid="uid://dmyadchka7kte"]
+
+[ext_resource type="Script" uid="uid://cumcdxg1wtqqp" path="res://minigames/dial/dial_minigame.gd" id="1_tx23v"]
+[ext_resource type="Texture2D" uid="uid://d1kd553nteeoe" path="res://minigames/dial/dial_pip.svg" id="2_65qpx"]
+[ext_resource type="Texture2D" uid="uid://c37prv1hxav61" path="res://minigames/dial/dial_arrow.svg" id="3_yjbub"]
+[ext_resource type="Texture2D" uid="uid://b7n0sdm6rjitk" path="res://assets/alphabet/7.svg" id="4_2ynar"]
+[ext_resource type="Texture2D" uid="uid://b780iwlljnjgg" path="res://assets/alphabet/0.svg" id="4_tbljk"]
+[ext_resource type="Texture2D" uid="uid://qc5ofv6tph5j" path="res://assets/alphabet/1.svg" id="5_2ynar"]
+[ext_resource type="Texture2D" uid="uid://dseguwemkjkw1" path="res://assets/alphabet/2.svg" id="6_n7r2b"]
+[ext_resource type="Texture2D" uid="uid://crquox0c5p5hx" path="res://assets/alphabet/3.svg" id="7_8ww1v"]
+[ext_resource type="Texture2D" uid="uid://dfv6xbxulcoqw" path="res://assets/alphabet/4.svg" id="8_ae6nn"]
+[ext_resource type="Texture2D" uid="uid://cf8ea7ecj4ha0" path="res://assets/alphabet/6.svg" id="10_6akol"]
+[ext_resource type="Texture2D" uid="uid://c8e0nxiagl3x2" path="res://assets/alphabet/9.svg" id="12_olvau"]
+[ext_resource type="Texture2D" uid="uid://cvppqmklb757j" path="res://assets/alphabet/11.svg" id="14_akw22"]
+[ext_resource type="Texture2D" uid="uid://ducwb77leu6yv" path="res://assets/alphabet/12.svg" id="15_lowpq"]
+[ext_resource type="Texture2D" uid="uid://b0t5hbv6yxjyg" path="res://minigames/dial/dial_base.svg" id="16_xrvps"]
+[ext_resource type="Texture2D" uid="uid://dob11qnod0j8q" path="res://assets/alphabet/14.svg" id="17_pljjf"]
+[ext_resource type="Texture2D" uid="uid://bktf73tquq1f4" path="res://assets/icons/keyboard/keyboard_space.svg" id="17_xrvps"]
+[ext_resource type="Texture2D" uid="uid://bn424fd1oiqmk" path="res://assets/alphabet/15.svg" id="18_6lvhs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6akol"]
+bg_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrvps"]
+bg_color = Color(0.9411765, 0.93333334, 0.44313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xe3o"]
+bg_color = Color(0.039215688, 0.039215688, 0.039215688, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6627451, 0.58431375, 0.33333334, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="DialMinigame" type="Control" unique_id=1400660716 node_paths=PackedStringArray("_root", "_arrow_texture", "_sequence_arrow_texture", "_letter_texture", "_sequence_container", "_completed_sequence_container", "_progress_bar", "_dial_parent")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tx23v")
+duration = 15.0
+_root = NodePath(".")
+_arrow_texture = NodePath("DialArrowTexture")
+_sequence_arrow_texture = NodePath("SequenceArrowTexture")
+_letter_texture = NodePath("Sequence/LetterTexture")
+_sequence_container = NodePath("Sequence/SequenceContainer")
+_completed_sequence_container = NodePath("Sequence/CompletedSequenceContainer")
+_progress_bar = NodePath("ProgressBar")
+_dial_parent = NodePath("PipsMask/Pips")
+_dial_pip_texture = ExtResource("2_65qpx")
+_pip_textures = Array[DPITexture]([ExtResource("4_tbljk"), ExtResource("5_2ynar"), ExtResource("6_n7r2b"), ExtResource("7_8ww1v"), ExtResource("8_ae6nn"), ExtResource("10_6akol"), ExtResource("4_2ynar"), ExtResource("12_olvau"), ExtResource("14_akw22"), ExtResource("15_lowpq"), ExtResource("17_pljjf"), ExtResource("18_6lvhs")])
+
+[node name="PipsMask" type="Control" parent="." unique_id=1296315938]
+clip_children = 1
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -348.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+
+[node name="Pips" type="Control" parent="PipsMask" unique_id=1312007722]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(324, 324)
+
+[node name="Sequence" type="Control" parent="." unique_id=896996570]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -167.0
+offset_bottom = -167.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LetterTexture" type="TextureRect" parent="Sequence" unique_id=1017913872]
+custom_maximum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_tbljk")
+
+[node name="SequenceContainer" type="HBoxContainer" parent="Sequence" unique_id=1563667387]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -16.0
+offset_right = 80.0
+offset_bottom = 16.0
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="Sequence/SequenceContainer" unique_id=1925560139]
+custom_maximum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_tbljk")
+
+[node name="CompletedSequenceContainer" type="HBoxContainer" parent="Sequence" unique_id=1537740688]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -16.0
+offset_right = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Sequence/CompletedSequenceContainer" unique_id=1916164169]
+custom_maximum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_tbljk")
+
+[node name="DialArrowTexture" type="TextureRect" parent="." unique_id=1967148767]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -151.0
+offset_right = 12.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -3.1415927
+pivot_offset = Vector2(12, 12)
+texture = ExtResource("3_yjbub")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="SequenceArrowTexture" type="TextureRect" parent="." unique_id=1844002413]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -205.0
+offset_right = 44.0
+offset_bottom = -181.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -3.1415927
+pivot_offset = Vector2(12, 12)
+texture = ExtResource("3_yjbub")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LeftDialBase" type="TextureRect" parent="." unique_id=1689870424]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -50.0
+offset_right = -72.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(30, 30)
+texture = ExtResource("16_xrvps")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="RightDialBase" type="TextureRect" parent="." unique_id=869968491]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 72.0
+offset_top = -50.0
+offset_right = 132.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(30, 30)
+texture = ExtResource("16_xrvps")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1047761582]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -9.0
+offset_right = 132.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_6akol")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xrvps")
+value = 100.0
+show_percentage = false
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=336854964]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -64.0
+offset_right = 52.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4xe3o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=1014271751]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer" unique_id=1044993369]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lock"
+horizontal_alignment = 1
+
+[node name="SpaceBarTexture" type="TextureRect" parent="Panel/HBoxContainer" unique_id=1592330100]
+layout_mode = 2
+texture = ExtResource("17_xrvps")
+expand_mode = 2
+stretch_mode = 4
