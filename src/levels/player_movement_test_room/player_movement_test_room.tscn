@@ -92,7 +92,7 @@ collision_mask = 2
 size = Vector3(1, 2, 1)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=728907212]
-transform = Transform3D(1, 0, 0, 0, 0.1198758, 0.992789, 0, -0.992789, 0.1198758, -3.7949057, 9, 0.56551266)
+transform = Transform3D(1, 0, 0, 0, 0.1198758, 0.992789, 0, -0.992789, 0.1198758, -5.3513575, 9, -5.8597546)
 current = true
 script = ExtResource("2_a3ifo")
 
@@ -100,10 +100,20 @@ script = ExtResource("2_a3ifo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.242757, -9.536743e-07, -5.6897736)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=2064581991]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4478512, 9.000001, 6.255286)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10860062, 9.000001, -0.169981)
 remote_path = NodePath("../../Camera3D")
 update_rotation = false
 update_scale = false
 
 [node name="Guard" parent="." unique_id=1592633665 instance=ExtResource("3_wf1hh")]
 transform = Transform3D(-0.6615027, 0, 0.7499425, 0, 1, 0, -0.7499425, 0, -0.6615027, -1.0989753, -9.536743e-07, 6.0300035)
+patrolling_points = Array[NodePath]([NodePath("../Position1"), NodePath("../Position2"), NodePath("../Position3")])
+
+[node name="Position1" type="Marker3D" parent="." unique_id=1876537047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.677624, 0, 5.829384)
+
+[node name="Position2" type="Marker3D" parent="." unique_id=1164067250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3282537, 9.536743e-07, 6.2057986)
+
+[node name="Position3" type="Marker3D" parent="." unique_id=526459948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.777467, 0, -1.2218552)
