@@ -92,7 +92,7 @@ collision_mask = 2
 size = Vector3(1, 2, 1)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=728907212]
-transform = Transform3D(1, 0, 0, 0, 0.1198758, 0.992789, 0, -0.992789, 0.1198758, -5.3513575, 9, -5.8597546)
+transform = Transform3D(1, 0, 0, 0, 0.47094572, 0.8821623, 0, -0.8821623, 0.47094572, -5.3513575, 9, -3.282484)
 current = true
 script = ExtResource("2_a3ifo")
 
@@ -100,7 +100,7 @@ script = ExtResource("2_a3ifo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.242757, -9.536743e-07, -5.6897736)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=2064581991]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10860062, 9.000001, -0.169981)
+transform = Transform3D(1, 0, 0, 0, -0.8600409, -0.51022506, 0, 0.51022506, -0.8600409, -0.10860062, 9.000001, 2.4072895)
 remote_path = NodePath("../../Camera3D")
 update_rotation = false
 update_scale = false
