@@ -52,6 +52,9 @@ func _next_line() -> void:
 
 	visible = true
 	continue_container.visible = false
+	response_container.visible = false
+	for child: Node in response_container.get_children():
+		child.queue_free()
 	await _set_text(line.text)
 	if not line.responses.is_empty():
 		_show_responses(line.responses)
@@ -105,17 +108,12 @@ func _type_characters(text: String) -> void:
 
 
 func _show_responses(responses: Array[DialogueLine]) -> void:
-	for child: Node in response_container.get_children():
-		child.queue_free()
 	response_container.visible = true
 	for response: DialogueLine in responses:
 		var button: Button = Button.new()
 		button.text = response.text
 		button.pressed.connect(
 			func() -> void:
-				response_container.visible = false
-				for child: Node in response_container.get_children():
-					child.queue_free()
 				_manager.set_response(response)
 				_next_line()
 		)
