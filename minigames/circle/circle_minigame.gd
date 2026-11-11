@@ -1,3 +1,4 @@
+class_name CircleMinigame
 extends Minigame
 
 const WHITE_COLOR: Color = Color.WHITE
