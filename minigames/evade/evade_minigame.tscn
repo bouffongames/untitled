@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://dq0pn8uf2l4vh"]
+
+[ext_resource type="Script" uid="uid://cx72f8xxddbjj" path="res://minigames/evade/evade_minigame.gd" id="1_nrg87"]
+[ext_resource type="Texture2D" uid="uid://bktf73tquq1f4" path="res://assets/icons/keyboard/keyboard_space.svg" id="2_b3nah"]
+[ext_resource type="Script" uid="uid://bhiwju2ur1cmx" path="res://minigames/evade/evade_obstable.gd" id="2_qvupv"]
+
+[sub_resource type="Resource" id="Resource_k4nyy"]
+script = ExtResource("2_qvupv")
+angle = 110.0
+arc_size = 13.0
+lane = 1
+metadata/_custom_type_script = "uid://bhiwju2ur1cmx"
+
+[sub_resource type="Resource" id="Resource_b3nah"]
+script = ExtResource("2_qvupv")
+angle = -35.0
+arc_size = 13.0
+metadata/_custom_type_script = "uid://bhiwju2ur1cmx"
+
+[sub_resource type="Resource" id="Resource_qvupv"]
+script = ExtResource("2_qvupv")
+angle = 35.0
+arc_size = 15.0
+metadata/_custom_type_script = "uid://bhiwju2ur1cmx"
+
+[sub_resource type="Resource" id="Resource_5p3or"]
+script = ExtResource("2_qvupv")
+angle = 160.0
+arc_size = 15.0
+metadata/_custom_type_script = "uid://bhiwju2ur1cmx"
+
+[sub_resource type="Resource" id="Resource_f24xk"]
+script = ExtResource("2_qvupv")
+angle = 220.0
+arc_size = 16.0
+metadata/_custom_type_script = "uid://bhiwju2ur1cmx"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3nah"]
+bg_color = Color(0.16470589, 0.16470589, 0.16470589, 0.49019608)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrg87"]
+bg_color = Color(0.39607844, 0.8156863, 0.44313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvupv"]
+bg_color = Color(0.16470589, 0.16470589, 0.16470589, 0.49019608)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4nyy"]
+bg_color = Color(0.9411765, 0.44313726, 0.44313726, 1)
+
+[node name="EvadeMinigame" type="Control" unique_id=1468249705 node_paths=PackedStringArray("_progress_bar", "_time_limit_progress_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_nrg87")
+obstacles = Array[ExtResource("2_qvupv")]([SubResource("Resource_k4nyy"), SubResource("Resource_b3nah"), SubResource("Resource_qvupv"), SubResource("Resource_5p3or"), SubResource("Resource_f24xk")])
+_progress_bar = NodePath("ProgressBar")
+_time_limit_progress_bar = NodePath("TimeLimitProgressBar")
+
+[node name="InputTexture" type="TextureRect" parent="." unique_id=962802610]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24, 24)
+texture = ExtResource("2_b3nah")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=94788439]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -269.0
+offset_top = -8.0
+offset_right = -29.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset = Vector2(120, 8)
+theme_override_styles/background = SubResource("StyleBoxFlat_b3nah")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nrg87")
+value = 86.26
+show_percentage = false
+
+[node name="TimeLimitProgressBar" type="ProgressBar" parent="." unique_id=1798140296]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -259.0
+offset_top = -8.0
+offset_right = -19.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset = Vector2(120, 8)
+theme_override_styles/background = SubResource("StyleBoxFlat_qvupv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_k4nyy")
+value = 97.28
+show_percentage = false

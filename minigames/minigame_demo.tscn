@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://iyllc6a0htus"]
+
+[ext_resource type="Script" uid="uid://cxdgqcsng6tie" path="res://minigames/minigame_demo.gd" id="1_gh7xl"]
+[ext_resource type="PackedScene" uid="uid://jwjvgs3cvshm" path="res://minigames/circle/circle_minigame.tscn" id="1_lgt5c"]
+[ext_resource type="PackedScene" uid="uid://cnvnal4hpoool" path="res://minigames/input/input_minigame.tscn" id="3_rl7m1"]
+[ext_resource type="PackedScene" uid="uid://dq0pn8uf2l4vh" path="res://minigames/evade/evade_minigame.tscn" id="4_jnm2g"]
+[ext_resource type="PackedScene" uid="uid://dmyadchka7kte" path="res://minigames/dial/dial_minigame.tscn" id="5_x2b4m"]
+
+[node name="MinigameDemo" type="Control" unique_id=1529404481 node_paths=PackedStringArray("_buttons", "_minigames")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_gh7xl")
+_buttons = [NodePath("MarginContainer/HBoxContainer/CircleMinigameButton"), NodePath("MarginContainer/HBoxContainer/InputMinigameButton"), NodePath("MarginContainer/HBoxContainer/EvadeMinigameButton"), NodePath("MarginContainer/HBoxContainer/DialMinigameButton")]
+_minigames = [NodePath("CircleMinigame"), NodePath("InputMinigame"), NodePath("EvadeMinigame"), NodePath("DialMinigame")]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1101508267]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=237599133]
+layout_mode = 2
+
+[node name="CircleMinigameButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=456299361]
+layout_mode = 2
+text = "1"
+
+[node name="InputMinigameButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=201335912]
+layout_mode = 2
+text = "2"
+
+[node name="EvadeMinigameButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1726726940]
+layout_mode = 2
+text = "3"
+
+[node name="DialMinigameButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1296976633]
+layout_mode = 2
+text = "4"
+
+[node name="CircleMinigame" parent="." unique_id=1173071097 instance=ExtResource("1_lgt5c")]
+visible = false
+layout_mode = 1
+
+[node name="InputMinigame" parent="." unique_id=1888031629 instance=ExtResource("3_rl7m1")]
+visible = false
+layout_mode = 1
+
+[node name="EvadeMinigame" parent="." unique_id=1468249705 instance=ExtResource("4_jnm2g")]
+visible = false
+layout_mode = 1
+
+[node name="DialMinigame" parent="." unique_id=1400660716 instance=ExtResource("5_x2b4m")]
+visible = false
+layout_mode = 1
