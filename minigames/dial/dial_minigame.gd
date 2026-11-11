@@ -57,7 +57,7 @@ func _process(delta: float) -> void:
 	if _sequence.is_empty():
 		_letter_texture.texture = null
 
-	if _progress_value <= 0.0:
+	if _progress_bar.value <= 0.0:
 		_animate_hide()
 		failed.emit()
 
