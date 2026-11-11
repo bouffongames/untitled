@@ -5,13 +5,15 @@ signal _typing_finished
 signal dialogue_ended
 signal dialogue_signal(value: String)
 
-@export var speaker_label: Label
-@export var text_label: Label
-@export var response_container: Control
 @export var text_speed_multiplier: float = 1.0
 
-@export var continue_container: HBoxContainer
-@export var continue_arrow_label: Label
+@export var _speaker_label: Label
+@export var _text_label: Label
+
+@export var _response_container: Control
+
+@export var _continue_container: HBoxContainer
+@export var _continue_arrow_label: Label
 
 var _manager: DialogueManager = DialogueManager.new()
 var _active: bool
@@ -44,33 +46,33 @@ func play(file_path: String) -> void:
 func _next_line() -> void:
 	var line: DialogueLine = _manager.next_line()
 	if line == null:
-		speaker_label.visible = false
-		speaker_label.text = ""
-		text_label.text = ""
+		_speaker_label.visible = false
+		_speaker_label.text = ""
+		_text_label.text = ""
 		visible = false
 		return
 
 	visible = true
-	continue_container.visible = false
-	response_container.visible = false
-	for child: Node in response_container.get_children():
+	_continue_container.visible = false
+	_response_container.visible = false
+	for child: Node in _response_container.get_children():
 		child.queue_free()
 	await _set_text(line.text)
 	if not line.responses.is_empty():
 		_show_responses(line.responses)
 	else:
-		continue_container.visible = true
+		_continue_container.visible = true
 
 
 func _set_text(new_text: String) -> void:
 	var split: PackedStringArray = new_text.split(":")
 	if split.size() > 1:
-		speaker_label.visible = true
-		speaker_label.text = split[0]
+		_speaker_label.visible = true
+		_speaker_label.text = split[0]
 		new_text = split[1].strip_edges()
 	else:
-		speaker_label.visible = false
-		speaker_label.text = ""
+		_speaker_label.visible = false
+		_speaker_label.text = ""
 	await _type_characters(new_text)
 
 
@@ -78,8 +80,8 @@ func _type_characters(text: String) -> void:
 	if _active:
 		await _typing_finished
 	_active = true
-	text_label.text = text
-	text_label.visible_characters = 0
+	_text_label.text = text
+	_text_label.visible_characters = 0
 	var normal_delay: float = 0.08 / text_speed_multiplier
 	var upper_case_delay: float = 0.16 / text_speed_multiplier
 	var punctuation_delay: float = 0.15 / text_speed_multiplier
@@ -87,7 +89,7 @@ func _type_characters(text: String) -> void:
 	for i: int in range(text.length()):
 		if _interrupt:
 			break
-		text_label.visible_characters = i + 1
+		_text_label.visible_characters = i + 1
 		var wait_time: float = normal_delay
 		if text[i] in [".", ",", "!", "?", ";", ":", "~", "(", ")", "*"]:
 			wait_time = punctuation_delay
@@ -100,15 +102,15 @@ func _type_characters(text: String) -> void:
 		if _interrupt:
 			break
 		await get_tree().create_timer(wait_time).timeout
-	text_label.text = text
-	text_label.visible_characters = -1
+	_text_label.text = text
+	_text_label.visible_characters = -1
 	_interrupt = false
 	_active = false
 	_typing_finished.emit()
 
 
 func _show_responses(responses: Array[DialogueLine]) -> void:
-	response_container.visible = true
+	_response_container.visible = true
 	for response: DialogueLine in responses:
 		var button: Button = Button.new()
 		button.text = response.text
@@ -117,21 +119,21 @@ func _show_responses(responses: Array[DialogueLine]) -> void:
 				_manager.set_response(response)
 				_next_line()
 		)
-		response_container.add_child(button)
+		_response_container.add_child(button)
 
 
 func _animate_continue_arrow() -> void:
-	var _init_position: Vector2 = continue_arrow_label.position
+	var _init_position: Vector2 = _continue_arrow_label.position
 	var tween: Tween = create_tween()
 	tween.set_loops()
 	tween.tween_property(
-			continue_arrow_label,
+			_continue_arrow_label,
 			"position:y",
 			_init_position.y - 6.0,
 			0.5
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(
-			continue_arrow_label,
+			_continue_arrow_label,
 			"position:y",
 			_init_position.y,
 			0.5

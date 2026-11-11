@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dtbhdkr2v56rl" path="res://_autoload/dialogue/dialogue.gd" id="1_hstrk"]
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=1432498365 node_paths=PackedStringArray("speaker_label", "text_label", "response_container", "continue_container", "continue_arrow_label")]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1432498365 node_paths=PackedStringArray("_speaker_label", "_text_label", "_response_container", "_continue_container", "_continue_arrow_label")]
 layer = 9
 script = ExtResource("1_hstrk")
-speaker_label = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SpeakerLabel")
-text_label = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TextLabel")
-response_container = NodePath("VBoxContainer/ResponseContainer")
 text_speed_multiplier = 3.0
-continue_container = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer")
-continue_arrow_label = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer/ContinueArrowLabel")
+_speaker_label = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SpeakerLabel")
+_text_label = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TextLabel")
+_response_container = NodePath("VBoxContainer/ResponseContainer")
+_continue_container = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer")
+_continue_arrow_label = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer/ContinueArrowLabel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2139262146]
 anchors_preset = 7
