@@ -94,6 +94,19 @@ step = 100.0
 key = "field_of_view"
 title = "field of view"
 
+[node name="MaxFPSSpinnerControl" parent="." unique_id=723793488 instance=ExtResource("2_jt0n4")]
+layout_mode = 2
+_values = {
+0: "unlimited",
+30: "30",
+60: "60",
+120: "120",
+180: "180",
+240: "240"
+}
+key = "max_fps"
+title = "max fps"
+
 [node name="ResetAllButton" type="Button" parent="." unique_id=473693551]
 layout_mode = 2
 text = "Reset All"

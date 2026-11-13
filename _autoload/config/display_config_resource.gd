@@ -4,6 +4,7 @@ extends ConfigResource
 @export_group("General")
 @export var brightness: float
 @export var field_of_view: float
+@export var max_fps: int
 
 @export_group("Display")
 @export var window_mode: DisplayServer.WindowMode
@@ -12,6 +13,7 @@ extends ConfigResource
 
 
 func apply() -> void:
+	Engine.max_fps = max_fps
 	_apply_window_mode(window_mode)
 	_apply_resolution(resolution)
 	_apply_vsync_mode(vsync_mode)
