@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cmpxkabyjy3gv"]
+
+[ext_resource type="ArrayMesh" uid="uid://dhiin4aaxx6w0" path="res://vfx/dust_trail/dust_trail_mesh.tres" id="1_ds8bj"]
+[ext_resource type="Script" uid="uid://dseg17a2u1cqj" path="res://vfx/dust_trail/dust_trail_particles.gd" id="2_shg2i"]
+
+[sub_resource type="Curve" id="Curve_k35ie"]
+_data = [Vector2(0, 0), 0.0, 16.483976, 0, 0, Vector2(0.19424462, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="DustTrailParticles" type="CPUParticles3D" unique_id=2005103538]
+emitting = false
+lifetime = 0.8
+mesh = ExtResource("1_ds8bj")
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 1.5, 0)
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_k35ie")
+script = ExtResource("2_shg2i")

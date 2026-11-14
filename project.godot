@@ -12,7 +12,7 @@ config_version=5
 
 config/name="untitled"
 config/version="1.0.0-alpha+{BUILD_NUMBER}"
-run/main_scene="uid://dcj8i1iuuxwol"
+run/main_scene="uid://bjfr7q2wnm8ks"
 config/features=PackedStringArray("4.7")
 config/icon="res://icon.svg"
 
@@ -45,7 +45,9 @@ folder_colors={
 "res://assets/": "yellow",
 "res://common/": "gray",
 "res://dialogue/": "purple",
-"res://ui/": "blue"
+"res://minigames/": "green",
+"res://ui/": "blue",
+"res://vfx/": "orange"
 }
 
 [global_group]

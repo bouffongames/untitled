@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bjfr7q2wnm8ks"]
+
+[ext_resource type="Script" uid="uid://clkscvotun12w" path="res://src/actors/player/player_camera.gd" id="1_m81ja"]
+[ext_resource type="PackedScene" uid="uid://djejd13sihbqb" path="res://src/actors/player/player.tscn" id="2_oe7rf"]
+[ext_resource type="PackedScene" uid="uid://cmpxkabyjy3gv" path="res://vfx/dust_trail/dust_trail_particles.tscn" id="3_crwyt"]
+
+[sub_resource type="Environment" id="Environment_og1q0"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_cyf0t"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_og1q0"]
+vertices = PackedVector3Array(-6.75, 0.5, -6.75, -6.75, 0.5, 6.75, 6.75, 0.5, 6.75, 6.75, 0.5, -6.75)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+filter_ledge_spans = true
+
+[node name="PlayerTrailDemo" type="Node3D" unique_id=1428653339]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=408750349]
+environment = SubResource("Environment_og1q0")
+camera_attributes = SubResource("CameraAttributesPractical_cyf0t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1231023664]
+transform = Transform3D(0.67913306, -0.7248371, 0.115713075, 0.40839323, 0.5041235, 0.76096946, -0.6099126, -0.469543, 0.6383855, -0.08193636, 7.7097826, -0.27663326)
+light_energy = 0.452
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=728907212]
+transform = Transform3D(1, 0, 0, 0, 0.9278083, 0.37305748, 0, -0.37305748, 0.9278083, -5.3513575, 1.9000001, -0.41430855)
+current = true
+script = ExtResource("1_m81ja")
+
+[node name="Player" parent="." unique_id=1597008775 instance=ExtResource("2_oe7rf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.242757, -9.536743e-07, -5.6897736)
+
+[node name="NavigationAgent3D" parent="Player" index="0" unique_id=551061462]
+path_height_offset = 0.5
+
+[node name="DustTrailParticles" parent="Player/GobotSkin" parent_id_path=PackedInt32Array(1597008775, 387738634) index="0" unique_id=607138967 instance=ExtResource("3_crwyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0013542175, 0, -0.28833055)
+
+[node name="CollisionShape3D" parent="Player" index="2" unique_id=1043362773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70000005, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=1017906273]
+transform = Transform3D(1, 0, 0, 0, -0.8600409, -0.51022506, 0, 0.51022506, -0.8600409, -0.10860062, 1.900001, 5.275465)
+remote_path = NodePath("../../Camera3D")
+update_rotation = false
+update_scale = false
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1156143696]
+navigation_mesh = SubResource("NavigationMesh_og1q0")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=682119714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+collision_mask = 2
+size = Vector3(15, 1, 15)
+
+[editable path="Player"]
