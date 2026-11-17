@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://doae8cmaql5b0"]
+
+[ext_resource type="Texture2D" uid="uid://c2et5k2k1e73e" path="res://src/particle_sprites/twirl_01.png" id="1_tj0ij"]
+[ext_resource type="Texture2D" uid="uid://but6far0s0mif" path="res://src/particle_sprites/star_06.png" id="2_23xvv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cyf0t"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 0.25490198, 1)
+albedo_texture = ExtResource("1_tj0ij")
+
+[sub_resource type="QuadMesh" id="QuadMesh_og1q0"]
+material = SubResource("StandardMaterial3D_cyf0t")
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvh6d"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = ExtResource("2_23xvv")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_cyf0t"]
+material = SubResource("StandardMaterial3D_wvh6d")
+
+[sub_resource type="Curve" id="Curve_bgm13"]
+_data = [Vector2(0, 0), 0.0, 3.6370976, 0, 0, Vector2(1, 0), -4.3096657, 0.0, 0, 0]
+point_count = 2
+
+[node name="ConfusionSparkles" type="CPUParticles3D" unique_id=970615269]
+amount = 1
+lifetime = 6.0
+local_coords = true
+mesh = SubResource("QuadMesh_og1q0")
+particle_flag_rotate_y = true
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = 190.0
+angular_velocity_max = 190.0
+radial_accel_min = 19.1
+radial_accel_max = 19.1
+angle_max = 406.6
+
+[node name="Stars" type="CPUParticles3D" parent="." unique_id=1266803075]
+amount = 3
+local_coords = true
+mesh = SubResource("QuadMesh_cyf0t")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 0.2
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 2, 0)
+angular_velocity_min = -51.8
+angular_velocity_max = 98.42
+tangential_accel_min = -0.12
+tangential_accel_max = 0.12
+scale_amount_min = 0.2
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_bgm13")

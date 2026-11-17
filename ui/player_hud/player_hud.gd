@@ -126,7 +126,10 @@ func _start_minigame(spell: SpellButton, guard: Guard) -> void:
 func _on_minigame_finished(success: bool) -> void:
 	# TODO: apply the spell effect on success.
 	print("Spell minigame ", "succeeded" if success else "failed")
-	_spell_target.exit_spellbound()
+	if success:
+		_spell_target.exit_spellbound()
+	else:
+		_spell_target.stun()
 	_spell_target = null
 	await get_tree().create_timer(1.0).timeout
 	_minigame.queue_free()
