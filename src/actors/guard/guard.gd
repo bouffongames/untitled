@@ -1,10 +1,12 @@
+class_name Guard
 extends CharacterBody3D
 
 enum States {
 	PATROL,
 	INVESTIGATE,
 	SURVEY,
-	CAUGHT
+	CAUGHT,
+	SPELLBOUND,
 }
 
 @export_category("Vision")
@@ -174,12 +176,28 @@ func _enter(new_state: States) -> void:
 		set_physics_process(false)
 		await get_tree().create_timer(alert_pause_time).timeout
 		set_physics_process(true)
+		if _current_state == States.SPELLBOUND:
+			return
+
+	elif new_state == States.SPELLBOUND:
+		if _survey_tween != null:
+			_survey_tween.kill()
+			_survey_tween = null
+		velocity = Vector3.ZERO
 
 	elif new_state == States.PATROL:
 		var target_pos := (get_node(patrolling_points[_target_patrolling_point_index]) as Marker3D).global_position
 		_navigation_agent_3d.target_position = target_pos
 
 	_current_state = new_state
+
+
+func enter_spellbound() -> void:
+	_enter(States.SPELLBOUND)
+
+
+func exit_spellbound() -> void:
+	_enter(States.PATROL)
 
 
 func _can_see(target_pos: Vector3) -> bool:
