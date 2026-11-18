@@ -1,4 +1,5 @@
-extends Node3D
+class_name GobotSkin
+extends CharacterSkin
 
 ## Emitted when Gobot's feet hit the ground will running.
 @warning_ignore("unused_signal")

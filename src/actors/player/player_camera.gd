@@ -35,4 +35,4 @@ func _unhandled_input(event: InputEvent) -> void:
 					push_error("Player not found by the player camera")
 					return
 
-				(player as Player).target_position = result.position
+				(player as Player).set_target_position(result.position)
