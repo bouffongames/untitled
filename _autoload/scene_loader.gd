@@ -8,8 +8,7 @@ const LOADABLE: String = "loadable"
 var _loading: bool = false
 var _scene_path: String
 
-@export var _animation_player: AnimationPlayer
-@export var _progress_bar: ProgressBar
+@export var _transition: Transition
 
 
 func _ready() -> void:
@@ -26,10 +25,9 @@ func change(path: String) -> bool:
 		push_warning("A scene is already loading")
 		return false
 
-	_progress_bar.value = 0
-	_animation_player.play("fade")
+	_transition.enter()
 	visible = true
-	await _animation_player.animation_finished
+	await _transition.finished
 	_scene_path = path
 	_loading = true
 	ResourceLoader.load_threaded_request(path, "PackedScene", true)
@@ -42,7 +40,6 @@ func _handle_scene_loading() -> void:
 	var status: ResourceLoader.ThreadLoadStatus = ResourceLoader.load_threaded_get_status(
 		_scene_path, progress
 	)
-	_progress_bar.value = max(_progress_bar.value, progress[0] * 100)
 
 	match status:
 		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
@@ -59,10 +56,11 @@ func _instantiate_scene() -> void:
 	_clear_existing_nodes()
 	get_tree().root.add_child(scene_instance)
 	_loading = false
-	changed.emit()
-	_animation_player.play_backwards("fade")
-	await _animation_player.animation_finished
+
+	_transition.exit()
+	await _transition.finished
 	visible = false
+	changed.emit()
 
 
 func _clear_existing_nodes() -> void:

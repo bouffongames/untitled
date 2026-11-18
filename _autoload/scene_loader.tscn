@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://delvnp032qckf"]
 
 [ext_resource type="Script" uid="uid://dk4dqxcicsb4x" path="res://_autoload/scene_loader.gd" id="1_l76y0"]
+[ext_resource type="PackedScene" uid="uid://pctwlynw2kky" path="res://_autoload/scene_transition.tscn" id="2_53itn"]
 
 [sub_resource type="Animation" id="Animation_c72fu"]
 length = 0.001
@@ -87,14 +88,17 @@ _data = {
 &"fade": SubResource("Animation_cfj2m")
 }
 
-[node name="SceneLoader" type="CanvasLayer" unique_id=357581984 node_paths=PackedStringArray("_animation_player", "_progress_bar")]
+[node name="SceneLoader" type="CanvasLayer" unique_id=357581984 node_paths=PackedStringArray("_transition")]
 process_mode = 3
 layer = 99
 script = ExtResource("1_l76y0")
-_animation_player = NodePath("AnimationPlayer")
-_progress_bar = NodePath("MarginContainer/VBoxContainer/ProgressBar")
+_transition = NodePath("SceneTransition")
+
+[node name="SceneTransition" parent="." unique_id=2073735306 instance=ExtResource("2_53itn")]
+duration = 0.66
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=82702261]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -104,6 +108,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=693403232]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -131,5 +136,4 @@ value = 25.0
 show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1292248592]
-unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_dfofq")
