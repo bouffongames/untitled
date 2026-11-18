@@ -117,12 +117,14 @@ func reset() -> void:
 
 
 func _complete_stage() -> void:
+	_sequence_arrow_texture.visible = false
+	_letter_texture.texture = null
 	_animate_hide()
 	succeed.emit()
 
 
 func _is_minigame_finished() -> bool:
-	return _progress_bar.value <= 0.0
+	return _progress_bar.value <= 0.0 or _sequence.is_empty()
 
 
 func _rand() -> void:

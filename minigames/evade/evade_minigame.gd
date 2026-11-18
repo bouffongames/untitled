@@ -58,8 +58,7 @@ func _process(delta: float) -> void:
 	if _progress_bar.value <= 0:
 		succeed.emit()
 		_animate_hide()
-		
-	if _time_limit_progress_bar.value <= 0:
+	elif _time_limit_progress_bar.value <= 0:
 		failed.emit()
 		_animate_hide()
 

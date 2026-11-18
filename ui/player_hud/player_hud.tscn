@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bjqdo8ql7afc7"]
+
+[ext_resource type="Script" uid="uid://b1iksigl0pwft" path="res://ui/player_hud/player_hud.gd" id="1_vyppb"]
+[ext_resource type="Script" uid="uid://clpn0lvg7se0v" path="res://ui/player_hud/spell_button.gd" id="2_spell"]
+[ext_resource type="PackedScene" uid="uid://cnvnal4hpoool" path="res://minigames/input/input_minigame.tscn" id="3_l7ggc"]
+[ext_resource type="PackedScene" uid="uid://jwjvgs3cvshm" path="res://minigames/circle/circle_minigame.tscn" id="4_kpoie"]
+[ext_resource type="PackedScene" uid="uid://dq0pn8uf2l4vh" path="res://minigames/evade/evade_minigame.tscn" id="5_kgno4"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_q"]
+keycode = 81
+
+[sub_resource type="Shortcut" id="Shortcut_q"]
+events = [SubResource("InputEventKey_q")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_w"]
+keycode = 87
+
+[sub_resource type="Shortcut" id="Shortcut_w"]
+events = [SubResource("InputEventKey_w")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_e"]
+keycode = 69
+
+[sub_resource type="Shortcut" id="Shortcut_e"]
+events = [SubResource("InputEventKey_e")]
+
+[node name="PlayerHUD" type="CanvasLayer" unique_id=923500982]
+script = ExtResource("1_vyppb")
+
+[node name="Control" type="Control" parent="." unique_id=682102819]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=269087794]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -173.0
+offset_top = -66.0
+offset_right = 173.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.21435988, 0.21435991, 0.21435988, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/ColorRect" unique_id=1978109061]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MindControlButton" type="Button" parent="Control/ColorRect/HBoxContainer" unique_id=1516566626]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+shortcut = SubResource("Shortcut_q")
+text = "Mind Control (Q)"
+script = ExtResource("2_spell")
+minigame_scene = ExtResource("3_l7ggc")
+
+[node name="ReadMindButton" type="Button" parent="Control/ColorRect/HBoxContainer" unique_id=1609478576]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+shortcut = SubResource("Shortcut_w")
+text = "Read Mind (W)"
+script = ExtResource("2_spell")
+minigame_scene = ExtResource("4_kpoie")
+
+[node name="AngerButton" type="Button" parent="Control/ColorRect/HBoxContainer" unique_id=1533299924]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+shortcut = SubResource("Shortcut_e")
+text = "Anger (E)"
+script = ExtResource("2_spell")
+minigame_scene = ExtResource("5_kgno4")

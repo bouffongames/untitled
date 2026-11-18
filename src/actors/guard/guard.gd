@@ -1,10 +1,13 @@
+class_name Guard
 extends CharacterBody3D
 
 enum States {
 	PATROL,
 	INVESTIGATE,
 	SURVEY,
-	CAUGHT
+	CAUGHT,
+	SPELLBOUND,
+	STUNNED,
 }
 
 @export_category("Vision")
@@ -20,16 +23,24 @@ enum States {
 @export var torque := 4.5
 @export_node_path("Marker3D") var patrolling_points: Array[NodePath]
 
+@export_category("Spells")
+## Seconds the guard stays stunned after the player fails a spell on it.
+@export_range(0.0, 10.0) var stun_duration := 3.0
+
 var _player_instance: Player
 var _detection_min_dot_value := 0.0 # set in _ready once
 var _current_state: States = States.PATROL
 var _target_patrolling_point_index: int = 0
 var _survey_tween: Tween
+var _spell_cast_position: Vector3
+var confusion_particle_scene: PackedScene = preload("uid://doae8cmaql5b0")
+var _confusion_sparkles: CPUParticles3D
 
 @onready var _eyes: Marker3D = %Eyes
 @onready var _navigation_agent_3d: NavigationAgent3D = %NavigationAgent3D
 @onready var _body: MeshInstance3D = %Body
 @onready var _survey_timer: Timer = %SurveyTimer
+@onready var _stun_timer: Timer = %StunTimer
 @onready var _alert_icon: Sprite3D = %AlertIcon
 @onready var _alert_sound: AudioStreamPlayer = %AlertSound
 
@@ -43,6 +54,11 @@ func _ready() -> void:
 	_survey_timer.timeout.connect(func() -> void:
 		if _current_state == States.SURVEY:
 			_enter(States.PATROL)
+	)
+
+	_stun_timer.timeout.connect(func() -> void:
+		if _current_state == States.STUNNED:
+			_enter(States.INVESTIGATE)
 	)
 
 	var target_position := (get_node(patrolling_points.front()) as Marker3D).global_position
@@ -155,6 +171,14 @@ func _enter(new_state: States) -> void:
 	if new_state != States.SURVEY:
 		_survey_timer.stop()
 
+	if new_state == States.STUNNED:
+		_confusion_sparkles = confusion_particle_scene.instantiate() as CPUParticles3D
+		add_child(_confusion_sparkles)
+		_confusion_sparkles.position.y = 2.15
+	elif _current_state == States.STUNNED:
+		_confusion_sparkles.queue_free()
+		_confusion_sparkles = null
+
 	if new_state == States.SURVEY:
 		if _survey_timer.time_left == 0:
 				_survey_timer.start()
@@ -168,18 +192,49 @@ func _enter(new_state: States) -> void:
 		_survey_tween.tween_property(_body, "global_rotation:y", deg_to_rad(rad_to_deg(_body.global_rotation.y) - 40), _survey_timer.wait_time / 2.0)
 		_survey_tween.play()
 	elif new_state == States.INVESTIGATE:
+		var target_position := _spell_cast_position if _current_state == States.STUNNED else _player_instance.global_position
+		_current_state = new_state
 		_make_alert_icon_visible()
-		_navigation_agent_3d.target_position = _player_instance.global_position
+		_navigation_agent_3d.target_position = target_position
 
 		set_physics_process(false)
 		await get_tree().create_timer(alert_pause_time).timeout
 		set_physics_process(true)
+		if _current_state != States.INVESTIGATE:
+			return
+
+	elif new_state == States.SPELLBOUND:
+		_spell_cast_position = _player_instance.global_position
+		_freeze()
+
+	elif new_state == States.STUNNED:
+		_freeze()
+		_stun_timer.start(stun_duration)
 
 	elif new_state == States.PATROL:
 		var target_pos := (get_node(patrolling_points[_target_patrolling_point_index]) as Marker3D).global_position
 		_navigation_agent_3d.target_position = target_pos
 
 	_current_state = new_state
+
+
+func enter_spellbound() -> void:
+	_enter(States.SPELLBOUND)
+
+
+func exit_spellbound() -> void:
+	_enter(States.PATROL)
+
+
+func stun() -> void:
+	_enter(States.STUNNED)
+
+
+func _freeze() -> void:
+	if _survey_tween != null:
+		_survey_tween.kill()
+		_survey_tween = null
+	velocity = Vector3.ZERO
 
 
 func _can_see(target_pos: Vector3) -> bool:

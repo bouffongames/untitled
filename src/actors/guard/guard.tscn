@@ -46,6 +46,10 @@ unique_name_in_owner = true
 wait_time = 4.0
 one_shot = true
 
+[node name="StunTimer" type="Timer" parent="." unique_id=2033860295]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="AlertIcon" type="Sprite3D" parent="." unique_id=1224348399]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.7411266, 0.6713653, 0, -0.6713653, 0.7411266, 0, 2.5660567, 0)
