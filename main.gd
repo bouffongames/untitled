@@ -83,7 +83,7 @@ func _refresh() -> void:
 
 
 func _start_game() -> void:
-	if await Global.scene.change(Const.SCENE_LEVEL):
+	if await Global.scene.change(Const.SCENE_LEVEL_00):
 		Global.game.set_state(Game.GameState.PLAYING)
 
 
