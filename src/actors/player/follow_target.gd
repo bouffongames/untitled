@@ -11,6 +11,6 @@ func _process(delta: float) -> void:
 	if target == null:
 		return
 	var desired: Vector3 = target.global_position + offset
-	if global_position.distance_squared_to(desired) >= jump_distance:
+	if global_position.distance_to(desired) >= jump_distance:
 		global_position = desired
 	global_position = global_position.lerp(desired, 1.0 - exp(-follow_speed * delta))
