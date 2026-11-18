@@ -83,7 +83,7 @@ func _handle_movement(event: InputEvent) -> bool:
 		print("Didn't click the ground")
 	else:
 		print("Clicked the ground at ", result.position)
-		var particle_instance: GPUParticles3D = CLICK_POSITION_PARTICLE.instantiate()
+		var particle_instance: CPUParticles3D = CLICK_POSITION_PARTICLE.instantiate()
 		get_parent().add_child(particle_instance)
 		particle_instance.global_position = result.position
 		particle_instance.restart()
