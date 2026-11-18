@@ -46,7 +46,6 @@ func enter() -> void:
 
 
 func exit() -> void:
-	print("exit")
 	_progress = 0.0
 	_target = _max_progress
 	_progress_speed = _max_progress / max(duration, 0.001)
