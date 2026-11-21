@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b1iksigl0pwft" path="res://ui/player_hud/player_hud.gd" id="1_vyppb"]
 [ext_resource type="Script" uid="uid://clpn0lvg7se0v" path="res://ui/player_hud/spell_button.gd" id="2_spell"]
-[ext_resource type="PackedScene" uid="uid://cnvnal4hpoool" path="res://minigames/input/input_minigame.tscn" id="3_l7ggc"]
-[ext_resource type="PackedScene" uid="uid://jwjvgs3cvshm" path="res://minigames/circle/circle_minigame.tscn" id="4_kpoie"]
-[ext_resource type="PackedScene" uid="uid://dq0pn8uf2l4vh" path="res://minigames/evade/evade_minigame.tscn" id="5_kgno4"]
+[ext_resource type="Resource" path="res://src/spells/mind_control.tres" id="3_mind"]
+[ext_resource type="Resource" path="res://src/spells/read_mind.tres" id="4_read"]
+[ext_resource type="Resource" path="res://src/spells/anger.tres" id="5_anger"]
+[ext_resource type="Resource" path="res://src/spells/merge.tres" id="6_merge"]
+[ext_resource type="PackedScene" path="res://ui/player_hud/mind_control_hud.tscn" id="7_mind_hud"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_q"]
 keycode = 81
@@ -24,10 +26,17 @@ keycode = 69
 [sub_resource type="Shortcut" id="Shortcut_e"]
 events = [SubResource("InputEventKey_e")]
 
+[sub_resource type="InputEventKey" id="InputEventKey_r"]
+keycode = 82
+
+[sub_resource type="Shortcut" id="Shortcut_r"]
+events = [SubResource("InputEventKey_r")]
+
 [node name="PlayerHUD" type="CanvasLayer" unique_id=923500982]
 script = ExtResource("1_vyppb")
 
 [node name="Control" type="Control" parent="." unique_id=682102819]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,9 +52,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -173.0
-offset_top = -66.0
-offset_right = 173.0
+offset_left = -214.0
+offset_top = -83.0
+offset_right = 214.0
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.21435988, 0.21435991, 0.21435988, 1)
@@ -65,7 +75,7 @@ focus_mode = 0
 shortcut = SubResource("Shortcut_q")
 text = "Mind Control (Q)"
 script = ExtResource("2_spell")
-minigame_scene = ExtResource("3_l7ggc")
+spell = ExtResource("3_mind")
 
 [node name="ReadMindButton" type="Button" parent="Control/ColorRect/HBoxContainer" unique_id=1609478576]
 unique_name_in_owner = true
@@ -74,7 +84,7 @@ focus_mode = 0
 shortcut = SubResource("Shortcut_w")
 text = "Read Mind (W)"
 script = ExtResource("2_spell")
-minigame_scene = ExtResource("4_kpoie")
+spell = ExtResource("4_read")
 
 [node name="AngerButton" type="Button" parent="Control/ColorRect/HBoxContainer" unique_id=1533299924]
 unique_name_in_owner = true
@@ -83,4 +93,17 @@ focus_mode = 0
 shortcut = SubResource("Shortcut_e")
 text = "Anger (E)"
 script = ExtResource("2_spell")
-minigame_scene = ExtResource("5_kgno4")
+spell = ExtResource("5_anger")
+
+[node name="MergeButton" type="Button" parent="Control/ColorRect/HBoxContainer" unique_id=1223880386]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+shortcut = SubResource("Shortcut_r")
+text = "Merge (R)"
+script = ExtResource("2_spell")
+spell = ExtResource("6_merge")
+
+[node name="MindControlHUD" parent="Control" unique_id=1840562198 instance=ExtResource("7_mind_hud")]
+unique_name_in_owner = true
+layout_mode = 1

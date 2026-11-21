@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not visible and _is_minigame_finished() or _seq_idx >= _sequence.size():
+	if not visible or _is_minigame_finished() or _seq_idx >= _sequence.size():
 		return
 
 	var event_key: InputEventKey = event as InputEventKey
@@ -83,6 +83,8 @@ func _complete_stage() -> void:
 	_current_stage += 1
 	_progress_value = _progress_value + bonus_duration
 	await get_tree().create_timer(0.333).timeout
+	if _progress_bar.value <= 0.0:
+		return
 	if _is_minigame_finished():
 		_animate_hide()
 		succeed.emit()

@@ -1,3 +1,4 @@
+class_name FollowTarget
 extends Camera3D
 
 @export var target: Node3D

@@ -8,7 +8,10 @@ enum States {
 	CAUGHT,
 	SPELLBOUND,
 	STUNNED,
+	MIND_CONTROLLED,
 }
+
+signal mind_control_ended
 
 @export_category("Vision")
 @export_range(60.0, 120.0) var fov_degrees := 90.0
@@ -23,10 +26,6 @@ enum States {
 @export var torque := 4.5
 @export_node_path("Marker3D") var patrolling_points: Array[NodePath]
 
-@export_category("Spells")
-## Seconds the guard stays stunned after the player fails a spell on it.
-@export_range(0.0, 10.0) var stun_duration := 3.0
-
 var _player_instance: Player
 var _detection_min_dot_value := 0.0 # set in _ready once
 var _current_state: States = States.PATROL
@@ -35,12 +34,16 @@ var _survey_tween: Tween
 var _spell_cast_position: Vector3
 var confusion_particle_scene: PackedScene = preload("uid://doae8cmaql5b0")
 var _confusion_sparkles: CPUParticles3D
+var _stun_duration := 0.0
+var _alert_after_stun := true
+var _mind_control_spell: MindControlSpell
 
 @onready var _eyes: Marker3D = %Eyes
 @onready var _navigation_agent_3d: NavigationAgent3D = %NavigationAgent3D
 @onready var _body: MeshInstance3D = %Body
 @onready var _survey_timer: Timer = %SurveyTimer
 @onready var _stun_timer: Timer = %StunTimer
+@onready var _mind_control_timer: Timer = %MindControlTimer
 @onready var _alert_icon: Sprite3D = %AlertIcon
 @onready var _alert_sound: AudioStreamPlayer = %AlertSound
 
@@ -48,7 +51,8 @@ var _confusion_sparkles: CPUParticles3D
 func _ready() -> void:
 	_alert_icon.visible = false
 	_navigation_agent_3d.navigation_finished.connect(func() -> void:
-		_enter(States.SURVEY)
+		if _current_state != States.MIND_CONTROLLED:
+			_enter(States.SURVEY)
 	)
 
 	_survey_timer.timeout.connect(func() -> void:
@@ -58,8 +62,10 @@ func _ready() -> void:
 
 	_stun_timer.timeout.connect(func() -> void:
 		if _current_state == States.STUNNED:
-			_enter(States.INVESTIGATE)
+			_enter(States.INVESTIGATE if _alert_after_stun else States.PATROL)
 	)
+
+	_mind_control_timer.timeout.connect(end_mind_control)
 
 	var target_position := (get_node(patrolling_points.front()) as Marker3D).global_position
 	global_position = Vector3(target_position.x, global_position.y, target_position.z)
@@ -80,17 +86,7 @@ func _act() -> void:
 				_choose_next_position()
 				return
 
-			var direction := global_position\
-				.direction_to(_navigation_agent_3d.get_next_path_position())
-			var body_rotation = _body.global_rotation.y
-			var target_rotation = atan2(direction.x, direction.z)
-			var desired_velocity = direction * max_movement_speed
-			velocity = velocity.move_toward(
-				desired_velocity,
-				acceleration * get_physics_process_delta_time()
-			)
-			_body.global_rotation.y = rotate_toward(body_rotation, target_rotation, torque * get_process_delta_time())
-			move_and_slide()
+			_move_along_path()
 		States.SURVEY:
 			return
 		States.INVESTIGATE:
@@ -98,17 +94,38 @@ func _act() -> void:
 				_enter(States.SURVEY)
 				return
 
-			var direction := global_position\
-				.direction_to(_navigation_agent_3d.get_next_path_position())
-			var body_rotation = _body.global_rotation.y
-			var target_rotation = atan2(direction.x, direction.z)
-			var desired_velocity = direction * max_movement_speed
-			velocity = velocity.move_toward(
-				desired_velocity,
-				acceleration * get_physics_process_delta_time()
-			)
-			_body.global_rotation.y = rotate_toward(body_rotation, target_rotation, torque * get_process_delta_time())
-			move_and_slide()
+			_move_along_path()
+		States.MIND_CONTROLLED:
+			_move_mind_controlled()
+
+
+func _move_along_path() -> void:
+	var direction := global_position\
+		.direction_to(_navigation_agent_3d.get_next_path_position())
+	var body_rotation = _body.global_rotation.y
+	var target_rotation = atan2(direction.x, direction.z)
+	var desired_velocity = direction * max_movement_speed
+	velocity = velocity.move_toward(
+		desired_velocity,
+		acceleration * get_physics_process_delta_time()
+	)
+	_body.global_rotation.y = rotate_toward(body_rotation, target_rotation, torque * get_process_delta_time())
+	move_and_slide()
+
+
+func _move_mind_controlled() -> void:
+	var offset_to_target := _navigation_agent_3d.target_position - global_position
+	offset_to_target.y = 0.0
+	var offset_to_next := _navigation_agent_3d.get_next_path_position() - global_position
+	var flat_direction := Vector3(offset_to_next.x, 0.0, offset_to_next.z)
+	if offset_to_target.length() <= _player_instance.stopping_distance or flat_direction.length() <= 0.01:
+		velocity = Vector3.ZERO
+		return
+
+	velocity = offset_to_next.normalized() * max_movement_speed * _mind_control_spell.speed_multiplier
+	var weight := 1.0 - exp(-_player_instance.rotation_speed * get_physics_process_delta_time())
+	_body.global_rotation.y = lerp_angle(_body.global_rotation.y, atan2(flat_direction.x, flat_direction.z), weight)
+	move_and_slide()
 
 
 func _choose_next_position() -> void:
@@ -171,6 +188,9 @@ func _enter(new_state: States) -> void:
 	if new_state != States.SURVEY:
 		_survey_timer.stop()
 
+	if new_state != States.MIND_CONTROLLED:
+		_mind_control_timer.stop()
+
 	if new_state == States.STUNNED:
 		_confusion_sparkles = confusion_particle_scene.instantiate() as CPUParticles3D
 		add_child(_confusion_sparkles)
@@ -209,7 +229,12 @@ func _enter(new_state: States) -> void:
 
 	elif new_state == States.STUNNED:
 		_freeze()
-		_stun_timer.start(stun_duration)
+		_stun_timer.start(_stun_duration)
+
+	elif new_state == States.MIND_CONTROLLED:
+		_freeze()
+		_navigation_agent_3d.target_position = global_position
+		_mind_control_timer.start(_mind_control_spell.control_duration)
 
 	elif new_state == States.PATROL:
 		var target_pos := (get_node(patrolling_points[_target_patrolling_point_index]) as Marker3D).global_position
@@ -226,8 +251,40 @@ func exit_spellbound() -> void:
 	_enter(States.PATROL)
 
 
-func stun() -> void:
+func stun(duration: float, alert: bool) -> void:
+	_stun_duration = duration
+	_alert_after_stun = alert
 	_enter(States.STUNNED)
+
+
+func start_mind_control(spell: MindControlSpell) -> void:
+	_mind_control_spell = spell
+	_enter(States.MIND_CONTROLLED)
+
+
+func move_mind_controlled_to(target_position: Vector3) -> void:
+	if _current_state != States.MIND_CONTROLLED:
+		return
+	_navigation_agent_3d.target_position = target_position
+
+
+func end_mind_control() -> void:
+	if _current_state != States.MIND_CONTROLLED:
+		return
+	stun(_mind_control_spell.release_stun_duration, false)
+	mind_control_ended.emit()
+
+
+func get_mind_control_time_left() -> float:
+	return _mind_control_timer.time_left
+
+
+func get_mind_control_duration() -> float:
+	return _mind_control_spell.control_duration
+
+
+func is_mind_controlled() -> bool:
+	return _current_state == States.MIND_CONTROLLED
 
 
 func _freeze() -> void:

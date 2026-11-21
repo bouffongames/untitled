@@ -55,6 +55,16 @@ func set_target_position(target_position: Vector3) -> void:
 	movement_started.emit(target_position)
 
 
+func stop_movement() -> void:
+	_is_interact_active = false
+	_interactable = null
+	_navigation_agent.target_position = global_position
+	if _is_moving:
+		_is_moving = false
+		_character_skin.idle()
+		movement_finished.emit()
+
+
 func _finish_movement() -> void:
 	if not _is_moving:
 		return
