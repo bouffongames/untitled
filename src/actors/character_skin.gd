@@ -9,3 +9,11 @@ func idle() -> void
 
 @abstract
 func move() -> void
+
+
+@abstract
+func merge() -> void
+
+
+@abstract
+func unmerge() -> void

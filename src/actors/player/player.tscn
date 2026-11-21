@@ -114,3 +114,7 @@ _range_fill = NodePath("../RangeIndicator/RangeFill")
 _spread_indicator = NodePath("../SpreadIndicator")
 _spread_fill = NodePath("../SpreadIndicator/SpreadFill")
 _idle_color = Color(0.4117647, 1, 1, 0.6)
+
+[node name="MergeTimer" type="Timer" parent="." unique_id=1840562231]
+unique_name_in_owner = true
+one_shot = true

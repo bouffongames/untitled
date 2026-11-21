@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="MergeSpell" format=3]
+[gd_resource type="Resource" script_class="MergeSpell" format=3 uid="uid://cfpn5c6xs22x3"]
 
-[ext_resource type="Script" path="res://src/spells/merge_spell.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://q2kxmu17mwpq" path="res://src/spells/merge_spell.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://dmyadchka7kte" path="res://minigames/dial/dial_minigame.tscn" id="2_minigame"]
 
 [resource]
 script = ExtResource("1_script")
+duration = 9.5
 display_name = "Merge"
 minigame_scene = ExtResource("2_minigame")

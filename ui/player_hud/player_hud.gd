@@ -41,7 +41,7 @@ var _casting_spell: Spell
 var _spread_arrows: Array[MeshInstance3D] = []
 
 @onready var _control: Control = %Control
-@onready var _mind_control_hud: MindControlHUD = %MindControlHUD
+@onready var _active_spell_hud: ActiveSpellHUD = %ActiveSpellHUD
 @onready var _read_mind_hud: ReadMindHUD = %ReadMindHUD
 @onready var _spell_buttons: Array[SpellButton] = [%MindControlButton, %ReadMindButton, %AngerButton, %MergeButton]
 
@@ -50,8 +50,10 @@ func _ready() -> void:
 	_player = get_tree().get_first_node_in_group("Player")
 	_range_indicator.visible = false
 	_spread_indicator.visible = false
-	_player.mind_control_started.connect(_mind_control_hud.start)
-	_player.mind_control_ended.connect(_mind_control_hud.stop.unbind(1))
+	_player.mind_control_started.connect(_on_mind_control_started)
+	_player.mind_control_ended.connect(_active_spell_hud.stop.unbind(1))
+	_player.merge_started.connect(_on_merge_started)
+	_player.merge_ended.connect(_active_spell_hud.stop)
 	_player.thought_read.connect(_read_mind_hud.show_thought)
 	for button: SpellButton in _spell_buttons:
 		if button.spell != null:
@@ -94,13 +96,21 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_spell_button_pressed(spell: Spell) -> void:
-	if _minigame != null or _player.get_mind_controlled_guard() != null:
+	if _minigame != null or _player.get_mind_controlled_guard() != null or _player.is_merged():
 		return
 	_stop_aiming()
 	if spell is GuardSpell:
 		_start_aiming(spell as GuardSpell)
 	elif spell is SelfSpell:
 		_start_minigame(spell)
+
+
+func _on_mind_control_started(guard: Guard, spell: MindControlSpell) -> void:
+	_active_spell_hud.start(spell.display_name, spell.control_duration, guard.get_mind_control_time_left)
+
+
+func _on_merge_started(spell: MergeSpell) -> void:
+	_active_spell_hud.start(spell.display_name, spell.duration, _player.get_merge_time_left)
 
 
 func _start_aiming(spell: GuardSpell) -> void:

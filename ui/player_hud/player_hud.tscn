@@ -6,7 +6,7 @@
 [ext_resource type="Resource" path="res://src/spells/read_mind.tres" id="4_read"]
 [ext_resource type="Resource" path="res://src/spells/anger.tres" id="5_anger"]
 [ext_resource type="Resource" path="res://src/spells/merge.tres" id="6_merge"]
-[ext_resource type="PackedScene" path="res://ui/player_hud/mind_control_hud.tscn" id="7_mind_hud"]
+[ext_resource type="PackedScene" path="res://ui/player_hud/active_spell_hud.tscn" id="7_active_hud"]
 [ext_resource type="PackedScene" path="res://ui/player_hud/read_mind_hud.tscn" id="8_read_hud"]
 [ext_resource type="PackedScene" path="res://src/actors/player/spread_arrow.tscn" id="9_arrow"]
 
@@ -107,7 +107,7 @@ text = "Merge (R)"
 script = ExtResource("2_spell")
 spell = ExtResource("6_merge")
 
-[node name="MindControlHUD" parent="Control" unique_id=1840562198 instance=ExtResource("7_mind_hud")]
+[node name="ActiveSpellHUD" parent="Control" unique_id=1840562198 instance=ExtResource("7_active_hud")]
 unique_name_in_owner = true
 layout_mode = 1
 

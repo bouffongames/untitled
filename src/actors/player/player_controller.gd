@@ -19,6 +19,11 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if player.is_casting():
 		return
+	if player.is_merged():
+		if event.is_action_pressed("exit_spell"):
+			get_viewport().set_input_as_handled()
+			player.end_merge()
+		return
 	var controlled_guard: Guard = player.get_mind_controlled_guard()
 	if controlled_guard != null:
 		_handle_mind_control(event, controlled_guard)
@@ -29,7 +34,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _handle_mind_control(event: InputEvent, guard: Guard) -> void:
-	if event.is_action_pressed("exit_mind_control"):
+	if event.is_action_pressed("exit_spell"):
 		get_viewport().set_input_as_handled()
 		player.end_mind_control()
 		return
@@ -47,7 +52,7 @@ func _handle_mind_control(event: InputEvent, guard: Guard) -> void:
 	guard.move_mind_controlled_to(result.position)
 
 
-func _on_mind_control_started(guard: Guard) -> void:
+func _on_mind_control_started(guard: Guard, _spell: MindControlSpell) -> void:
 	if is_instance_valid(_last_interactable):
 		_last_interactable.hide_hover()
 		_last_interactable = null

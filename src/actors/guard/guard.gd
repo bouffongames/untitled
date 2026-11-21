@@ -169,7 +169,7 @@ func _choose_next_position() -> void:
 
 
 func _sense() -> Dictionary:
-	var can_see_player := _can_see(_player_instance.global_position)
+	var can_see_player := not _player_instance.is_merged() and _can_see(_player_instance.global_position)
 	var distance := 0.0
 
 	if can_see_player:
@@ -339,10 +339,6 @@ func read_next_thought() -> Thought:
 
 func get_mind_control_time_left() -> float:
 	return _mind_control_timer.time_left
-
-
-func get_mind_control_duration() -> float:
-	return _mind_control_spell.control_duration
 
 
 func is_mind_controlled() -> bool:

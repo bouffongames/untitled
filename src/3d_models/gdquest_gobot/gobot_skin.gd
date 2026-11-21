@@ -23,6 +23,15 @@ signal stepped
 @export var opened_eye: CompressedTexture2D = null
 @export var closed_eye: CompressedTexture2D = null
 
+## Scale of the model while merged into the floor.
+@export var merged_scale := Vector3(1.3, 0.04, 1.3)
+## Color laid over the model while merged into the floor. Alpha controls how dark it gets.
+@export var merged_color := Color(0.02, 0.02, 0.05, 0.85)
+
+var _merge_overlay := StandardMaterial3D.new()
+var _default_overlay: Material
+var _merge_tween: Tween
+
 @onready var _animation_tree: AnimationTree = %AnimationTree
 @onready var _state_machine: AnimationNodeStateMachinePlayback = _animation_tree.get("parameters/StateMachine/playback")
 @onready var _walk_run_blend_amount := "parameters/StateMachine/BlendTree/WalkRunBlending/blend_amount"
@@ -43,6 +52,11 @@ func _ready() -> void:
 	walk_run_blending = walk_run_blending
 	is_blinking = is_blinking
 	stepped.connect(print.bind("ST"))
+
+	_default_overlay = gobot_model.material_overlay
+	_merge_overlay.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	_merge_overlay.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	_merge_overlay.albedo_color = Color(merged_color, 0.0)
 
 	_blink_timer.timeout.connect(
 		func() -> void:
@@ -127,3 +141,25 @@ func hurt() -> void:
 	var tween := create_tween().set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "scale", Vector3(1.2, 0.8, 1.2), 0.1)
 	tween.tween_property(self, "scale", Vector3.ONE, 0.2)
+
+
+func merge() -> void:
+	gobot_model.material_overlay = _merge_overlay
+	_restart_merge_tween()
+	_merge_tween.tween_property(self, "scale", Vector3(0.85, 1.15, 0.85), 0.08).set_ease(Tween.EASE_OUT)
+	_merge_tween.tween_property(self, "scale", merged_scale, 0.15).set_ease(Tween.EASE_IN)
+	_merge_tween.parallel().tween_property(_merge_overlay, "albedo_color:a", merged_color.a, 0.15)
+
+
+func unmerge() -> void:
+	_restart_merge_tween()
+	_merge_tween.tween_property(self, "scale", Vector3(0.85, 1.15, 0.85), 0.12).set_ease(Tween.EASE_OUT)
+	_merge_tween.parallel().tween_property(_merge_overlay, "albedo_color:a", 0.0, 0.12)
+	_merge_tween.tween_property(self, "scale", Vector3.ONE, 0.15).set_ease(Tween.EASE_OUT)
+	_merge_tween.tween_callback(func() -> void: gobot_model.material_overlay = _default_overlay)
+
+
+func _restart_merge_tween() -> void:
+	if _merge_tween != null:
+		_merge_tween.kill()
+	_merge_tween = create_tween().set_trans(Tween.TRANS_SINE)
