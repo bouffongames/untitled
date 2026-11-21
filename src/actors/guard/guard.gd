@@ -9,6 +9,7 @@ enum States {
 	SPELLBOUND,
 	STUNNED,
 	MIND_CONTROLLED,
+	FIGHTING,
 }
 
 signal mind_control_ended
@@ -38,10 +39,15 @@ var _survey_tween: Tween
 var _spell_cast_position: Vector3
 var confusion_particle_scene: PackedScene = preload("uid://doae8cmaql5b0")
 var _confusion_sparkles: CPUParticles3D
+var anger_particle_scene: PackedScene = preload("res://vfx/anger_particles/anger_particles.tscn")
+var _anger_particles: CPUParticles3D
 var _stun_duration := 0.0
 var _alert_after_stun := true
 var _mind_control_spell: MindControlSpell
 var _next_thought_index := 0
+var _anger_spell: AngerSpell
+var _fight_focus_point: Vector3
+var _vision_range_scale := 1.0
 
 @onready var _eyes: Marker3D = %Eyes
 @onready var _navigation_agent_3d: NavigationAgent3D = %NavigationAgent3D
@@ -49,6 +55,7 @@ var _next_thought_index := 0
 @onready var _survey_timer: Timer = %SurveyTimer
 @onready var _stun_timer: Timer = %StunTimer
 @onready var _mind_control_timer: Timer = %MindControlTimer
+@onready var _fight_timer: Timer = %FightTimer
 @onready var _alert_icon: Sprite3D = %AlertIcon
 @onready var _alert_sound: AudioStreamPlayer = %AlertSound
 
@@ -71,6 +78,11 @@ func _ready() -> void:
 	)
 
 	_mind_control_timer.timeout.connect(end_mind_control)
+
+	_fight_timer.timeout.connect(func() -> void:
+		if _current_state == States.FIGHTING:
+			_enter(States.PATROL)
+	)
 
 	var target_position := (get_node(patrolling_points.front()) as Marker3D).global_position
 	global_position = Vector3(target_position.x, global_position.y, target_position.z)
@@ -102,6 +114,8 @@ func _act() -> void:
 			_move_along_path()
 		States.MIND_CONTROLLED:
 			_move_mind_controlled()
+		States.FIGHTING:
+			_face_fight_focus_point()
 
 
 func _move_along_path() -> void:
@@ -116,6 +130,14 @@ func _move_along_path() -> void:
 	)
 	_body.global_rotation.y = rotate_toward(body_rotation, target_rotation, torque * get_process_delta_time())
 	move_and_slide()
+
+
+func _face_fight_focus_point() -> void:
+	var offset := _fight_focus_point - global_position
+	if Vector2(offset.x, offset.z).length() <= 0.01:
+		return
+	var target_rotation := atan2(offset.x, offset.z)
+	_body.global_rotation.y = rotate_toward(_body.global_rotation.y, target_rotation, torque * get_physics_process_delta_time())
 
 
 func _move_mind_controlled() -> void:
@@ -136,7 +158,7 @@ func _move_mind_controlled() -> void:
 func _choose_next_position() -> void:
 	var current_target_pos :=\
 		(get_node(patrolling_points[_target_patrolling_point_index]) as Marker3D).global_position
-	if global_position.distance_to(current_target_pos) < 1.0:
+	if global_position.distance_to(current_target_pos) <= _navigation_agent_3d.target_desired_distance + 0.05:
 		_target_patrolling_point_index += 1
 
 		if _target_patrolling_point_index >= patrolling_points.size():
@@ -153,12 +175,12 @@ func _sense() -> Dictionary:
 	if can_see_player:
 		distance = global_position.distance_to(_player_instance.global_position)
 
-		if distance < near_vision_range:
+		if distance < near_vision_range * _vision_range_scale:
 			return {
 				"noticed": false,
 				"clear_sight": true
 			}
-		elif distance < max_vision_range:
+		elif distance < max_vision_range * _vision_range_scale:
 			return {
 				"noticed": true,
 				"clear_sight": false
@@ -172,7 +194,7 @@ func _sense() -> Dictionary:
 
 func _think(sense_result) -> void:
 	match _current_state:
-		States.PATROL:
+		States.PATROL, States.FIGHTING:
 			if sense_result["clear_sight"]:
 				_enter(States.CAUGHT)
 			elif sense_result["noticed"]:
@@ -196,6 +218,10 @@ func _enter(new_state: States) -> void:
 	if new_state != States.MIND_CONTROLLED:
 		_mind_control_timer.stop()
 
+	if new_state != States.FIGHTING:
+		_fight_timer.stop()
+		_vision_range_scale = 1.0
+
 	if new_state == States.STUNNED:
 		_confusion_sparkles = confusion_particle_scene.instantiate() as CPUParticles3D
 		add_child(_confusion_sparkles)
@@ -203,6 +229,14 @@ func _enter(new_state: States) -> void:
 	elif _current_state == States.STUNNED:
 		_confusion_sparkles.queue_free()
 		_confusion_sparkles = null
+
+	if new_state == States.FIGHTING and _anger_particles == null:
+		_anger_particles = anger_particle_scene.instantiate() as CPUParticles3D
+		add_child(_anger_particles)
+		_anger_particles.position.y = 2.15
+	elif new_state != States.FIGHTING and _anger_particles != null:
+		_anger_particles.queue_free()
+		_anger_particles = null
 
 	if new_state == States.SURVEY:
 		if _survey_timer.time_left == 0:
@@ -240,6 +274,11 @@ func _enter(new_state: States) -> void:
 		_freeze()
 		_navigation_agent_3d.target_position = global_position
 		_mind_control_timer.start(_mind_control_spell.control_duration)
+
+	elif new_state == States.FIGHTING:
+		_freeze()
+		_vision_range_scale = 1.0 - _anger_spell.vision_reduction
+		_fight_timer.start(_anger_spell.fight_duration)
 
 	elif new_state == States.PATROL:
 		var target_pos := (get_node(patrolling_points[_target_patrolling_point_index]) as Marker3D).global_position
@@ -280,6 +319,16 @@ func end_mind_control() -> void:
 	mind_control_ended.emit()
 
 
+func start_fight(spell: AngerSpell, focus_point: Vector3) -> void:
+	_anger_spell = spell
+	_fight_focus_point = focus_point
+	_enter(States.FIGHTING)
+
+
+func is_fighting() -> bool:
+	return _current_state == States.FIGHTING
+
+
 func read_next_thought() -> Thought:
 	if thoughts.is_empty():
 		return null
@@ -313,7 +362,7 @@ func _can_see(target_pos: Vector3) -> bool:
 	var distance_to_target := direction_to_target.length()
 	var dot_product := _eyes.global_basis.z.dot(normalized_dir)
 
-	if distance_to_target <= max_vision_range and dot_product > _detection_min_dot_value:
+	if distance_to_target <= max_vision_range * _vision_range_scale and dot_product > _detection_min_dot_value:
 		# we only do it if these two are true because the check is expensive
 		var space_state := get_world_3d().direct_space_state
 		var query := PhysicsRayQueryParameters3D.create(

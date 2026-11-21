@@ -1,0 +1,47 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://src/particle_sprites/anger_icon.png" id="1_icon"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anger"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_icon")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_anger"]
+material = SubResource("StandardMaterial3D_anger")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_pop"]
+_data = [Vector2(0, 0), 0.0, 8.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(0.4, 0.85), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_fade"]
+offsets = PackedFloat32Array(0, 0.7, 1)
+colors = PackedColorArray(1, 0.2, 0.15, 1, 1, 0.2, 0.15, 1, 1, 0.2, 0.15, 0)
+
+[node name="AngerParticles" type="CPUParticles3D" unique_id=1840562221]
+amount = 3
+lifetime = 1.2
+local_coords = true
+mesh = SubResource("QuadMesh_anger")
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.3
+initial_velocity_max = 0.6
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+angle_min = -20.0
+angle_max = 20.0
+scale_amount_min = 0.8
+scale_amount_max = 1.1
+scale_amount_curve = SubResource("Curve_pop")
+color_ramp = SubResource("Gradient_fade")

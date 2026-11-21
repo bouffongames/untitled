@@ -1,5 +1,5 @@
 class_name MindControlSpell
-extends Spell
+extends GuardSpell
 
 ## Seconds the player can control the guard.
 @export_range(0.0, 60.0, 0.1, "or_greater") var control_duration: float = 8.0
@@ -9,5 +9,5 @@ extends Spell
 @export_range(0.0, 1.0, 0.05) var speed_multiplier: float = 0.7
 
 
-func apply(caster: Player, target: Guard) -> void:
+func apply(caster: Player, target: Guard, _spread_targets: Array[Guard]) -> void:
 	caster.start_mind_control(target, self)

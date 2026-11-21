@@ -8,6 +8,7 @@
 [ext_resource type="Resource" path="res://src/spells/merge.tres" id="6_merge"]
 [ext_resource type="PackedScene" path="res://ui/player_hud/mind_control_hud.tscn" id="7_mind_hud"]
 [ext_resource type="PackedScene" path="res://ui/player_hud/read_mind_hud.tscn" id="8_read_hud"]
+[ext_resource type="PackedScene" path="res://src/actors/player/spread_arrow.tscn" id="9_arrow"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_q"]
 keycode = 81
@@ -35,6 +36,7 @@ events = [SubResource("InputEventKey_r")]
 
 [node name="PlayerHUD" type="CanvasLayer" unique_id=923500982]
 script = ExtResource("1_vyppb")
+_spread_arrow_scene = ExtResource("9_arrow")
 
 [node name="Control" type="Control" parent="." unique_id=682102819]
 unique_name_in_owner = true

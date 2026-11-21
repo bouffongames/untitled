@@ -9,6 +9,8 @@ const INNER_COLOR: Color = Color(0.48, 0.298, 0.307, 1.0)
 @export var duration: float = 8.0
 @export var evade_duration: float = 4.0
 @export var invincible_duration: float = 0.5
+## Number of hits that makes the player lose.
+@export_range(1, 10) var max_hits: int = 3
 @export var obstacles: Array[EvadeObstacle] 
 
 @export_category("Visual")
@@ -27,6 +29,7 @@ var _player_color: Color = Color.WHITE
 var _elapsed_time: float = 0.0
 var _progress_time: float = 0.0
 var _invincible_time: float = 0.0
+var _hits: int = 0
 
 
 func _ready() -> void:
@@ -55,7 +58,10 @@ func _process(delta: float) -> void:
 		_player_color = Color.WHITE
 		_check_collision()
 
-	if _progress_bar.value <= 0:
+	if _hits >= max_hits:
+		failed.emit()
+		_animate_hide()
+	elif _progress_bar.value <= 0:
 		succeed.emit()
 		_animate_hide()
 	elif _time_limit_progress_bar.value <= 0:
@@ -98,6 +104,7 @@ func _draw() -> void:
 
 func reset() -> void:
 	_player_lane = 1
+	_hits = 0
 	_elapsed_time = 0.0
 	_progress_time = 0.0
 	_progress_bar.max_value = evade_duration
@@ -108,7 +115,7 @@ func reset() -> void:
 
 
 func _is_minigame_finished() -> bool:
-	return _progress_bar.value <= 0.0 or _time_limit_progress_bar.value <= 0.0
+	return _hits >= max_hits or _progress_bar.value <= 0.0 or _time_limit_progress_bar.value <= 0.0
 
 
 func _check_collision() -> void:
@@ -119,6 +126,7 @@ func _check_collision() -> void:
 		if _angle_is_inside_arc(_player_angle, obstacle.angle, obstacle.arc_size):
 			_invincible_time = invincible_duration
 			_player_color = Color.RED
+			_hits += 1
 			return
 
 

@@ -1,7 +1,7 @@
 class_name MergeSpell
-extends Spell
+extends SelfSpell
 
 
-func apply(_caster: Player, _target: Guard) -> void:
+func apply(_caster: Player) -> void:
 	# TODO: implement the Merge effect.
 	pass

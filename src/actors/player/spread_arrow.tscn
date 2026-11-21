@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="ArrayMesh" path="res://src/3d_models/arrow/arrow.obj" id="1_mesh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arrow"]
+render_priority = 2
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.3, 1, 0.3, 0.6)
+
+[node name="SpreadArrow" type="MeshInstance3D" unique_id=1840562211]
+cast_shadow = 0
+mesh = ExtResource("1_mesh")
+material_override = SubResource("StandardMaterial3D_arrow")

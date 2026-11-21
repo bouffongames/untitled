@@ -2,6 +2,9 @@ extends CanvasLayer
 
 @export var _range_indicator: MeshInstance3D
 @export var _range_fill: MeshInstance3D
+@export var _spread_indicator: MeshInstance3D
+@export var _spread_fill: MeshInstance3D
+@export var _spread_arrow_scene: PackedScene
 @export_flags_3d_physics var _obstacle_layer: int = 4
 
 @export_group("Spell Range Indicator")
@@ -12,16 +15,30 @@ extends CanvasLayer
 ## Opacity of the inside of the circle, relative to the ring color.
 @export_range(0.0, 1.0) var _fill_opacity: float = 0.25
 
+@export_group("Spread Indicator")
+## Color of the circle around the target guard when other guards are inside it.
+@export var _spread_valid_color: Color = Color(0.3, 1.0, 0.3, 0.9)
+## Color of the circle around the target guard when no other guard is inside it.
+@export var _spread_invalid_color: Color = Color(1.0, 0.25, 0.25, 0.9)
+## Width of the arrows pointing at the guards the spell spreads to, in meters.
+@export var _arrow_width: float = 0.4
+## Space left between each end of an arrow and the guards it connects, in meters.
+@export var _arrow_gap: float = 0.6
+## Height of the arrows above the ground, in meters.
+@export var _arrow_height: float = 0.1
+
 @export_group("Targeting")
 @export var _mouse_ray_length: float = 1_000.0
 ## Height of the line-of-sight ray, similar to the one the guard uses
 @export var _sight_height: float = 1.0
 
 var _player: Player
-var _aiming_spell: Spell
+var _aiming_spell: GuardSpell
 var _minigame: Minigame
 var _spell_target: Guard
+var _spell_spread_targets: Array[Guard] = []
 var _casting_spell: Spell
+var _spread_arrows: Array[MeshInstance3D] = []
 
 @onready var _control: Control = %Control
 @onready var _mind_control_hud: MindControlHUD = %MindControlHUD
@@ -32,12 +49,13 @@ var _casting_spell: Spell
 func _ready() -> void:
 	_player = get_tree().get_first_node_in_group("Player")
 	_range_indicator.visible = false
+	_spread_indicator.visible = false
 	_player.mind_control_started.connect(_mind_control_hud.start)
 	_player.mind_control_ended.connect(_mind_control_hud.stop.unbind(1))
 	_player.thought_read.connect(_read_mind_hud.show_thought)
 	for button: SpellButton in _spell_buttons:
 		if button.spell != null:
-			button.pressed.connect(_start_aiming.bind(button.spell))
+			button.pressed.connect(_on_spell_button_pressed.bind(button.spell))
 
 
 func _process(_delta: float) -> void:
@@ -46,10 +64,12 @@ func _process(_delta: float) -> void:
 
 	var color: Color = _idle_color
 	var guard: Guard = _get_hovered_guard()
-	if guard != null and _is_in_range(_aiming_spell, guard):
-		color = _blocked_color if _is_blocked(_aiming_spell, guard) else _in_range_color
-	((_range_indicator.mesh as TorusMesh).material as StandardMaterial3D).albedo_color = color
-	((_range_fill.mesh as CylinderMesh).material as StandardMaterial3D).albedo_color = Color(color, color.a * _fill_opacity)
+	var in_range: bool = guard != null and _is_in_range(_aiming_spell, guard)
+	var can_target: bool = in_range and not _is_blocked(_aiming_spell, guard)
+	if in_range:
+		color = _in_range_color if can_target else _blocked_color
+	_set_indicator_color(_range_indicator, _range_fill, color)
+	_update_spread_indicator(guard if can_target else null)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -68,27 +88,79 @@ func _unhandled_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 	if mouse_event.button_index == MOUSE_BUTTON_LEFT:
 		var guard: Guard = _get_hovered_guard()
-		if guard != null and _is_in_range(_aiming_spell, guard) and not _is_blocked(_aiming_spell, guard):
+		if _can_target(_aiming_spell, guard) and _aiming_spell.can_cast_on(guard):
 			_start_minigame(_aiming_spell, guard)
 	_stop_aiming()
 
 
-func _start_aiming(spell: Spell) -> void:
+func _on_spell_button_pressed(spell: Spell) -> void:
 	if _minigame != null or _player.get_mind_controlled_guard() != null:
 		return
+	_stop_aiming()
+	if spell is GuardSpell:
+		_start_aiming(spell as GuardSpell)
+	elif spell is SelfSpell:
+		_start_minigame(spell)
+
+
+func _start_aiming(spell: GuardSpell) -> void:
 	_aiming_spell = spell
-	var ring: TorusMesh = _range_indicator.mesh as TorusMesh
-	ring.outer_radius = spell.cast_range
-	ring.inner_radius = spell.cast_range - _ring_thickness
-	var fill: CylinderMesh = _range_fill.mesh as CylinderMesh
-	fill.top_radius = ring.inner_radius
-	fill.bottom_radius = ring.inner_radius
+	_set_indicator_radius(_range_indicator, _range_fill, spell.cast_range)
+	if spell.get_spread_range() > 0.0:
+		_set_indicator_radius(_spread_indicator, _spread_fill, spell.get_spread_range())
 	_range_indicator.visible = true
 
 
 func _stop_aiming() -> void:
 	_aiming_spell = null
 	_range_indicator.visible = false
+	_spread_indicator.visible = false
+
+
+func _set_indicator_radius(ring_node: MeshInstance3D, fill_node: MeshInstance3D, radius: float) -> void:
+	var ring: TorusMesh = ring_node.mesh as TorusMesh
+	ring.outer_radius = radius
+	ring.inner_radius = radius - _ring_thickness
+	var fill: CylinderMesh = fill_node.mesh as CylinderMesh
+	fill.top_radius = ring.inner_radius
+	fill.bottom_radius = ring.inner_radius
+
+
+func _set_indicator_color(ring_node: MeshInstance3D, fill_node: MeshInstance3D, color: Color) -> void:
+	((ring_node.mesh as TorusMesh).material as StandardMaterial3D).albedo_color = color
+	((fill_node.mesh as CylinderMesh).material as StandardMaterial3D).albedo_color = Color(color, color.a * _fill_opacity)
+
+
+func _update_spread_indicator(target: Guard) -> void:
+	if target == null or _aiming_spell.get_spread_range() <= 0.0:
+		_spread_indicator.visible = false
+		return
+
+	var spread_targets: Array[Guard] = _aiming_spell.get_spread_targets(target)
+	_spread_indicator.global_position = target.global_position + Vector3.UP * _range_indicator.position.y
+	_set_indicator_color(_spread_indicator, _spread_fill, _spread_invalid_color if spread_targets.is_empty() else _spread_valid_color)
+	_spread_indicator.visible = true
+
+	while _spread_arrows.size() < spread_targets.size():
+		var arrow: MeshInstance3D = _spread_arrow_scene.instantiate() as MeshInstance3D
+		_spread_indicator.add_child(arrow)
+		_spread_arrows.append(arrow)
+	for i: int in _spread_arrows.size():
+		_spread_arrows[i].visible = i < spread_targets.size()
+		if _spread_arrows[i].visible:
+			_place_spread_arrow(_spread_arrows[i], target.global_position, spread_targets[i].global_position)
+
+
+func _place_spread_arrow(arrow: MeshInstance3D, from: Vector3, to: Vector3) -> void:
+	var offset := Vector3(to.x - from.x, 0.0, to.z - from.z)
+	if offset.length() <= 0.01:
+		arrow.visible = false
+		return
+	var direction: Vector3 = offset.normalized()
+	var length: float = maxf(offset.length() - _arrow_gap * 2.0, 0.1)
+	var center: Vector3 = from + direction * (_arrow_gap + length * 0.5) + Vector3.UP * _arrow_height
+	var arrow_basis: Basis = Basis.looking_at(direction) * Basis.from_scale(Vector3(_arrow_width, _arrow_width, length))
+	arrow.global_transform = Transform3D(arrow_basis, center)
 
 
 func _get_hovered_guard() -> Guard:
@@ -104,12 +176,16 @@ func _get_hovered_guard() -> Guard:
 	return result.collider as Guard
 
 
-func _is_in_range(spell: Spell, guard: Guard) -> bool:
+func _can_target(spell: GuardSpell, guard: Guard) -> bool:
+	return guard != null and _is_in_range(spell, guard) and not _is_blocked(spell, guard)
+
+
+func _is_in_range(spell: GuardSpell, guard: Guard) -> bool:
 	var offset: Vector3 = guard.global_position - _player.global_position
 	return Vector2(offset.x, offset.z).length() <= spell.cast_range
 
 
-func _is_blocked(spell: Spell, guard: Guard) -> bool:
+func _is_blocked(spell: GuardSpell, guard: Guard) -> bool:
 	if not spell.requires_line_of_sight:
 		return false
 	var query := PhysicsRayQueryParameters3D.create(
@@ -120,7 +196,7 @@ func _is_blocked(spell: Spell, guard: Guard) -> bool:
 	return not _player.get_world_3d().direct_space_state.intersect_ray(query).is_empty()
 
 
-func _start_minigame(spell: Spell, guard: Guard) -> void:
+func _start_minigame(spell: Spell, guard: Guard = null) -> void:
 	if spell.minigame_scene == null:
 		push_warning("%s has no minigame scene assigned." % spell.resource_path)
 		return
@@ -128,10 +204,15 @@ func _start_minigame(spell: Spell, guard: Guard) -> void:
 	_control.add_child(_minigame)
 	_minigame.succeed.connect(_on_minigame_finished.bind(true))
 	_minigame.failed.connect(_on_minigame_finished.bind(false))
-	_spell_target = guard
 	_casting_spell = spell
 	_player.start_casting()
+	if guard == null:
+		return
+	_spell_target = guard
+	_spell_spread_targets = (spell as GuardSpell).get_spread_targets(guard)
 	_spell_target.enter_spellbound()
+	for spread_target: Guard in _spell_spread_targets:
+		spread_target.enter_spellbound()
 
 
 func _on_minigame_finished(success: bool) -> void:
@@ -139,12 +220,27 @@ func _on_minigame_finished(success: bool) -> void:
 		return
 	print("Spell minigame ", "succeeded" if success else "failed")
 	_player.finish_casting()
-	if success:
-		_casting_spell.apply(_player, _spell_target)
-	else:
-		_casting_spell.fail(_player, _spell_target)
+	if _casting_spell is GuardSpell:
+		_finish_guard_spell(_casting_spell as GuardSpell, success)
+	elif _casting_spell is SelfSpell:
+		_finish_self_spell(_casting_spell as SelfSpell, success)
 	_spell_target = null
+	_spell_spread_targets = []
 	_casting_spell = null
 	await get_tree().create_timer(1.0).timeout
 	_minigame.queue_free()
 	_minigame = null
+
+
+func _finish_guard_spell(spell: GuardSpell, success: bool) -> void:
+	if success:
+		spell.apply(_player, _spell_target, _spell_spread_targets)
+	else:
+		spell.fail(_player, _spell_target, _spell_spread_targets)
+
+
+func _finish_self_spell(spell: SelfSpell, success: bool) -> void:
+	if success:
+		spell.apply(_player)
+	else:
+		spell.fail(_player)
