@@ -25,6 +25,7 @@ var _casting_spell: Spell
 
 @onready var _control: Control = %Control
 @onready var _mind_control_hud: MindControlHUD = %MindControlHUD
+@onready var _read_mind_hud: ReadMindHUD = %ReadMindHUD
 @onready var _spell_buttons: Array[SpellButton] = [%MindControlButton, %ReadMindButton, %AngerButton, %MergeButton]
 
 
@@ -33,6 +34,7 @@ func _ready() -> void:
 	_range_indicator.visible = false
 	_player.mind_control_started.connect(_mind_control_hud.start)
 	_player.mind_control_ended.connect(_mind_control_hud.stop.unbind(1))
+	_player.thought_read.connect(_read_mind_hud.show_thought)
 	for button: SpellButton in _spell_buttons:
 		if button.spell != null:
 			button.pressed.connect(_start_aiming.bind(button.spell))

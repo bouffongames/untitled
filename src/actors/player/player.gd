@@ -3,6 +3,7 @@ extends Character
 
 signal mind_control_started(guard: Guard)
 signal mind_control_ended(guard: Guard)
+signal thought_read(text: String, duration: float)
 
 var _mind_controlled_guard: Guard
 var _is_casting: bool
@@ -19,6 +20,10 @@ func finish_casting() -> void:
 
 func is_casting() -> bool:
 	return _is_casting
+
+
+func read_thought(text: String, duration: float) -> void:
+	thought_read.emit(text, duration)
 
 
 func start_mind_control(guard: Guard, spell: MindControlSpell) -> void:

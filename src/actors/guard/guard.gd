@@ -20,6 +20,10 @@ signal mind_control_ended
 @export_range(0.5, 3.0) var alert_pause_time := 1.5
 @export_flags_3d_physics var vision_obstacle_layer
 
+@export_category("Read Mind")
+## Thoughts the player reads with the Read Mind spell, one per cast, in order. Wraps back to the first after the last.
+@export var thoughts: Array[Thought] = []
+
 @export_category("Navigation & Movement")
 @export var max_movement_speed := 3.0
 @export var acceleration := 13
@@ -37,6 +41,7 @@ var _confusion_sparkles: CPUParticles3D
 var _stun_duration := 0.0
 var _alert_after_stun := true
 var _mind_control_spell: MindControlSpell
+var _next_thought_index := 0
 
 @onready var _eyes: Marker3D = %Eyes
 @onready var _navigation_agent_3d: NavigationAgent3D = %NavigationAgent3D
@@ -273,6 +278,14 @@ func end_mind_control() -> void:
 		return
 	stun(_mind_control_spell.release_stun_duration, false)
 	mind_control_ended.emit()
+
+
+func read_next_thought() -> Thought:
+	if thoughts.is_empty():
+		return null
+	var thought: Thought = thoughts[_next_thought_index % thoughts.size()]
+	_next_thought_index = (_next_thought_index + 1) % thoughts.size()
+	return thought
 
 
 func get_mind_control_time_left() -> float:

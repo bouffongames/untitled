@@ -7,6 +7,7 @@
 [ext_resource type="Resource" path="res://src/spells/anger.tres" id="5_anger"]
 [ext_resource type="Resource" path="res://src/spells/merge.tres" id="6_merge"]
 [ext_resource type="PackedScene" path="res://ui/player_hud/mind_control_hud.tscn" id="7_mind_hud"]
+[ext_resource type="PackedScene" path="res://ui/player_hud/read_mind_hud.tscn" id="8_read_hud"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_q"]
 keycode = 81
@@ -105,5 +106,9 @@ script = ExtResource("2_spell")
 spell = ExtResource("6_merge")
 
 [node name="MindControlHUD" parent="Control" unique_id=1840562198 instance=ExtResource("7_mind_hud")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="ReadMindHUD" parent="Control" unique_id=1840562207 instance=ExtResource("8_read_hud")]
 unique_name_in_owner = true
 layout_mode = 1
