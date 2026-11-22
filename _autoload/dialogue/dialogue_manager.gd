@@ -23,7 +23,7 @@ func next_line() -> DialogueLine:
 	else:
 		if _start_line != null:
 			_start_line = null
-			dialogue_ended.emit()
+			dialogue_ended.emit.call_deferred()
 		return null
 
 
