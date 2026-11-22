@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dhuq38qrvhs4n"]
+
+[ext_resource type="PackedScene" uid="uid://dx3oupo57krka" path="res://assets/kaykit_dungeon/environment/pillar_broken.gltf.glb" id="1_ln34n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b0i1g"]
+size = Vector3(1.6353939, 0.5, 1.6456709)
+
+[node name="PillarBroken" unique_id=1865259311 groups=["hideable"] instance=ExtResource("1_ln34n")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=58855528]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=365650656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007455826, 0.24999994, -0.01746726)
+shape = SubResource("BoxShape3D_b0i1g")

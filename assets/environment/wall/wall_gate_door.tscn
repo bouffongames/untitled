@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://icjmgb7leccg"]
+
+[ext_resource type="PackedScene" uid="uid://dcvwrmvpw27v7" path="res://assets/kaykit_dungeon/environment/wall_gateDoor.gltf.glb" id="1_5ysta"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ysta"]
+size = Vector3(0.8, 1.1, 1.5000026)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h72do"]
+size = Vector3(0.6, 1.1, 1.5000026)
+
+[node name="WallGateDoor" unique_id=1397748075 instance=ExtResource("1_5ysta")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1257768458]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=646051948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6000006, 0.54999995, 0)
+shape = SubResource("BoxShape3D_5ysta")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=449003673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7000005, 0.54999995, 0)
+shape = SubResource("BoxShape3D_h72do")

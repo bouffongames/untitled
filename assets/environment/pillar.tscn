@@ -5,7 +5,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvrx2"]
 size = Vector3(1.6353939, 0.5, 1.6456709)
 
-[node name="Pillar" unique_id=259543017 instance=ExtResource("1_kvrx2")]
+[node name="Pillar" unique_id=259543017 groups=["hideable"] instance=ExtResource("1_kvrx2")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1676858737]
 collision_mask = 0
