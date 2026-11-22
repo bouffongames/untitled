@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://b75hmodvj1h3" path="res://src/actors/player/player_controller.gd" id="3_i14qy"]
 [ext_resource type="PackedScene" uid="uid://djejd13sihbqb" path="res://src/actors/player/player.tscn" id="4_4noo8"]
 [ext_resource type="PackedScene" uid="uid://cwdedgjg7fm3b" path="res://assets/environment/tile/tile_brick_large_cracked_b.tscn" id="5_ofrt1"]
+[ext_resource type="Script" uid="uid://di8ia8eclgux0" path="res://src/levels/hide_all_walls.gd" id="5_xj4no"]
+[ext_resource type="Shader" uid="uid://rulpqcp21b0" path="res://src/actors/player/cutoff.gdshader" id="6_a63mu"]
 [ext_resource type="PackedScene" uid="uid://eh2y8cbc23jv" path="res://assets/environment/tile/tile_brick_large_cracked_a.tscn" id="6_owqi3"]
 [ext_resource type="PackedScene" uid="uid://cx3bhve048m2j" path="res://assets/environment/tile/tile_brick_small.tscn" id="8_ofrt1"]
 [ext_resource type="PackedScene" uid="uid://k3lqjh81h8bm" path="res://assets/environment/tile/tile_brick_large.tscn" id="8_owqi3"]
@@ -127,6 +129,10 @@ player = NodePath("../Player")
 
 [node name="Player" parent="." unique_id=1597008775 instance=ExtResource("4_4noo8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.1, -2.6)
+
+[node name="HideAllWalls" type="Node" parent="." unique_id=108202150]
+script = ExtResource("5_xj4no")
+cuttoff_shader = ExtResource("6_a63mu")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2044959098]
 navigation_mesh = SubResource("NavigationMesh_cln75")

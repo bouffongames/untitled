@@ -3,16 +3,10 @@
 [ext_resource type="Script" uid="uid://m1o2leelubn7" path="res://src/actors/player/player.gd" id="1_1x8di"]
 [ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://src/3d_models/gdquest_gobot/gobot_skin.tscn" id="1_tps1c"]
 [ext_resource type="PackedScene" uid="uid://bjqdo8ql7afc7" path="res://ui/player_hud/player_hud.tscn" id="3_u8v1j"]
-[ext_resource type="Shader" uid="uid://rulpqcp21b0" path="res://src/actors/player/cutoff.gdshader" id="4_6llfm"]
-[ext_resource type="Script" uid="uid://c2gim8khyu3i0" path="res://src/actors/player/wall_hide_area.gd" id="4_hod3v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_og1q0"]
 radius = 0.4
 height = 1.4
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_dmu6e"]
-height = 1.0
-radius = 5.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_range"]
 render_priority = 1
@@ -79,15 +73,6 @@ collision_mask = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1043362773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68030703, 0)
 shape = SubResource("CapsuleShape3D_og1q0")
-
-[node name="WallHideArea3D" type="Area3D" parent="." unique_id=1059932976]
-script = ExtResource("4_hod3v")
-height_fade_softness = 0.3
-cuttoff_shader = ExtResource("4_6llfm")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WallHideArea3D" unique_id=1655883677]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("CylinderShape3D_dmu6e")
 
 [node name="RangeIndicator" type="MeshInstance3D" parent="." unique_id=1288410576]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
