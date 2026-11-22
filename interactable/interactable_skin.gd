@@ -12,7 +12,7 @@ extends Node
 
 @export_group("Hover Outline")
 @export var hover_outline_color: Color = Color.RED
-@export var hover_outline_size: float = 1.00
+@export var hover_outline_size: float = 1.05
 @export var hover_outline_shader: Shader
 
 
