@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b7ioadap5nnwe"]
+
+[ext_resource type="PackedScene" uid="uid://dcaheelfg8t3w" path="res://assets/kaykit_dungeon/environment/pillar.gltf.glb" id="1_kvrx2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kvrx2"]
+size = Vector3(1.6353939, 0.5, 1.6456709)
+
+[node name="Pillar" unique_id=259543017 instance=ExtResource("1_kvrx2")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1676858737]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=14154903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007455826, 0.24999994, -0.01746726)
+shape = SubResource("BoxShape3D_kvrx2")

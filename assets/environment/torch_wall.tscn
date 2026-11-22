@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b624quu3lu0eo" path="res://assets/kaykit_dungeon/environment/torchWall.gltf.glb" id="1_4nyjp"]
 
-[node name="torchWall_gltf" unique_id=273786331 instance=ExtResource("1_4nyjp")]
+[node name="TorchWall" unique_id=273786331 instance=ExtResource("1_4nyjp")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="1" unique_id=893375285]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83705735, 0.6436939)

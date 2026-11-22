@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b8el63ser76qu"]
+
+[ext_resource type="PackedScene" uid="uid://kuf6wxgmx2bs" path="res://assets/kaykit_dungeon/environment/wall_end.gltf.glb" id="1_egmdo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_egmdo"]
+size = Vector3(2.2000003, 1.1, 1.5)
+
+[node name="WallEnd" unique_id=2028805919 instance=ExtResource("1_egmdo")]
+
+[node name="wall_end" parent="." index="0" unique_id=838540051]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1781274576]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1681166168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1000004, 0.54999995, 0)
+shape = SubResource("BoxShape3D_egmdo")

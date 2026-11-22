@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://brlb4jasfatec"]
+
+[ext_resource type="PackedScene" uid="uid://l4dsqsjuqo2h" path="res://assets/kaykit_dungeon/environment/wallSplit.gltf.glb" id="1_87b0k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_87b0k"]
+size = Vector3(1.5, 1.1, 2.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s4caf"]
+size = Vector3(4, 1.1, 1.5)
+
+[node name="WallSplit" unique_id=1225262573 instance=ExtResource("1_87b0k")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1851081260]
+collision_mask = 0
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=146776194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54999995, 0.625)
+shape = SubResource("BoxShape3D_87b0k")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=1630041045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54999995, 0)
+shape = SubResource("BoxShape3D_s4caf")

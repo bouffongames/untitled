@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bmavep6tungt"]
+
+[ext_resource type="PackedScene" uid="uid://bneeiogoumkoq" path="res://assets/kaykit_dungeon/environment/wall_window.gltf.glb" id="1_uawk7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uawk7"]
+size = Vector3(6, 1.1, 1.5000007)
+
+[node name="WallWindow" unique_id=1949795576 instance=ExtResource("1_uawk7")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1323628428]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=646110337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54999995, 0)
+shape = SubResource("BoxShape3D_uawk7")

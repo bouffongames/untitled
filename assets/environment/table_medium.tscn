@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bqe28gf57rcvi"]
+
+[ext_resource type="PackedScene" uid="uid://dpxsuyc5qukb6" path="res://assets/kaykit_dungeon/environment/tableMedium.gltf.glb" id="1_i8run"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mh20l"]
+size = Vector3(2, 0.70747215, 1)
+
+[node name="TableMedium" unique_id=1670430340 instance=ExtResource("1_i8run")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1235219060]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=80782513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0005941391, 0.35373604, 9.536743e-07)
+shape = SubResource("BoxShape3D_mh20l")

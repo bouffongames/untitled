@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://k3lqjh81h8bm"]
+
+[ext_resource type="PackedScene" uid="uid://c52sr8di0rapt" path="res://assets/kaykit_dungeon/environment/tileBrickB_large.gltf.glb" id="1_eq0fv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eq0fv"]
+size = Vector3(6, 1, 6)
+
+[node name="TileBrickLarge" unique_id=1480762600 instance=ExtResource("1_eq0fv")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=522736293]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=99893019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_eq0fv")
