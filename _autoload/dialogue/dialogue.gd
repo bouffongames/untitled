@@ -52,6 +52,11 @@ func play_from_string(value: String) -> void:
 	_next_line()
 
 
+func forcibly_end_dialogue() -> void:
+	_manager.forcibly_end_dialogue()
+	_next_line()  # automatically cleans up dialogue when the next line is 'null'
+
+
 func _next_line() -> void:
 	var line: DialogueLine = _manager.next_line()
 	if line == null:

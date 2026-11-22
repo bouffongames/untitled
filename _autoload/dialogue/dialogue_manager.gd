@@ -34,6 +34,12 @@ func has_responses() -> bool:
 		else _start_line != null and not _start_line.responses.is_empty()
 	)
 
+
+func forcibly_end_dialogue() -> void:
+	_start_line = null
+	_current_line = null
+
+
 func load_dialogue(file_path: String) -> void:
 	_current_line = null
 	_start_line = _parser.load_dialogue(file_path)
