@@ -52,6 +52,7 @@ func _handle_scene_loading() -> void:
 func _instantiate_scene() -> void:
 	var scene: PackedScene = ResourceLoader.load_threaded_get(_scene_path)
 	_clear_existing_nodes()
+	await get_tree().process_frame  # give a chance to the nodes to be cleared
 	var scene_instance: Node = scene.instantiate()
 	get_tree().root.add_child(scene_instance)
 	_transition.exit()
