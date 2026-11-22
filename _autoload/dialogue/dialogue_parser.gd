@@ -19,7 +19,7 @@ func _parse_file(file_string: String) -> DialogueLine:
 	var split_lines: PackedStringArray = file_string.split("\n")
 	var raw_lines: Array[String] = Array(Array(split_lines), TYPE_STRING, "", null)
 	# remove empty lines
-	raw_lines = raw_lines.filter(func(item: String) -> bool: return item != "")
+	raw_lines = raw_lines.filter(func(item: String) -> bool: return item.strip_edges() != "")
 
 	var prev_queue: Array[Dictionary] = []
 	var unresolved_tails: Array[DialogueLine] = []
