@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://1wa508abvcmi" path="res://assets/kaykit_dungeon/environment/wall_end_broken.gltf.glb" id="1_nxbn8"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_nxbn8"]
-size = Vector3(2.2000003, 1.1, 1.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_87er0"]
+size = Vector3(3.0462446, 1.1, 1.5)
 
 [node name="WallEndBroken" unique_id=1261758964 instance=ExtResource("1_nxbn8")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1334195979]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=87809207]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1625309719]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1000004, 0.54999995, 0)
-shape = SubResource("BoxShape3D_nxbn8")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=658174783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5231228, 0.54999995, 0)
+shape = SubResource("BoxShape3D_87er0")
