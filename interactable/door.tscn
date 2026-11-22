@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ctxs6hds4tgqv"]
+
+[ext_resource type="Script" uid="uid://buyfyuqttfebm" path="res://interactable/door.gd" id="1_a7drm"]
+[ext_resource type="PackedScene" uid="uid://deb6inc8100ce" path="res://assets/kaykit_dungeon/environment/door.gltf.glb" id="1_rlyqi"]
+[ext_resource type="Script" uid="uid://cq5y74bx0x6uk" path="res://interactable/interactable_skin.gd" id="4_y33ik"]
+[ext_resource type="Shader" uid="uid://c2a0pdv7yicjc" path="res://shaders/shine.gdshader" id="5_fo8ph"]
+[ext_resource type="Shader" uid="uid://b21d0tc5n86sq" path="res://shaders/outline.gdshader" id="6_43p05"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rlyqi"]
+size = Vector3(2, 2.5, 0.90000004)
+
+[node name="Door" type="StaticBody3D" unique_id=1400406277 node_paths=PackedStringArray("skin")]
+collision_layer = 9
+collision_mask = 0
+script = ExtResource("1_a7drm")
+skin = NodePath("InteractableSkin")
+
+[node name="InteractableSkin" type="Node" parent="." unique_id=29117989 node_paths=PackedStringArray("mesh")]
+script = ExtResource("4_y33ik")
+mesh = NodePath("../door_gltf/door")
+shine_color = Color(0.8137773, 0.88879496, 0.9999997, 1)
+shine_shader = ExtResource("5_fo8ph")
+hover_outline_size = 1.01
+hover_outline_shader = ExtResource("6_43p05")
+
+[node name="door_gltf" parent="." unique_id=1109410868 instance=ExtResource("1_rlyqi")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="door" parent="door_gltf" index="0" unique_id=584927181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -8.742278e-08)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=864284415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0429425, 0.18691292)
+shape = SubResource("BoxShape3D_rlyqi")
+
+[editable path="door_gltf"]

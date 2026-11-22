@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://spptx3iy7hdi"]
+
+[ext_resource type="Script" uid="uid://uvoff7ivowi7" path="res://interactable/journal.gd" id="1_x0v4x"]
+[ext_resource type="PackedScene" uid="uid://dgkp1g2rp2uxc" path="res://assets/kaykit_dungeon/environment/spellBook.gltf.glb" id="2_jm45c"]
+[ext_resource type="Shader" uid="uid://c2a0pdv7yicjc" path="res://shaders/shine.gdshader" id="4_6plq5"]
+[ext_resource type="Script" uid="uid://cq5y74bx0x6uk" path="res://interactable/interactable_skin.gd" id="4_h3djj"]
+[ext_resource type="Shader" uid="uid://b21d0tc5n86sq" path="res://shaders/outline.gdshader" id="5_h3djj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w2s1y"]
+radius = 0.6
+
+[node name="Journal" type="StaticBody3D" unique_id=1737273357 node_paths=PackedStringArray("book", "skin")]
+collision_layer = 9
+collision_mask = 0
+script = ExtResource("1_x0v4x")
+book = NodePath("spellBook_gltf/spellBook")
+skin = NodePath("InteractableSkin")
+
+[node name="InteractableSkin" type="Node" parent="." unique_id=989025585 node_paths=PackedStringArray("mesh")]
+script = ExtResource("4_h3djj")
+mesh = NodePath("../spellBook_gltf/spellBook")
+shine_offset_matrix = Array[bool]([false, true])
+shine_shader = ExtResource("4_6plq5")
+hover_outline_size = 1.22
+hover_outline_shader = ExtResource("5_h3djj")
+
+[node name="spellBook_gltf" parent="." unique_id=51120338 instance=ExtResource("2_jm45c")]
+transform = Transform3D(-1, 3.694646e-08, -7.923193e-08, 7.6193984e-09, 0.93969274, 0.34202018, 8.709011e-08, 0.34202018, -0.93969274, 0, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=929427371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, 0.15, 2.2351742e-08)
+shape = SubResource("SphereShape3D_w2s1y")
+
+[editable path="spellBook_gltf"]

@@ -1,0 +1,2 @@
+class_name Journal
+extends Interactable
