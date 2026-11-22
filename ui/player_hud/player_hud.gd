@@ -1,3 +1,4 @@
+class_name PlayerHud
 extends CanvasLayer
 
 @export var _range_indicator: MeshInstance3D

@@ -11,6 +11,7 @@ var _mind_controlled_guard: Guard
 var _is_casting: bool
 var _merge_spell: MergeSpell
 
+@export var hud: PlayerHud
 @onready var _merge_timer: Timer = %MergeTimer
 
 
