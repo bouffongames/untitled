@@ -27,7 +27,10 @@ func _ready() -> void:
 	_animate_continue_arrow()
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
+	if visible:
+		get_viewport().set_input_as_handled()  # disable all input when dialogue is visible
+	
 	if event.is_action_pressed("dialogue_next_line"):
 		if _active:
 			_interrupt = true
