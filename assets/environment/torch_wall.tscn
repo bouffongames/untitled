@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cg8fc5cmg0y30"]
+
+[ext_resource type="PackedScene" uid="uid://b624quu3lu0eo" path="res://assets/kaykit_dungeon/environment/torchWall.gltf.glb" id="1_4nyjp"]
+
+[node name="torchWall_gltf" unique_id=273786331 instance=ExtResource("1_4nyjp")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1" unique_id=893375285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83705735, 0.6436939)
+light_color = Color(0.8616326, 0.4362361, 9.62615e-07, 1)
+light_specular = 0.0
+omni_range = 5.545771
