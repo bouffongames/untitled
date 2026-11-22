@@ -16,6 +16,10 @@ func _ready() -> void:
 	player.mind_control_ended.connect(_on_mind_control_ended)
 
 
+func _exit_tree() -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if player.is_casting():
 		return
@@ -79,6 +83,7 @@ func _handle_interact(event: InputEvent) -> bool:
 	if result.is_empty():
 		# if no interactable was found, hide the hover
 		if is_instance_valid(_last_interactable):
+			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 			_last_interactable.hide_hover()
 			_last_interactable = null
 		return false
@@ -89,6 +94,7 @@ func _handle_interact(event: InputEvent) -> bool:
 		# show the hover
 		_last_interactable = interactable
 		_last_interactable.show_hover()
+		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 		var mouse_event: InputEventMouseButton = event as InputEventMouseButton
 		if mouse_event == null:
 			return false
@@ -101,6 +107,7 @@ func _handle_interact(event: InputEvent) -> bool:
 	else:
 		# if no valid interactable was found, hide the hover
 		if is_instance_valid(_last_interactable):
+			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 			_last_interactable.hide_hover()
 			_last_interactable = null
 
