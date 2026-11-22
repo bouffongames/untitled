@@ -44,8 +44,6 @@ func _handle_scene_loading() -> void:
 	match status:
 		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
 			_instantiate_scene()
-		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_INVALID_RESOURCE:
-			push_error("Failed to load scene: Invalid resource or has not been loaded")
 		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_FAILED:
 			push_error("Failed to load scene")
 
