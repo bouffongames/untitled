@@ -1,6 +1,5 @@
 extends Node3D
 
-
 @export var journal: Journal
 @export var door: Door
 
