@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://djejd13sihbqb" path="res://src/actors/player/player.tscn" id="4_3wteo"]
 [ext_resource type="Script" uid="uid://c2lhe82tcve2t" path="res://src/levels/trap_floor.gd" id="5_q0622"]
 [ext_resource type="PackedScene" uid="uid://k3lqjh81h8bm" path="res://assets/environment/tile/tile_brick_large.tscn" id="7_q0622"]
-[ext_resource type="PackedScene" uid="uid://b7y4wuycxc518" path="res://assets/kaykit_dungeon/environment/tileBrickB_small.gltf.glb" id="8_8j4gf"]
 [ext_resource type="PackedScene" uid="uid://eh2y8cbc23jv" path="res://assets/environment/tile/tile_brick_large_cracked_a.tscn" id="9_1b36e"]
 [ext_resource type="PackedScene" uid="uid://cwdedgjg7fm3b" path="res://assets/environment/tile/tile_brick_large_cracked_b.tscn" id="9_q0622"]
 [ext_resource type="PackedScene" uid="uid://c81qqfnuy6yqm" path="res://assets/environment/wall/wall_door.tscn" id="11_1b36e"]
+[ext_resource type="PackedScene" uid="uid://cx3bhve048m2j" path="res://assets/environment/tile/tile_brick_small.tscn" id="11_q0622"]
 [ext_resource type="PackedScene" uid="uid://buvxepsslw7h1" path="res://assets/environment/wall/wall_corner.tscn" id="14_1b36e"]
 [ext_resource type="PackedScene" uid="uid://byy0xgeatdkby" path="res://assets/environment/wall/wall.tscn" id="14_q0622"]
 [ext_resource type="PackedScene" uid="uid://s6b4c2rqi0eg" path="res://assets/environment/wall/wall_window_gate_front.tscn" id="17_1b36e"]
@@ -46,9 +46,6 @@ vertices = PackedVector3Array(-16.75, 1.5, -8.250034, -16.75, 1.5, 26.999966, -1
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 10), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 14), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 10), PackedInt32Array(19, 18, 11), PackedInt32Array(11, 18, 14), PackedInt32Array(17, 10, 7), PackedInt32Array(7, 10, 6), PackedInt32Array(8, 9, 14), PackedInt32Array(14, 9, 13), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 28), PackedInt32Array(26, 28, 23), PackedInt32Array(23, 28, 27), PackedInt32Array(29, 25, 30), PackedInt32Array(30, 25, 26), PackedInt32Array(23, 20, 26), PackedInt32Array(20, 31, 26), PackedInt32Array(32, 24, 33), PackedInt32Array(33, 24, 25), PackedInt32Array(22, 35, 21), PackedInt32Array(21, 35, 34), PackedInt32Array(34, 35, 36), PackedInt32Array(36, 35, 37), PackedInt32Array(36, 38, 34), PackedInt32Array(35, 39, 37), PackedInt32Array(42, 41, 40), PackedInt32Array(43, 36, 37), PackedInt32Array(43, 37, 44), PackedInt32Array(44, 37, 45), PackedInt32Array(45, 37, 40), PackedInt32Array(40, 37, 42), PackedInt32Array(41, 42, 46), PackedInt32Array(46, 42, 47), PackedInt32Array(46, 47, 48), PackedInt32Array(48, 47, 49), PackedInt32Array(49, 47, 50), PackedInt32Array(53, 52, 51), PackedInt32Array(55, 54, 56), PackedInt32Array(56, 54, 57), PackedInt32Array(56, 57, 58), PackedInt32Array(58, 57, 59), PackedInt32Array(61, 60, 62), PackedInt32Array(62, 60, 51), PackedInt32Array(59, 63, 58), PackedInt32Array(58, 63, 60), PackedInt32Array(60, 63, 53), PackedInt32Array(53, 51, 60), PackedInt32Array(66, 65, 64), PackedInt32Array(68, 67, 69), PackedInt32Array(69, 67, 64), PackedInt32Array(71, 70, 67), PackedInt32Array(67, 70, 66), PackedInt32Array(66, 64, 67), PackedInt32Array(73, 72, 74), PackedInt32Array(74, 72, 75), PackedInt32Array(72, 49, 75), PackedInt32Array(75, 49, 76), PackedInt32Array(76, 78, 77), PackedInt32Array(79, 48, 49), PackedInt32Array(72, 79, 49), PackedInt32Array(76, 77, 75), PackedInt32Array(81, 80, 82), PackedInt32Array(82, 80, 83), PackedInt32Array(83, 44, 84), PackedInt32Array(84, 44, 85), PackedInt32Array(85, 44, 45), PackedInt32Array(80, 44, 83), PackedInt32Array(87, 86, 88), PackedInt32Array(88, 86, 90), PackedInt32Array(88, 90, 89), PackedInt32Array(92, 91, 90), PackedInt32Array(90, 91, 89), PackedInt32Array(95, 94, 93), PackedInt32Array(93, 94, 92), PackedInt32Array(92, 94, 91), PackedInt32Array(97, 96, 98), PackedInt32Array(98, 96, 99), PackedInt32Array(98, 99, 93), PackedInt32Array(93, 99, 95), PackedInt32Array(30, 100, 29), PackedInt32Array(29, 100, 101), PackedInt32Array(101, 104, 105), PackedInt32Array(105, 104, 103), PackedInt32Array(105, 103, 102), PackedInt32Array(107, 106, 108), PackedInt32Array(108, 106, 100), PackedInt32Array(106, 104, 100), PackedInt32Array(100, 104, 101), PackedInt32Array(109, 103, 110), PackedInt32Array(110, 103, 104), PackedInt32Array(82, 111, 81), PackedInt32Array(81, 111, 112), PackedInt32Array(81, 112, 107), PackedInt32Array(81, 107, 108), PackedInt32Array(114, 112, 113), PackedInt32Array(113, 112, 111), PackedInt32Array(110, 114, 109), PackedInt32Array(109, 114, 113), PackedInt32Array(109, 113, 116), PackedInt32Array(109, 116, 115), PackedInt32Array(118, 117, 119), PackedInt32Array(119, 117, 120), PackedInt32Array(120, 117, 121), PackedInt32Array(74, 122, 73), PackedInt32Array(73, 122, 120), PackedInt32Array(120, 122, 123), PackedInt32Array(120, 123, 119), PackedInt32Array(124, 123, 125), PackedInt32Array(125, 123, 122), PackedInt32Array(125, 122, 126), PackedInt32Array(125, 127, 124), PackedInt32Array(131, 130, 128), PackedInt32Array(128, 130, 129), PackedInt32Array(135, 134, 132), PackedInt32Array(132, 134, 133), PackedInt32Array(137, 136, 116), PackedInt32Array(116, 136, 115), PackedInt32Array(85, 139, 138), PackedInt32Array(136, 137, 140), PackedInt32Array(140, 137, 84), PackedInt32Array(140, 84, 138), PackedInt32Array(138, 84, 85), PackedInt32Array(142, 141, 143), PackedInt32Array(143, 141, 144), PackedInt32Array(145, 144, 102), PackedInt32Array(102, 144, 147), PackedInt32Array(102, 147, 146), PackedInt32Array(144, 141, 147), PackedInt32Array(102, 103, 145), PackedInt32Array(149, 148, 150), PackedInt32Array(150, 148, 140), PackedInt32Array(150, 140, 138), PackedInt32Array(138, 151, 150), PackedInt32Array(139, 152, 138), PackedInt32Array(138, 152, 151), PackedInt32Array(76, 153, 78), PackedInt32Array(78, 153, 152), PackedInt32Array(152, 153, 151), PackedInt32Array(155, 154, 156), PackedInt32Array(156, 154, 158), PackedInt32Array(156, 158, 157), PackedInt32Array(162, 161, 163), PackedInt32Array(163, 161, 159), PackedInt32Array(159, 161, 160), PackedInt32Array(165, 164, 163), PackedInt32Array(163, 164, 162), PackedInt32Array(167, 166, 165), PackedInt32Array(165, 166, 164), PackedInt32Array(159, 160, 158), PackedInt32Array(158, 160, 157), PackedInt32Array(143, 169, 142), PackedInt32Array(142, 169, 168), PackedInt32Array(169, 171, 168), PackedInt32Array(168, 171, 170), PackedInt32Array(169, 172, 171), PackedInt32Array(170, 173, 168), PackedInt32Array(175, 174, 176), PackedInt32Array(176, 174, 177), PackedInt32Array(146, 177, 174), PackedInt32Array(179, 178, 180), PackedInt32Array(180, 178, 181), PackedInt32Array(146, 147, 177), PackedInt32Array(180, 181, 174), PackedInt32Array(174, 181, 146), PackedInt32Array(182, 185, 183), PackedInt32Array(183, 185, 184), PackedInt32Array(187, 184, 186), PackedInt32Array(189, 188, 187), PackedInt32Array(185, 148, 149), PackedInt32Array(149, 186, 185), PackedInt32Array(185, 186, 184), PackedInt32Array(191, 190, 186), PackedInt32Array(186, 190, 187), PackedInt32Array(187, 190, 189), PackedInt32Array(175, 176, 192), PackedInt32Array(192, 176, 193), PackedInt32Array(193, 176, 183), PackedInt32Array(183, 176, 182), PackedInt32Array(195, 192, 194), PackedInt32Array(194, 192, 193), PackedInt32Array(188, 189, 194), PackedInt32Array(194, 189, 195), PackedInt32Array(195, 189, 179), PackedInt32Array(179, 189, 178), PackedInt32Array(199, 198, 196), PackedInt32Array(196, 198, 197), PackedInt32Array(203, 202, 200), PackedInt32Array(200, 202, 201)]
 geometry_parsed_geometry_type = 1
 geometry_collision_mask = 1
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6i8wp"]
-size = Vector3(2, 1, 2)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_q0622"]
 
@@ -319,423 +316,119 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.75
 [node name="TileBrickLargeCrackedA15" parent="NavigationRegion3D/Floor" unique_id=513788774 instance=ExtResource("9_1b36e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.75, 0, -5.75)
 
-[node name="tileBrickB_small_gltf" parent="NavigationRegion3D/Floor" unique_id=1993383090 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall" parent="NavigationRegion3D/Floor" unique_id=2105418469 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf" unique_id=373421354]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf/StaticBody3D" unique_id=1025556841]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf27" parent="NavigationRegion3D/Floor" unique_id=2105418469 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall2" parent="NavigationRegion3D/Floor" unique_id=1031644122 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.75, 0, 22.25)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf27" unique_id=318072690]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf27/StaticBody3D" unique_id=477793590]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf33" parent="NavigationRegion3D/Floor" unique_id=638666518 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall3" parent="NavigationRegion3D/Floor" unique_id=1299226834 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.75, 0, 22.25)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf33" unique_id=1852564679]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf33/StaticBody3D" unique_id=20810308]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf34" parent="NavigationRegion3D/Floor" unique_id=45767359 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall4" parent="NavigationRegion3D/Floor" unique_id=2102120145 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.75, 0, 22.25)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf34" unique_id=499805631]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf34/StaticBody3D" unique_id=1921137065]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf35" parent="NavigationRegion3D/Floor" unique_id=1700198073 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall5" parent="NavigationRegion3D/Floor" unique_id=644786004 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.75, 0, 22.25)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf35" unique_id=738678230]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf35/StaticBody3D" unique_id=1292752594]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf28" parent="NavigationRegion3D/Floor" unique_id=445112186 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall6" parent="NavigationRegion3D/Floor" unique_id=1489901142 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.75, 0, 22.25)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf28" unique_id=1272985748]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf28/StaticBody3D" unique_id=1253761899]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf29" parent="NavigationRegion3D/Floor" unique_id=1517422578 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall7" parent="NavigationRegion3D/Floor" unique_id=1313668268 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.75, 0, 22.25)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf29" unique_id=1040310621]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf29/StaticBody3D" unique_id=1216854938]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf30" parent="NavigationRegion3D/Floor" unique_id=1821720769 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall8" parent="NavigationRegion3D/Floor" unique_id=1218889555 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.75, 0, 22.25)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf30" unique_id=1278293142]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf30/StaticBody3D" unique_id=1434378681]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf31" parent="NavigationRegion3D/Floor" unique_id=161327546 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall9" parent="NavigationRegion3D/Floor" unique_id=268621779 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.75, 0, 22.25)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf31" unique_id=946321322]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf31/StaticBody3D" unique_id=1673692577]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf32" parent="NavigationRegion3D/Floor" unique_id=1614609520 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall10" parent="NavigationRegion3D/Floor" unique_id=1289184932 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.75, 0, 22.25)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf32" unique_id=1370959716]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf32/StaticBody3D" unique_id=1060198127]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf2" parent="NavigationRegion3D/Floor" unique_id=1422827757 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall11" parent="NavigationRegion3D/Floor" unique_id=1285003480 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf2" unique_id=1850769095]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf2/StaticBody3D" unique_id=712173695]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf3" parent="NavigationRegion3D/Floor" unique_id=313037510 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall12" parent="NavigationRegion3D/Floor" unique_id=495755951 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf3" unique_id=1284624601]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf3/StaticBody3D" unique_id=2086617763]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf4" parent="NavigationRegion3D/Floor" unique_id=991211816 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall13" parent="NavigationRegion3D/Floor" unique_id=1752586005 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf4" unique_id=1124588724]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf4/StaticBody3D" unique_id=190849534]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf5" parent="NavigationRegion3D/Floor" unique_id=470633960 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall14" parent="NavigationRegion3D/Floor" unique_id=849809575 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf5" unique_id=1001768967]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf5/StaticBody3D" unique_id=1600983056]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf6" parent="NavigationRegion3D/Floor" unique_id=178936007 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall15" parent="NavigationRegion3D/Floor" unique_id=1024339847 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf6" unique_id=1875036242]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf6/StaticBody3D" unique_id=1542817688]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf7" parent="NavigationRegion3D/Floor" unique_id=169023449 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall16" parent="NavigationRegion3D/Floor" unique_id=135278763 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf7" unique_id=1873017311]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf7/StaticBody3D" unique_id=1318540927]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf8" parent="NavigationRegion3D/Floor" unique_id=1892336233 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall17" parent="NavigationRegion3D/Floor" unique_id=459557162 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.74835, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf8" unique_id=971295505]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf8/StaticBody3D" unique_id=433247715]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf9" parent="NavigationRegion3D/Floor" unique_id=16865501 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall18" parent="NavigationRegion3D/Floor" unique_id=1428699609 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.74835, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf9" unique_id=1633646243]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf9/StaticBody3D" unique_id=148723872]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf10" parent="NavigationRegion3D/Floor" unique_id=1587999336 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall19" parent="NavigationRegion3D/Floor" unique_id=1391996451 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf10" unique_id=1072827673]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf10/StaticBody3D" unique_id=221251012]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf11" parent="NavigationRegion3D/Floor" unique_id=1480591715 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall20" parent="NavigationRegion3D/Floor" unique_id=479557734 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf11" unique_id=1551829891]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf11/StaticBody3D" unique_id=215042984]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf12" parent="NavigationRegion3D/Floor" unique_id=1418981921 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall21" parent="NavigationRegion3D/Floor" unique_id=214608788 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf12" unique_id=508778569]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf12/StaticBody3D" unique_id=1468708714]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf18" parent="NavigationRegion3D/Floor" unique_id=749554796 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall22" parent="NavigationRegion3D/Floor" unique_id=1873579874 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf18" unique_id=1454031033]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf18/StaticBody3D" unique_id=190326345]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf36" parent="NavigationRegion3D/Floor" unique_id=644646626 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall23" parent="NavigationRegion3D/Floor" unique_id=2057826824 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf36" unique_id=459354426]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf36/StaticBody3D" unique_id=1726902148]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf37" parent="NavigationRegion3D/Floor" unique_id=1608403513 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall24" parent="NavigationRegion3D/Floor" unique_id=579098571 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf37" unique_id=1485132320]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf37/StaticBody3D" unique_id=1713868268]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf38" parent="NavigationRegion3D/Floor" unique_id=2003607019 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall25" parent="NavigationRegion3D/Floor" unique_id=1713085029 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf38" unique_id=2083993696]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf38/StaticBody3D" unique_id=716142167]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf19" parent="NavigationRegion3D/Floor" unique_id=1792460266 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall26" parent="NavigationRegion3D/Floor" unique_id=1952607544 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf19" unique_id=1130972420]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf19/StaticBody3D" unique_id=850855026]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf20" parent="NavigationRegion3D/Floor" unique_id=1802924910 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall27" parent="NavigationRegion3D/Floor" unique_id=143381942 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf20" unique_id=1125819364]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf20/StaticBody3D" unique_id=1358577546]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf21" parent="NavigationRegion3D/Floor" unique_id=706567006 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall28" parent="NavigationRegion3D/Floor" unique_id=920513788 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf21" unique_id=1187119267]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf21/StaticBody3D" unique_id=183072311]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf22" parent="NavigationRegion3D/Floor" unique_id=1003896817 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall29" parent="NavigationRegion3D/Floor" unique_id=1330697433 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf22" unique_id=885854022]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf22/StaticBody3D" unique_id=1731937104]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf23" parent="NavigationRegion3D/Floor" unique_id=228166136 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall30" parent="NavigationRegion3D/Floor" unique_id=1996612471 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf23" unique_id=61138990]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf23/StaticBody3D" unique_id=197558978]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf24" parent="NavigationRegion3D/Floor" unique_id=1489989491 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall31" parent="NavigationRegion3D/Floor" unique_id=962953475 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.25, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf24" unique_id=1303851694]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf24/StaticBody3D" unique_id=884903263]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf25" parent="NavigationRegion3D/Floor" unique_id=2032940174 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall32" parent="NavigationRegion3D/Floor" unique_id=1553644651 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf25" unique_id=2079112758]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf25/StaticBody3D" unique_id=1619743053]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf26" parent="NavigationRegion3D/Floor" unique_id=827497327 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall33" parent="NavigationRegion3D/Floor" unique_id=1630521829 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf26" unique_id=1520302154]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf26/StaticBody3D" unique_id=461191730]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf13" parent="NavigationRegion3D/Floor" unique_id=1291143114 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall34" parent="NavigationRegion3D/Floor" unique_id=293508673 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.25, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf13" unique_id=304759741]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf13/StaticBody3D" unique_id=612233893]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf14" parent="NavigationRegion3D/Floor" unique_id=1583013426 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall35" parent="NavigationRegion3D/Floor" unique_id=1623352720 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.75, 0, 33.75)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf14" unique_id=703192877]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf14/StaticBody3D" unique_id=670471934]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf15" parent="NavigationRegion3D/Floor" unique_id=2127564065 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall36" parent="NavigationRegion3D/Floor" unique_id=1342863614 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.25, 0, 28.25)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf15" unique_id=975668881]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf15/StaticBody3D" unique_id=1615464925]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf16" parent="NavigationRegion3D/Floor" unique_id=668523974 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall37" parent="NavigationRegion3D/Floor" unique_id=457957785 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.25, 0, 30.25)
-metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf16" unique_id=1219175455]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf16/StaticBody3D" unique_id=172139271]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
-
-[node name="tileBrickB_small_gltf17" parent="NavigationRegion3D/Floor" unique_id=1009335819 instance=ExtResource("8_8j4gf")]
+[node name="TileBrickSmall38" parent="NavigationRegion3D/Floor" unique_id=1164576462 instance=ExtResource("11_q0622")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.25, 0, 32.25)
-metadata/_edit_group_ = true
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf17" unique_id=711102411]
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/tileBrickB_small_gltf17/StaticBody3D" unique_id=1375039122]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_6i8wp")
 
 [node name="Walls" type="Node3D" parent="NavigationRegion3D" unique_id=1520566797]
 metadata/_edit_lock_ = true
@@ -1057,41 +750,3 @@ mesh = SubResource("CapsuleMesh_q0622")
 [editable path="NavigationRegion3D/Floor/TrapFloor/TileBrickLarge4"]
 [editable path="NavigationRegion3D/Floor/TrapFloor/TileBrickLargeCrackedA"]
 [editable path="NavigationRegion3D/Floor/TrapFloor/TileBrickLargeCrackedA2"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf27"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf33"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf34"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf35"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf28"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf29"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf30"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf31"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf32"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf2"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf3"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf4"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf5"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf6"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf7"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf8"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf9"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf10"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf11"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf12"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf18"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf36"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf37"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf38"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf19"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf20"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf21"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf22"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf23"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf24"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf25"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf26"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf13"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf14"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf15"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf16"]
-[editable path="NavigationRegion3D/Floor/tileBrickB_small_gltf17"]
