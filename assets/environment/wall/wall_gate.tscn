@@ -5,11 +5,23 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_pofjl"]
 size = Vector3(4, 1.1, 1.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hfptk"]
+size = Vector3(4, 4, 1.5)
+
 [node name="WallGate" unique_id=1037947295 instance=ExtResource("1_pofjl")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1632802892]
+[node name="NavigationStaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1632802892]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=835130953]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationStaticBody3D" index="0" unique_id=835130953]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 shape = SubResource("BoxShape3D_pofjl")
+
+[node name="ObstacleStaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=1360105791]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleStaticBody3D" index="0" unique_id=890380592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_hfptk")
+debug_color = Color(0.8352941, 0, 0, 0.41960785)
