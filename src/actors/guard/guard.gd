@@ -13,6 +13,10 @@ enum States {
 }
 
 signal mind_control_ended
+signal player_caught
+
+@export var sleep: bool
+@export var player: Player
 
 @export_category("Vision")
 @export_range(60.0, 120.0) var fov_degrees := 90.0
@@ -31,7 +35,6 @@ signal mind_control_ended
 @export var torque := 4.5
 @export_node_path("Marker3D") var patrolling_points: Array[NodePath]
 
-var _player_instance: Player
 var _detection_min_dot_value := 0.0 # set in _ready once
 var _current_state: States = States.PATROL
 var _target_patrolling_point_index: int = 0
@@ -84,13 +87,16 @@ func _ready() -> void:
 			_enter(States.PATROL)
 	)
 
-	var target_position := (get_node(patrolling_points.front()) as Marker3D).global_position
-	global_position = Vector3(target_position.x, global_position.y, target_position.z)
-	_detection_min_dot_value = cos(deg_to_rad(fov_degrees * 0.5))
-	_player_instance = get_tree().get_first_node_in_group("Player")
+	if not sleep:
+		var target_position := (get_node(patrolling_points.front()) as Marker3D).global_position
+		global_position = Vector3(target_position.x, global_position.y, target_position.z)
+		_detection_min_dot_value = cos(deg_to_rad(fov_degrees * 0.5))
 
 
 func _physics_process(delta: float) -> void:
+	if sleep:
+		return
+	
 	var sense_result := _sense()
 	_think(sense_result)
 	_act()
@@ -145,12 +151,12 @@ func _move_mind_controlled() -> void:
 	offset_to_target.y = 0.0
 	var offset_to_next := _navigation_agent_3d.get_next_path_position() - global_position
 	var flat_direction := Vector3(offset_to_next.x, 0.0, offset_to_next.z)
-	if offset_to_target.length() <= _player_instance.stopping_distance or flat_direction.length() <= 0.01:
+	if offset_to_target.length() <= player.stopping_distance or flat_direction.length() <= 0.01:
 		velocity = Vector3.ZERO
 		return
 
 	velocity = offset_to_next.normalized() * max_movement_speed * _mind_control_spell.speed_multiplier
-	var weight := 1.0 - exp(-_player_instance.rotation_speed * get_physics_process_delta_time())
+	var weight := 1.0 - exp(-player.rotation_speed * get_physics_process_delta_time())
 	_body.global_rotation.y = lerp_angle(_body.global_rotation.y, atan2(flat_direction.x, flat_direction.z), weight)
 	move_and_slide()
 
@@ -169,11 +175,17 @@ func _choose_next_position() -> void:
 
 
 func _sense() -> Dictionary:
-	var can_see_player := not _player_instance.is_merged() and _can_see(_player_instance.global_position)
+	if not is_instance_valid(player):
+		return {
+			"noticed": false,
+			"clear_sight": false
+		}
+	
+	var can_see_player := not player.is_merged() and _can_see(player.global_position)
 	var distance := 0.0
 
 	if can_see_player:
-		distance = global_position.distance_to(_player_instance.global_position)
+		distance = global_position.distance_to(player.global_position)
 
 		if distance < near_vision_range * _vision_range_scale:
 			return {
@@ -203,7 +215,9 @@ func _think(sense_result) -> void:
 			if sense_result["clear_sight"]:
 				_enter(States.CAUGHT)
 		States.CAUGHT:
-			get_tree().reload_current_scene()
+			player_caught.emit()
+			sleep = true
+			#get_tree().reload_current_scene()
 			return
 		States.SURVEY:
 			if sense_result["noticed"]:
@@ -212,6 +226,9 @@ func _think(sense_result) -> void:
 
 
 func _enter(new_state: States) -> void:
+	if sleep:
+		return
+	
 	if new_state != States.SURVEY:
 		_survey_timer.stop()
 
@@ -251,7 +268,7 @@ func _enter(new_state: States) -> void:
 		_survey_tween.tween_property(_body, "global_rotation:y", deg_to_rad(rad_to_deg(_body.global_rotation.y) - 40), _survey_timer.wait_time / 2.0)
 		_survey_tween.play()
 	elif new_state == States.INVESTIGATE:
-		var target_position := _spell_cast_position if _current_state == States.STUNNED else _player_instance.global_position
+		var target_position := _spell_cast_position if _current_state == States.STUNNED else player.global_position
 		_current_state = new_state
 		_make_alert_icon_visible()
 		_navigation_agent_3d.target_position = target_position
@@ -263,7 +280,7 @@ func _enter(new_state: States) -> void:
 			return
 
 	elif new_state == States.SPELLBOUND:
-		_spell_cast_position = _player_instance.global_position
+		_spell_cast_position = player.global_position
 		_freeze()
 
 	elif new_state == States.STUNNED:
