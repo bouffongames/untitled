@@ -802,7 +802,7 @@ spot_angle = 66.45491
 [node name="Objects" type="Node3D" parent="NavigationRegion3D" unique_id=1738426078]
 
 [node name="Journal" parent="NavigationRegion3D/Objects" unique_id=65738769 instance=ExtResource("17_w2s1y")]
-transform = Transform3D(1.06803334e-07, -0.5000001, -0.8660252, 6.556707e-08, 0.8660255, -0.49999994, 0.9999999, -3.381082e-09, 1.2527792e-07, 10.970849, 1.8000001, -3.2045298)
+transform = Transform3D(1.2135608e-07, -0.17492458, -0.9845817, 5.5036967e-08, 0.98458207, -0.17492452, 0.9999999, -3.2960244e-08, 1.2911228e-07, 10.971, 1.849, -3.205)
 
 [node name="Door" parent="NavigationRegion3D/Objects" unique_id=1706388711 instance=ExtResource("17_shlah")]
 transform = Transform3D(1.4687026e-07, 0, -1.12, 0, 1.12, 0, 1.12, 0, 1.4687026e-07, -14.01095, 1.000001, -2.8818574)
