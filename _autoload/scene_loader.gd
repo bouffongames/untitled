@@ -25,6 +25,7 @@ func change(path: String) -> bool:
 		push_warning("A scene is already loading")
 		return false
 
+	_loading = true
 	_transition.enter()
 	visible = true
 	await _transition.finished
@@ -53,11 +54,10 @@ func _instantiate_scene() -> void:
 	_clear_existing_nodes()
 	var scene_instance: Node = scene.instantiate()
 	get_tree().root.add_child(scene_instance)
-	_loading = false
-
 	_transition.exit()
 	await _transition.finished
 	visible = false
+	_loading = false
 	changed.emit()
 
 
