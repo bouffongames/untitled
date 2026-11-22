@@ -13,7 +13,7 @@ signal dialogue_signal(value: String)
 @export var _response_container: Control
 
 @export var _continue_container: HBoxContainer
-@export var _continue_arrow_label: Label
+@export var _continue_arrow: Control
 
 var _manager: DialogueManager = DialogueManager.new()
 var _active: bool
@@ -137,17 +137,17 @@ func _show_responses(responses: Array[DialogueLine]) -> void:
 
 
 func _animate_continue_arrow() -> void:
-	var _init_position: Vector2 = _continue_arrow_label.position
+	var _init_position: Vector2 = _continue_arrow.position
 	var tween: Tween = create_tween()
 	tween.set_loops()
 	tween.tween_property(
-			_continue_arrow_label,
+			_continue_arrow,
 			"position:y",
 			_init_position.y - 6.0,
 			0.5
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(
-			_continue_arrow_label,
+			_continue_arrow,
 			"position:y",
 			_init_position.y,
 			0.5
