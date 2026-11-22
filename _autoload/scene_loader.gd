@@ -30,7 +30,6 @@ func change(path: String) -> bool:
 	visible = true
 	await _transition.finished
 	_scene_path = path
-	_loading = true
 	ResourceLoader.load_threaded_request(path, "PackedScene", true)
 	await changed
 	return true
