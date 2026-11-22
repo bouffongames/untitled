@@ -8,7 +8,7 @@ extends Camera3D
 @export var jump_distance: float = 2.0
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if target == null:
 		return
 	var desired: Vector3 = target.global_position + offset
