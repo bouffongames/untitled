@@ -9,11 +9,10 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_w2s1y"]
 radius = 0.6
 
-[node name="Journal" type="StaticBody3D" unique_id=1737273357 node_paths=PackedStringArray("book", "skin")]
+[node name="Journal" type="StaticBody3D" unique_id=1737273357 node_paths=PackedStringArray("skin")]
 collision_layer = 9
 collision_mask = 0
 script = ExtResource("1_x0v4x")
-book = NodePath("spellBook_gltf/spellBook")
 skin = NodePath("InteractableSkin")
 
 [node name="InteractableSkin" type="Node" parent="." unique_id=989025585 node_paths=PackedStringArray("mesh")]

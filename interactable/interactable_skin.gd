@@ -42,6 +42,28 @@ func _ready() -> void:
 		mesh.set_surface_override_material(i, hover_material)
 
 
+func hide_shine() -> void:
+	for i: int in range(mesh.get_surface_override_material_count()):
+		var material: Material = mesh.get_surface_override_material(i)
+		var shader_material: ShaderMaterial = material as ShaderMaterial
+		if shader_material != null:
+			var next_material: ShaderMaterial = shader_material.next_pass as ShaderMaterial
+			if next_material != null:
+				var previous_color: Color = next_material.get_shader_parameter("shine_color")
+				next_material.set_shader_parameter("shine_color", Color(previous_color, 0.0))
+
+
+func show_shine() -> void:
+	for i: int in range(mesh.get_surface_override_material_count()):
+		var material: Material = mesh.get_surface_override_material(i)
+		var shader_material: ShaderMaterial = material as ShaderMaterial
+		if shader_material != null:
+			var next_material: ShaderMaterial = shader_material.next_pass as ShaderMaterial
+			if next_material != null:
+				var previous_color: Color = next_material.get_shader_parameter("shine_color")
+				next_material.set_shader_parameter("shine_color", Color(previous_color, 1.0))
+
+
 func hide_hover() -> void:
 	for i: int in range(mesh.get_surface_override_material_count()):
 		var material: Material = mesh.get_surface_override_material(i)
