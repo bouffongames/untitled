@@ -39,6 +39,11 @@ func load_dialogue(file_path: String) -> void:
 	_start_line = _parser.load_dialogue(file_path)
 
 
+func load_dialogue_from_string(value: String) -> void:
+	_current_line = null
+	_start_line = _parser.load_dialogue_from_string(value)
+
+
 func _has_next_line() -> bool:
 	return (
 		_current_line.next != null if _current_line != null else _start_line != null

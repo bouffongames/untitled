@@ -11,6 +11,10 @@ func load_dialogue(file_path: String) -> DialogueLine:
 	return null
 
 
+func load_dialogue_from_string(value: String) -> DialogueLine:
+	return _parse_file(value)
+
+
 func _parse_file(file_string: String) -> DialogueLine:
 	var split_lines: PackedStringArray = file_string.split("\n")
 	var raw_lines: Array[String] = Array(Array(split_lines), TYPE_STRING, "", null)

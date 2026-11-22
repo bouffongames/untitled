@@ -43,6 +43,12 @@ func play(file_path: String) -> void:
 	_next_line()
 
 
+func play_from_string(value: String) -> void:
+	visible = true
+	_manager.load_dialogue_from_string(value)
+	_next_line()
+
+
 func _next_line() -> void:
 	var line: DialogueLine = _manager.next_line()
 	if line == null:
