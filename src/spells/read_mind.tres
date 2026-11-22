@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="ReadMindSpell" format=3]
+[gd_resource type="Resource" script_class="ReadMindSpell" format=3 uid="uid://c7os00fr0msos"]
 
-[ext_resource type="Script" path="res://src/spells/read_mind_spell.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cxulnuf3f1707" path="res://src/spells/read_mind_spell.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://jwjvgs3cvshm" path="res://minigames/circle/circle_minigame.tscn" id="2_minigame"]
 
 [resource]
 script = ExtResource("1_script")
+requires_line_of_sight = false
 display_name = "Read Mind"
 minigame_scene = ExtResource("2_minigame")
