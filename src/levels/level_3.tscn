@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://brlb4jasfatec" path="res://assets/environment/wall/wall_split.tscn" id="18_1b36e"]
 [ext_resource type="PackedScene" uid="uid://b7ioadap5nnwe" path="res://assets/environment/pillar.tscn" id="18_p0eqc"]
 [ext_resource type="PackedScene" uid="uid://cipp0uog8aeoa" path="res://assets/environment/wall/wall_window_gate_back.tscn" id="18_q0622"]
-[ext_resource type="PackedScene" uid="uid://c7fqd3jgaakcn" path="res://__user/demo/map/assets/pack2/floor_tile_big_spikes.gltf" id="19_7pmeb"]
+[ext_resource type="PackedScene" uid="uid://c7fqd3jgaakcn" path="res://assets/kaykit_dungeon/environment2/floor_tile_big_spikes.gltf" id="19_7pmeb"]
 [ext_resource type="PackedScene" uid="uid://bmavep6tungt" path="res://assets/environment/wall/wall_window.tscn" id="19_q0622"]
 [ext_resource type="PackedScene" uid="uid://spptx3iy7hdi" path="res://interactable/journal.tscn" id="20_p0eqc"]
 [ext_resource type="PackedScene" uid="uid://bqe28gf57rcvi" path="res://assets/environment/table_medium.tscn" id="22_1b36e"]
@@ -88,7 +88,6 @@ navigation_mesh = SubResource("NavigationMesh_cln75")
 metadata/_edit_lock_ = true
 
 [node name="Floor" type="Node3D" parent="NavigationRegion3D" unique_id=187990930]
-metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="TrapFloor" type="Node3D" parent="NavigationRegion3D/Floor" unique_id=1230598547 node_paths=PackedStringArray("door", "floor_tiles", "spike_tiles", "navigation_region")]
@@ -103,13 +102,13 @@ navigation_region = NodePath("../..")
 [node name="floor_tile_big_spikes2" parent="NavigationRegion3D/Floor/TrapFloor" unique_id=140091081 instance=ExtResource("19_7pmeb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.964196, 0.962142, -2)
 
-[node name="floor_tile_big_spikes" parent="NavigationRegion3D/Floor/TrapFloor/floor_tile_big_spikes2" index="0" unique_id=25611976]
+[node name="floor_tile_big_spikes" parent="NavigationRegion3D/Floor/TrapFloor/floor_tile_big_spikes2" index="0" unique_id=671996688]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 0, 0)
 
 [node name="floor_tile_big_spikes3" parent="NavigationRegion3D/Floor/TrapFloor" unique_id=961473235 instance=ExtResource("19_7pmeb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.164196, 0.962142, 1.6000004)
 
-[node name="floor_tile_big_spikes" parent="NavigationRegion3D/Floor/TrapFloor/floor_tile_big_spikes3" index="0" unique_id=25611976]
+[node name="floor_tile_big_spikes" parent="NavigationRegion3D/Floor/TrapFloor/floor_tile_big_spikes3" index="0" unique_id=671996688]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
 [node name="TileBrickLarge" parent="NavigationRegion3D/Floor/TrapFloor" unique_id=1480762600 instance=ExtResource("7_q0622")]
@@ -662,21 +661,21 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 36, 
 [node name="WallWindow" parent="NavigationRegion3D/Walls" unique_id=1949795576 groups=["hideable"] instance=ExtResource("19_q0622")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 1, 19)
 
-[node name="Pillar" parent="NavigationRegion3D/Walls" unique_id=259543017 groups=["hideable"] instance=ExtResource("18_p0eqc")]
+[node name="Pillar" parent="NavigationRegion3D/Walls" unique_id=259543017 instance=ExtResource("18_p0eqc")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 1, 7)
 
-[node name="Pillar4" parent="NavigationRegion3D/Walls" unique_id=227303637 groups=["hideable"] instance=ExtResource("18_p0eqc")]
+[node name="Pillar4" parent="NavigationRegion3D/Walls" unique_id=227303637 instance=ExtResource("18_p0eqc")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 1, 7)
 
-[node name="Pillar2" parent="NavigationRegion3D/Walls" unique_id=261419934 groups=["hideable"] instance=ExtResource("18_p0eqc")]
+[node name="Pillar2" parent="NavigationRegion3D/Walls" unique_id=261419934 instance=ExtResource("18_p0eqc")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 1, 29)
 
-[node name="Pillar3" parent="NavigationRegion3D/Walls" unique_id=1899554004 groups=["hideable"] instance=ExtResource("18_p0eqc")]
+[node name="Pillar3" parent="NavigationRegion3D/Walls" unique_id=1899554004 instance=ExtResource("18_p0eqc")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 1, 29)
 
 [node name="Objects" type="Node3D" parent="NavigationRegion3D" unique_id=1738426078]
-metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Door" parent="NavigationRegion3D/Objects" unique_id=1400406277 instance=ExtResource("23_l01ui")]
 transform = Transform3D(1.4687026e-07, 0, -1.12, 0, 1.12, 0, 1.12, 0, 1.4687026e-07, -14.01095, 1.000001, -2.9818573)
