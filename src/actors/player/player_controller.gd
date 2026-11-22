@@ -96,7 +96,7 @@ func _handle_interact(event: InputEvent) -> bool:
 			return false
 		# set the interact target for the player to move to and interact when in proximity
 		@warning_ignore("unsafe_call_argument")
-		player.set_interact_target(result.position, interactable)
+		player.set_interact_target(interactable.global_position, interactable)
 		return true
 	else:
 		# if no valid interactable was found, hide the hover
