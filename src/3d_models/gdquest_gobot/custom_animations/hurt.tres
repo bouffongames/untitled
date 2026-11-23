@@ -1,7 +1,7 @@
 [gd_resource type="Animation" format=3 uid="uid://ojp8slmuhwjm"]
 
-[ext_resource type="Texture2D" path="res://src/3d_models/gdquest_gobot/model/textures/hurt_eyes.png" id="1_krt83"]
-[ext_resource type="Texture2D" path="res://src/3d_models/gdquest_gobot/model/textures/open_eye.png" id="2_aocb5"]
+[ext_resource type="Texture2D" uid="uid://yj5yx07nva6l" path="res://src/3d_models/gdquest_gobot/model/textures/hurt_eyes.png" id="1_krt83"]
+[ext_resource type="Texture2D" uid="uid://dq675fmt1rg8c" path="res://src/3d_models/gdquest_gobot/model/textures/open_eye.png" id="2_aocb5"]
 
 [resource]
 resource_name = "hurt"
