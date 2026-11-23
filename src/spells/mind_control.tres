@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="MindControlSpell" format=3]
+[gd_resource type="Resource" script_class="MindControlSpell" format=3 uid="uid://f8e5av8n7hts"]
 
-[ext_resource type="Script" path="res://src/spells/mind_control_spell.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://8d4j7472gbb4" path="res://src/spells/mind_control_spell.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://cnvnal4hpoool" path="res://minigames/input/input_minigame.tscn" id="2_minigame"]
 
 [resource]

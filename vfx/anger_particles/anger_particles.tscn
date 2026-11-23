@@ -1,6 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://jxpfejf6gulg"]
 
-[ext_resource type="Texture2D" path="res://src/particle_sprites/anger_icon.png" id="1_icon"]
+[ext_resource type="Texture2D" uid="uid://cj5ixuttvf6xl" path="res://src/particle_sprites/anger_icon.png" id="1_icon"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anger"]
 transparency = 1

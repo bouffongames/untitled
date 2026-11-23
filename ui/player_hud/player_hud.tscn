@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b1iksigl0pwft" path="res://ui/player_hud/player_hud.gd" id="1_vyppb"]
 [ext_resource type="Script" uid="uid://clpn0lvg7se0v" path="res://ui/player_hud/spell_button.gd" id="2_spell"]
-[ext_resource type="Resource" path="res://src/spells/mind_control.tres" id="3_mind"]
-[ext_resource type="Resource" path="res://src/spells/read_mind.tres" id="4_read"]
-[ext_resource type="Resource" path="res://src/spells/anger.tres" id="5_anger"]
-[ext_resource type="Resource" path="res://src/spells/merge.tres" id="6_merge"]
-[ext_resource type="PackedScene" path="res://ui/player_hud/active_spell_hud.tscn" id="7_active_hud"]
-[ext_resource type="PackedScene" path="res://ui/player_hud/read_mind_hud.tscn" id="8_read_hud"]
-[ext_resource type="PackedScene" path="res://src/actors/player/spread_arrow.tscn" id="9_arrow"]
+[ext_resource type="Resource" uid="uid://f8e5av8n7hts" path="res://src/spells/mind_control.tres" id="3_mind"]
+[ext_resource type="Resource" uid="uid://c7os00fr0msos" path="res://src/spells/read_mind.tres" id="4_read"]
+[ext_resource type="Resource" uid="uid://dvptqumcymwni" path="res://src/spells/anger.tres" id="5_anger"]
+[ext_resource type="Resource" uid="uid://cfpn5c6xs22x3" path="res://src/spells/merge.tres" id="6_merge"]
+[ext_resource type="PackedScene" uid="uid://cer01ojs6sc10" path="res://ui/player_hud/active_spell_hud.tscn" id="7_active_hud"]
+[ext_resource type="PackedScene" uid="uid://egfl2r0qyg1n" path="res://ui/player_hud/read_mind_hud.tscn" id="8_read_hud"]
+[ext_resource type="PackedScene" uid="uid://71ndh3h0cmnd" path="res://src/actors/player/spread_arrow.tscn" id="9_arrow"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_q"]
 keycode = 81

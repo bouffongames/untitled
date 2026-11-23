@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="AngerSpell" format=3]
+[gd_resource type="Resource" script_class="AngerSpell" format=3 uid="uid://dvptqumcymwni"]
 
-[ext_resource type="Script" path="res://src/spells/anger_spell.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bm0hlcw5w4t57" path="res://src/spells/anger_spell.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://dq0pn8uf2l4vh" path="res://minigames/evade/evade_minigame.tscn" id="2_minigame"]
 
 [resource]
