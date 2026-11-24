@@ -10,6 +10,7 @@ enum States {
 	STUNNED,
 	MIND_CONTROLLED,
 	FIGHTING,
+	SLEEP_MOVE,
 }
 
 signal mind_control_ended
@@ -104,6 +105,12 @@ func _physics_process(delta: float) -> void:
 
 func _act() -> void:
 	match _current_state:
+		States.SLEEP_MOVE:
+			if _navigation_agent_3d.is_navigation_finished():
+				sleep = true
+				return
+
+			_move_along_path()
 		States.PATROL:
 			if _navigation_agent_3d.is_navigation_finished():
 				_choose_next_position()
