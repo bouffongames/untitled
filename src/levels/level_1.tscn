@@ -128,7 +128,7 @@ script = ExtResource("3_i14qy")
 player = NodePath("../Player")
 
 [node name="Player" parent="." unique_id=1597008775 instance=ExtResource("4_4noo8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.1, -2.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -2.6)
 
 [node name="HideAllWalls" type="Node" parent="." unique_id=108202150]
 script = ExtResource("5_xj4no")
