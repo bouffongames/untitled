@@ -28,6 +28,12 @@ func _ready() -> void:
 			_reset_level()
 	)
 
+	for g: Guard in get_tree().get_nodes_in_group("Guard"):
+		g.player_caught.connect(_reset_level)  # reset the level if the player is caught
+
+	if Global.game.merge_spell_learned:
+		player.global_position = checkpoint_player_marker.global_position
+
 	if Global.game.get_state() == Game.GameState.NONE:
 		Global.game.set_state(Game.GameState.PLAYING)
 		_on_scene_changed()
@@ -35,12 +41,6 @@ func _ready() -> void:
 	Global.scene.changed.connect(_on_scene_changed)
 	journal.interacted.connect(_on_journal_interacted)
 	door.interacted.connect(_on_door_interacted)
-
-	for g: Guard in get_tree().get_nodes_in_group("Guard"):
-		g.player_caught.connect(_reset_level)  # reset the level if the player is caught
-
-	if Global.game.merge_spell_learned:
-		player.global_position = checkpoint_player_marker.global_position
 
 
 func _on_scene_changed() -> void:

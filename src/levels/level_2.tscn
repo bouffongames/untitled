@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://spptx3iy7hdi" path="res://interactable/journal.tscn" id="17_w2s1y"]
 [ext_resource type="PackedScene" uid="uid://cg8fc5cmg0y30" path="res://assets/environment/torch_wall.tscn" id="18_7eiy0"]
 [ext_resource type="PackedScene" uid="uid://qxt8gh0jjaw5" path="res://src/actors/guard/guard.tscn" id="21_shlah"]
+[ext_resource type="Script" uid="uid://bmhnud26sb0hs" path="res://src/actors/guard/thought.gd" id="22_b7i67"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4u2fb"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -44,6 +45,28 @@ vertices = PackedVector3Array(-16.75, 1.5, -8.75, -16.75, 1.5, -3.75, -15.25, 1.
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 7), PackedInt32Array(12, 11, 8), PackedInt32Array(8, 11, 13), PackedInt32Array(8, 13, 7), PackedInt32Array(14, 9, 15), PackedInt32Array(15, 9, 16), PackedInt32Array(7, 13, 6), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 10), PackedInt32Array(10, 16, 9), PackedInt32Array(10, 17, 16), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(23, 20, 25), PackedInt32Array(23, 25, 24), PackedInt32Array(25, 20, 26), PackedInt32Array(26, 20, 27), PackedInt32Array(28, 24, 29), PackedInt32Array(29, 24, 25), PackedInt32Array(24, 31, 23), PackedInt32Array(23, 31, 30), PackedInt32Array(29, 33, 28), PackedInt32Array(28, 33, 32), PackedInt32Array(32, 33, 34), PackedInt32Array(34, 33, 35), PackedInt32Array(37, 36, 35), PackedInt32Array(39, 38, 34), PackedInt32Array(34, 38, 32), PackedInt32Array(32, 38, 40), PackedInt32Array(33, 41, 35), PackedInt32Array(35, 41, 37), PackedInt32Array(42, 36, 37), PackedInt32Array(39, 43, 38), PackedInt32Array(38, 43, 44), PackedInt32Array(44, 43, 45), PackedInt32Array(47, 42, 46), PackedInt32Array(46, 42, 37), PackedInt32Array(50, 49, 48), PackedInt32Array(45, 43, 47), PackedInt32Array(47, 43, 42), PackedInt32Array(47, 50, 45), PackedInt32Array(45, 50, 51), PackedInt32Array(50, 48, 51), PackedInt32Array(51, 48, 52), PackedInt32Array(52, 53, 51), PackedInt32Array(55, 54, 56), PackedInt32Array(56, 54, 58), PackedInt32Array(56, 58, 57), PackedInt32Array(61, 60, 59), PackedInt32Array(62, 61, 59), PackedInt32Array(64, 63, 60), PackedInt32Array(60, 63, 59), PackedInt32Array(62, 59, 65), PackedInt32Array(65, 59, 57), PackedInt32Array(66, 61, 67), PackedInt32Array(67, 61, 62), PackedInt32Array(57, 68, 65), PackedInt32Array(69, 65, 70), PackedInt32Array(70, 65, 68), PackedInt32Array(57, 58, 68)]
 geometry_parsed_geometry_type = 1
 geometry_collision_mask = 1
+
+[sub_resource type="Resource" id="Resource_3wteo"]
+script = ExtResource("22_b7i67")
+text = "Aren't we suppose to be guarding the journal? Why are facing the complete opposite where the journal is?"
+metadata/_custom_type_script = "uid://bmhnud26sb0hs"
+
+[sub_resource type="Resource" id="Resource_23pdg"]
+script = ExtResource("22_b7i67")
+text = "*whistles*"
+metadata/_custom_type_script = "uid://bmhnud26sb0hs"
+
+[sub_resource type="Resource" id="Resource_b7i67"]
+script = ExtResource("22_b7i67")
+text = "What's that smell!? 
+
+*sniff* *sniff* Oh, it's me..."
+metadata/_custom_type_script = "uid://bmhnud26sb0hs"
+
+[sub_resource type="Resource" id="Resource_6cb76"]
+script = ExtResource("22_b7i67")
+text = "I want to go home... and play Grand Lycan Auto 6!"
+metadata/_custom_type_script = "uid://bmhnud26sb0hs"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n2gld"]
 size = Vector3(2, 3, 7)
@@ -301,18 +324,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.292301, 2.9335, -7.3515997
 [node name="Guard" parent="." unique_id=1592633665 instance=ExtResource("21_shlah")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 1, -6)
 sleep = true
+thoughts = Array[ExtResource("22_b7i67")]([SubResource("Resource_3wteo")])
 
 [node name="Guard2" parent="." unique_id=20854664 instance=ExtResource("21_shlah")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 1, -4)
 sleep = true
+thoughts = Array[ExtResource("22_b7i67")]([SubResource("Resource_23pdg")])
 
 [node name="Guard3" parent="." unique_id=1040318619 instance=ExtResource("21_shlah")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 1, -2)
 sleep = true
+thoughts = Array[ExtResource("22_b7i67")]([SubResource("Resource_b7i67")])
 
 [node name="Guard4" parent="." unique_id=53604286 instance=ExtResource("21_shlah")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 1, 0)
 sleep = true
+thoughts = Array[ExtResource("22_b7i67")]([SubResource("Resource_6cb76")])
 
 [node name="GuardMarker3D" type="Marker3D" parent="." unique_id=376635707]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -4)
