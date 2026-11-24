@@ -30,6 +30,7 @@ var _scene: SceneLoader
 var _is_ready: bool = false
 var _last_mouse_mode: Input.MouseMode
 var _is_mouse_captured: bool = false
+var _was_paused_before: bool
 
 
 func _ready() -> void:
@@ -143,7 +144,8 @@ func _refresh() -> void:
 
 
 func _resume_game() -> void:
-	get_tree().paused = false
+	if _was_paused_before:
+		get_tree().paused = false
 	visible = false
 	if _last_mouse_mode != Input.MOUSE_MODE_VISIBLE:
 		Input.mouse_mode = _last_mouse_mode
@@ -153,6 +155,7 @@ func _resume_game() -> void:
 func _pause_game() -> void:
 	state = MenuState.NONE
 	options_menu.state = Options.MenuState.NONE
+	_was_paused_before = get_tree().paused
 	get_tree().paused = true
 	visible = true
 	_last_mouse_mode = Input.mouse_mode
@@ -161,6 +164,7 @@ func _pause_game() -> void:
 
 
 func _return_to_main_menu() -> void:
+	_was_paused_before = false
 	get_tree().paused = false
 	visible = false
 	_game.set_state(Game.GameState.NONE)
