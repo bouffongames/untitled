@@ -37,7 +37,7 @@ func _on_scene_changed() -> void:
 		await get_tree().create_timer(0.333).timeout  # small pause in between different dialogues
 
 		Dialogue.play_from_string("""
-			Cat: I should use my mind reading spell on the guard to find the missing key.
+			Witch: I should use my mind reading spell on the guard to find the missing key.
 		""")
 		await Dialogue.dialogue_ended
 		player.hud.visible = true  # show spells hud
