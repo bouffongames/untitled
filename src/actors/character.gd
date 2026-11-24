@@ -14,6 +14,12 @@ signal movement_finished
 @export var _navigation_agent: NavigationAgent3D
 @export var _collision_object: CollisionObject3D
 
+var disabled: bool:
+	set(value):
+		if disabled != value:
+			disabled = value
+			_finish_movement()
+
 var _is_moving: bool
 var _is_interact_active: bool
 var _interactable: Interactable
@@ -24,6 +30,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if disabled:
+		return
+
 	if _is_moving:
 		var distance_to_target: float = global_position.distance_to(_navigation_agent.target_position)
 		if distance_to_target <= stopping_distance or _navigation_agent.is_navigation_finished():
@@ -74,7 +83,7 @@ func _finish_movement() -> void:
 	_is_moving = false
 	_character_skin.idle()
 	movement_finished.emit()
-	
+
 
 
 func _handle_interact() -> void:
