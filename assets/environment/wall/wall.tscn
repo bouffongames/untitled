@@ -5,11 +5,23 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_0piw6"]
 size = Vector3(4, 1.1, 1.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ri0y"]
+size = Vector3(4, 4, 1.5)
+
 [node name="Wall" unique_id=204912576 instance=ExtResource("1_0piw6")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1748330619]
+[node name="NavigationStaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1748330619]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1914993526]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationStaticBody3D" index="0" unique_id=1914993526]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5500001, 0)
 shape = SubResource("BoxShape3D_0piw6")
+
+[node name="ObstacleStaticBody3D2" type="StaticBody3D" parent="." index="2" unique_id=1857211489]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleStaticBody3D2" index="0" unique_id=1300765875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_3ri0y")
+debug_color = Color(0.8352941, 0, 0, 0.41960785)

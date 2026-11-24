@@ -8,14 +8,35 @@ size = Vector3(1.7, 1.1, 1.5000007)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wabss"]
 size = Vector3(1.7, 1.1, 1.5000007)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_inaqx"]
+size = Vector3(1.7, 4, 1.5000007)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wc38h"]
+size = Vector3(1.7, 4, 1.5000007)
+
 [node name="WallDoor" unique_id=498083095 instance=ExtResource("1_3yy4h")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1075835747]
+[node name="NavigationStaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1075835747]
+collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1544573591]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationStaticBody3D" index="0" unique_id=1544573591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.15, 0.54999995, 0)
 shape = SubResource("BoxShape3D_3yy4h")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=1459394812]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationStaticBody3D" index="1" unique_id=1459394812]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1499991, 0.54999995, 0)
 shape = SubResource("BoxShape3D_wabss")
+
+[node name="ObstacleStaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=1141398468]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleStaticBody3D" index="0" unique_id=1009464528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.15, 2, 0)
+shape = SubResource("BoxShape3D_inaqx")
+debug_color = Color(0.8352941, 0, 0, 0.41960785)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ObstacleStaticBody3D" index="1" unique_id=322361117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1499991, 2, 0)
+shape = SubResource("BoxShape3D_wc38h")
+debug_color = Color(0.8352941, 0, 0, 0.41960785)

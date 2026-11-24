@@ -8,15 +8,35 @@ size = Vector3(1.5, 1.1, 2.7499661)
 [sub_resource type="BoxShape3D" id="BoxShape3D_js38q"]
 size = Vector3(2.7500353, 1.1, 1.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_066hs"]
+size = Vector3(1.5, 4, 2.7499661)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_664ln"]
+size = Vector3(2.7500353, 4, 1.5)
+
 [node name="WallCorner" unique_id=1826914469 instance=ExtResource("1_lk73k")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=2016073064]
+[node name="NavigationStaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=2016073064]
 collision_mask = 0
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=844009837]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationStaticBody3D" index="0" unique_id=844009837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4332275e-05, 0.54999995, 0.62498283)
 shape = SubResource("BoxShape3D_lk73k")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=290387227]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="NavigationStaticBody3D" index="1" unique_id=290387227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.62498665, 0.54999995, 0)
 shape = SubResource("BoxShape3D_js38q")
+
+[node name="ObstacleStaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=1182787438]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ObstacleStaticBody3D" index="0" unique_id=378600733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4332275e-05, 2, 0.62498283)
+shape = SubResource("BoxShape3D_066hs")
+debug_color = Color(0.8352941, 0, 0, 0.41960785)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="ObstacleStaticBody3D" index="1" unique_id=971266144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.62498665, 2, 0)
+shape = SubResource("BoxShape3D_664ln")
+debug_color = Color(0.8352941, 0, 0, 0.41960785)

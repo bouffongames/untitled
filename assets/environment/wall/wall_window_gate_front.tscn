@@ -5,21 +5,33 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_wv87j"]
 size = Vector3(6, 1.1, 1.5000007)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxcdp"]
+size = Vector3(6, 4, 1.5000007)
+
 [node name="WallWindowGate" unique_id=2080178359 instance=ExtResource("1_wv87j")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1563291716]
+[node name="NavigationStaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1563291716]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1382769217]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationStaticBody3D" index="0" unique_id=1382769217]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54999995, 0)
 shape = SubResource("BoxShape3D_wv87j")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=1765537770]
+[node name="ObstacleStaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=1738030577]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleStaticBody3D" index="0" unique_id=1129125990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_gxcdp")
+debug_color = Color(0.8352941, 0, 0, 0.41960785)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=1765537770]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.006106, 0.39692974)
 light_color = Color(0.40246335, 0.5994319, 1, 1)
 light_specular = 0.0
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." index="3" unique_id=714661964]
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="4" unique_id=714661964]
 transform = Transform3D(-1, 2.1151122e-08, -8.482554e-08, 0, 0.9702911, 0.24194063, 8.742278e-08, 0.24194063, -0.9702911, 0, 3.740222, -3.3137112)
 light_color = Color(0.87028205, 0.9148299, 1, 1)
 shadow_enabled = true
