@@ -26,6 +26,7 @@ func _is_valid_body(body: Node3D) -> bool:
 		return false
 	return body.is_in_group(GROUP_NAME)
 
+
 func _apply_cutoff_materials(wall: MeshInstance3D) -> void:
 	if _original_materials.has(wall):
 		return
@@ -39,6 +40,7 @@ func _apply_cutoff_materials(wall: MeshInstance3D) -> void:
 
 		var shader_material: ShaderMaterial = ShaderMaterial.new()
 		shader_material.shader = cuttoff_shader
+		shader_material.render_priority = -1
 		_copy_material_values(original_material, shader_material)
 
 		wall.set_surface_override_material(i, shader_material)
