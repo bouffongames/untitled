@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cnnt08qldu1nf"]
 
-[ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="1_04syq"]
 [ext_resource type="Script" uid="uid://mnxdyivgvkkd" path="res://ui/options.gd" id="1_61pji"]
 [ext_resource type="PackedScene" uid="uid://ks6qjn8hy4ut" path="res://ui/options/audio_config_menu.tscn" id="2_aeuu6"]
 [ext_resource type="PackedScene" uid="uid://c4528yvuaa48x" path="res://ui/options/controls_config_menu.tscn" id="3_87q5s"]
@@ -20,7 +19,6 @@ offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
-theme = ExtResource("1_04syq")
 script = ExtResource("1_61pji")
 gameplay_menu_button = NodePath("VBoxContainer/GameplayMenuButton")
 display_menu_button = NodePath("VBoxContainer/DisplayMenuButton")

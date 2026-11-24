@@ -8,6 +8,7 @@ extends Node3D
 func _ready() -> void:
 	if Global.game.get_state() == Game.GameState.NONE:
 		Global.game.set_state(Game.GameState.PLAYING)
+		Global.scene._scene_path = Const.SCENE_LEVEL_03
 		_on_scene_changed()
 
 	Global.scene.changed.connect(_on_scene_changed)

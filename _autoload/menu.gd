@@ -3,7 +3,7 @@ class_name Menu
 extends CanvasLayer
 ## In-game menu.
 
-enum MenuState { NONE, RESUME_GAME, OPTIONS, RETURN_TO_MAIN_MENU }
+enum MenuState { NONE, RESUME_GAME, RESTART_LEVEL, OPTIONS, RETURN_TO_MAIN_MENU }
 
 static var _has_user_controlled: bool = false
 
@@ -17,6 +17,7 @@ static var _has_user_controlled: bool = false
 
 @export_group("Root menu")
 @export var resume_game_menu_button: Button
+@export var restart_level_menu_button: Button
 @export var options_menu_button: Button
 @export var return_to_main_menu_button: Button
 @export var back_button: Button
@@ -47,6 +48,7 @@ func _ready() -> void:
 		options_menu.state_changed.connect(_on_options_menu_state_changed)
 
 		resume_game_menu_button.pressed.connect(func() -> void: state = MenuState.RESUME_GAME)
+		restart_level_menu_button.pressed.connect(func() -> void: state = MenuState.RESTART_LEVEL)
 		options_menu_button.pressed.connect(func() -> void: state = MenuState.OPTIONS)
 		return_to_main_menu_button.pressed.connect(
 			func() -> void: state = MenuState.RETURN_TO_MAIN_MENU
@@ -120,10 +122,13 @@ func _refresh() -> void:
 	var is_root_menu: bool = (
 		state == MenuState.NONE
 		or state == MenuState.RESUME_GAME
+		or state == MenuState.RESTART_LEVEL
 		or state == MenuState.RETURN_TO_MAIN_MENU
 	)
 	if is_instance_valid(resume_game_menu_button):
 		resume_game_menu_button.visible = is_root_menu
+	if is_instance_valid(restart_level_menu_button):
+		restart_level_menu_button.visible = is_root_menu
 	if is_instance_valid(options_menu_button):
 		options_menu_button.visible = is_root_menu
 	if is_instance_valid(return_to_main_menu_button):
@@ -139,13 +144,25 @@ func _refresh() -> void:
 
 	if state == MenuState.RESUME_GAME:
 		_resume_game()
+	elif state == MenuState.RESTART_LEVEL:
+		_restart_level()
 	elif state == MenuState.RETURN_TO_MAIN_MENU:
 		_return_to_main_menu()
 
 
 func _resume_game() -> void:
-	if _was_paused_before:
+	if not _was_paused_before:
 		get_tree().paused = false
+	visible = false
+	if _last_mouse_mode != Input.MOUSE_MODE_VISIBLE:
+		Input.mouse_mode = _last_mouse_mode
+	_game.set_state(Game.GameState.PLAYING)
+
+
+func _restart_level() -> void:
+	_was_paused_before = false
+	get_tree().paused = false
+	_scene.change(_scene._scene_path)
 	visible = false
 	if _last_mouse_mode != Input.MOUSE_MODE_VISIBLE:
 		Input.mouse_mode = _last_mouse_mode

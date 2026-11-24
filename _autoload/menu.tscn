@@ -1,18 +1,30 @@
 [gd_scene format=3 uid="uid://cgyopjxyixneo"]
 
 [ext_resource type="Script" uid="uid://ct15jyyh5yvj8" path="res://_autoload/menu.gd" id="1_bxvrb"]
+[ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="2_ighfc"]
 [ext_resource type="PackedScene" uid="uid://cnnt08qldu1nf" path="res://ui/options.tscn" id="2_tickj"]
 
-[node name="Menu" type="CanvasLayer" unique_id=1980467688 node_paths=PackedStringArray("resume_game_menu_button", "options_menu_button", "return_to_main_menu_button", "back_button", "options_menu")]
+[node name="Menu" type="CanvasLayer" unique_id=1980467688 node_paths=PackedStringArray("resume_game_menu_button", "restart_level_menu_button", "options_menu_button", "return_to_main_menu_button", "back_button", "options_menu")]
 layer = 10
 script = ExtResource("1_bxvrb")
-resume_game_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/ResumeGameMenuButton")
-options_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/OptionsMenuButton")
-return_to_main_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/ReturnToMainMenuButton")
-back_button = NodePath("MarginContainer/VBoxContainer/BackButton")
-options_menu = NodePath("MarginContainer/VBoxContainer/OptionsMenu")
+resume_game_menu_button = NodePath("Control/MarginContainer/VBoxContainer/VBoxContainer/ResumeGameMenuButton")
+restart_level_menu_button = NodePath("Control/MarginContainer/VBoxContainer/VBoxContainer/RestartLevelMenuButton")
+options_menu_button = NodePath("Control/MarginContainer/VBoxContainer/VBoxContainer/OptionsMenuButton")
+return_to_main_menu_button = NodePath("Control/MarginContainer/VBoxContainer/VBoxContainer/ReturnToMainMenuButton")
+back_button = NodePath("Control/MarginContainer/VBoxContainer/BackButton")
+options_menu = NodePath("Control/MarginContainer/VBoxContainer/OptionsMenu")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=486860872]
+[node name="Control" type="Control" parent="." unique_id=1903534975]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ighfc")
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=486860872]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,8 +33,9 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.7764706)
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=360692389]
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=360692389]
 custom_minimum_size = Vector2(0, 180)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -39,30 +52,34 @@ size_flags_vertical = 4
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1049850135]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=1049850135]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1091362025]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=1091362025]
 layout_mode = 2
 
-[node name="ResumeGameMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1086945809]
+[node name="ResumeGameMenuButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1086945809]
 layout_mode = 2
 text = "Resume"
 
-[node name="OptionsMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1625029114]
+[node name="RestartLevelMenuButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=170270822]
+layout_mode = 2
+text = "Restart level"
+
+[node name="OptionsMenuButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1625029114]
 layout_mode = 2
 text = "Options"
 
-[node name="ReturnToMainMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=918656008]
+[node name="ReturnToMainMenuButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=918656008]
 layout_mode = 2
 text = "Return to main menu"
 
-[node name="OptionsMenu" parent="MarginContainer/VBoxContainer" unique_id=2083225805 instance=ExtResource("2_tickj")]
+[node name="OptionsMenu" parent="Control/MarginContainer/VBoxContainer" unique_id=2083225805 instance=ExtResource("2_tickj")]
 visible = false
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1688089533]
+[node name="BackButton" type="Button" parent="Control/MarginContainer/VBoxContainer" unique_id=1688089533]
 visible = false
 layout_mode = 2
 text = "Back"
