@@ -1,5 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://dvw7pvrwkjekv"]
 
+[ext_resource type="FontFile" uid="uid://bh0y0ptkg76kr" path="res://assets/fonts/germania_one/germania_one_regular.ttf" id="1_e7bfs"]
+
 [resource]
+default_font = ExtResource("1_e7bfs")
 DisabledLabel/base_type = &"Label"
 DisabledLabel/colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0.5019608)

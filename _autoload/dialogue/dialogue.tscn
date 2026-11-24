@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c3kgblex5wnxt"]
 
 [ext_resource type="Script" uid="uid://dtbhdkr2v56rl" path="res://_autoload/dialogue/dialogue.gd" id="1_hstrk"]
+[ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="2_cji0o"]
 [ext_resource type="Texture2D" uid="uid://duhqlv5ttqdxg" path="res://_autoload/dialogue/arrow.svg" id="2_d4idm"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1432498365 node_paths=PackedStringArray("_speaker_label", "_text_label", "_response_container", "_continue_container", "_continue_arrow")]
@@ -24,6 +25,7 @@ offset_top = -55.0
 offset_right = 16.5
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_cji0o")
 
 [node name="ResponseContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1891265771]
 layout_mode = 2
