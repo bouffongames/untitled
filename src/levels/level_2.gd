@@ -112,9 +112,9 @@ func _on_journal_interacted() -> void:
 		)
 
 	# stop the player from moving to force them to cast the spell
-	player._disabled = true
+	player.disabled = true
 	await player.merge_started
-	player._disabled = false
+	player.disabled = false
 
 	# if the player has completed the spell before the guards have finished moving kill the tween
 	if tween.is_running():
