@@ -35,6 +35,7 @@ keycode = 82
 events = [SubResource("InputEventKey_r")]
 
 [node name="PlayerHUD" type="CanvasLayer" unique_id=923500982]
+process_mode = 3
 script = ExtResource("1_vyppb")
 _spread_arrow_scene = ExtResource("9_arrow")
 
