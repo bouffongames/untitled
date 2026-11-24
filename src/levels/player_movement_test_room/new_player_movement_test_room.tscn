@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://uuny6xm2vvep"]
 
 [ext_resource type="Script" uid="uid://vyc2re6lskqy" path="res://src/actors/player/follow_target.gd" id="1_16cby"]
+[ext_resource type="Script" uid="uid://bra6lbfb26t16" path="res://src/levels/player_movement_test_room/new_player_movement_test_room.gd" id="1_glmrh"]
 [ext_resource type="Script" uid="uid://b75hmodvj1h3" path="res://src/actors/player/player_controller.gd" id="2_pnhwv"]
 [ext_resource type="PackedScene" uid="uid://djejd13sihbqb" path="res://src/actors/player/player.tscn" id="3_glmrh"]
 [ext_resource type="PackedScene" uid="uid://qxt8gh0jjaw5" path="res://src/actors/guard/guard.tscn" id="4_nrqk0"]
@@ -26,6 +27,7 @@ text = "I think I dropped my cell key... I have to find it before I'm fed to the
 metadata/_custom_type_script = "uid://bmhnud26sb0hs"
 
 [node name="PlayerMovementTestRoom" type="Node3D" unique_id=523738096]
+script = ExtResource("1_glmrh")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=408750349]
 environment = SubResource("Environment_og1q0")
@@ -115,8 +117,9 @@ player = NodePath("../Player")
 [node name="Player" parent="." unique_id=1597008775 instance=ExtResource("3_glmrh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.242757, -9.536743e-07, -5.6897736)
 
-[node name="Guard" parent="." unique_id=1592633665 instance=ExtResource("4_nrqk0")]
+[node name="Guard" parent="." unique_id=1592633665 node_paths=PackedStringArray("player") instance=ExtResource("4_nrqk0")]
 transform = Transform3D(-0.6615027, 0, 0.7499425, 0, 1, 0, -0.7499425, 0, -0.6615027, -1.0989753, -9.536743e-07, 5.0300035)
+player = NodePath("../Player")
 thoughts = Array[ExtResource("5_pnhwv")]([SubResource("Resource_ji5gn"), SubResource("Resource_6nno1")])
 patrolling_points = Array[NodePath]([NodePath("../Position1"), NodePath("../Position2")])
 
@@ -126,8 +129,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8946732, 0, 5.883055)
 [node name="Position2" type="Marker3D" parent="." unique_id=1164067250]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.977701, 9.536743e-07, 4.941753)
 
-[node name="Guard2" parent="." unique_id=591036653 instance=ExtResource("4_nrqk0")]
+[node name="Guard2" parent="." unique_id=591036653 node_paths=PackedStringArray("player") instance=ExtResource("4_nrqk0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9608521, 0, 1.5528989)
+player = NodePath("../Player")
 patrolling_points = Array[NodePath]([NodePath("../Position4"), NodePath("../Position5")])
 
 [node name="Position4" type="Marker3D" parent="." unique_id=954745336]
