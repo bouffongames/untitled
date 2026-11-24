@@ -208,6 +208,7 @@ func _is_blocked(spell: GuardSpell, guard: Guard) -> bool:
 
 
 func _start_minigame(spell: Spell, guard: Guard = null) -> void:
+	get_tree().paused = true
 	if spell.minigame_scene == null:
 		push_warning("%s has no minigame scene assigned." % spell.resource_path)
 		return
@@ -227,6 +228,7 @@ func _start_minigame(spell: Spell, guard: Guard = null) -> void:
 
 
 func _on_minigame_finished(success: bool) -> void:
+	get_tree().paused = false
 	if _casting_spell == null:
 		return
 	print("Spell minigame ", "succeeded" if success else "failed")
