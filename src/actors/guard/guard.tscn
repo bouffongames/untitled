@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dcuihs6i5rhqr" path="res://src/sprites/alert_icon.png" id="2_7eg61"]
 [ext_resource type="PackedScene" uid="uid://cq1p48ao6jkuj" path="res://assets/characters/guard.gltf" id="2_co8qj"]
 [ext_resource type="AudioStream" uid="uid://dmvdi57my3035" path="res://src/sounds/bleep.wav" id="3_6ewyv"]
+[ext_resource type="PackedScene" uid="uid://cmpxkabyjy3gv" path="res://vfx/dust_trail/dust_trail_particles.tscn" id="5_5pxcb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cyf0t"]
 
@@ -81,3 +82,6 @@ texture = ExtResource("2_7eg61")
 [node name="AlertSound" type="AudioStreamPlayer" parent="." unique_id=1171141708]
 unique_name_in_owner = true
 stream = ExtResource("3_6ewyv")
+
+[node name="DustTrailParticles" parent="." unique_id=2005103538 instance=ExtResource("5_5pxcb")]
+transform = Transform3D(0.938493, 0, 0.3452982, 0, 1, 0, -0.3452982, 0, 0.938493, 0, 0.3, 0)
