@@ -274,6 +274,10 @@ func _think(sense_result) -> void:
 		States.INVESTIGATE:
 			if sense_result["clear_sight"]:
 				_enter(States.CAUGHT)
+			elif sense_result["noticed"]:
+				# keep adjusting the target position until the guard no longer sees the player
+				_navigation_agent_3d.target_position = player.global_position
+			
 		States.CAUGHT:
 			player_caught.emit()
 			sleep = true
