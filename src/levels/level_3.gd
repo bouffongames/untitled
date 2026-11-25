@@ -1,11 +1,23 @@
 extends Node3D
 
+@export var player: Player
 @export var journal: Journal
 @export var door: Door
+@export var pressure_tile: PressureTile
 @export var trap: TrapFloor
+
+@export var checkpoint_player_marker: Marker3D
 
 
 func _ready() -> void:
+	for g: Guard in get_tree().get_nodes_in_group("Guard"):
+		g.player = player
+		g.player_caught.connect(_reset_level)  # reset the level if the player is caught
+
+	if Global.game.mind_control_spell_learned:
+		player.global_position = checkpoint_player_marker.global_position
+		player.global_rotation = checkpoint_player_marker.global_rotation
+
 	if Global.game.get_state() == Game.GameState.NONE:
 		Global.game.set_state(Game.GameState.PLAYING)
 		Global.scene._scene_path = Const.SCENE_LEVEL_03
@@ -14,6 +26,7 @@ func _ready() -> void:
 	Global.scene.changed.connect(_on_scene_changed)
 	journal.interacted.connect(_on_journal_interacted)
 	door.interacted.connect(_on_door_interacted)
+	pressure_tile.state_changed.connect(_on_pressure_tile_state_changed)
 
 
 func _on_scene_changed() -> void:
@@ -22,10 +35,25 @@ func _on_scene_changed() -> void:
 
 
 func _on_journal_interacted() -> void:
+	Global.game.mind_control_spell_learned = true
+
 	journal.hide()
-	# TODO
+	Dialogue.play_from_string("""
+	You have learned the Mind Control spell!
+	You can now control a guard's movement.
+	Press 'Q' to control a guard!
+	""")
 
 
 func _on_door_interacted() -> void:
-	# TODO
-	pass
+	# TODO end level or new level?
+	Global.scene.change(Const.SCENE_MAIN)
+
+
+func _on_pressure_tile_state_changed(pressed: bool) -> void:
+	if pressed:
+		trap.disable()  # the trap is permanently disabled
+
+
+func _reset_level() -> void:
+	Global.scene.change(Const.SCENE_LEVEL_03)

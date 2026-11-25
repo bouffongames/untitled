@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cn46wukpklx24"]
+
+[ext_resource type="PackedScene" uid="uid://b7y4wuycxc518" path="res://assets/kaykit_dungeon/environment/tileBrickB_small.gltf.glb" id="1_l7bi3"]
+[ext_resource type="Script" uid="uid://csatava1ir481" path="res://assets/environment/pressure_tile.gd" id="1_nkcln"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nkcln"]
+size = Vector3(4, 3.9, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkcln"]
+resource_name = "Stone"
+albedo_color = Color(0.7462642, 0.36738366, 0.46348804, 1)
+roughness = 0.5
+
+[sub_resource type="Animation" id="Animation_nkcln"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tiles:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_icyfe"]
+resource_name = "new_animation"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tiles:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.1, 0), Vector3(0, 0.001, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3gtsf"]
+_data = {
+&"RESET": SubResource("Animation_nkcln"),
+&"pressed": SubResource("Animation_icyfe")
+}
+
+[node name="PressureTile" type="Area3D" unique_id=1910717443 node_paths=PackedStringArray("_animation_player")]
+collision_layer = 0
+collision_mask = 34
+script = ExtResource("1_nkcln")
+_animation_player = NodePath("AnimationPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=362995970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1499999, 1)
+shape = SubResource("BoxShape3D_nkcln")
+
+[node name="Tiles" type="Node3D" parent="." unique_id=1275640526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="tileBrickB_small_gltf" parent="Tiles" unique_id=2105418469 instance=ExtResource("1_l7bi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="tileBrickB_small" parent="Tiles/tileBrickB_small_gltf" index="0" unique_id=846739595]
+surface_material_override/0 = SubResource("StandardMaterial3D_nkcln")
+
+[node name="tileBrickB_small_gltf2" parent="Tiles" unique_id=1718771499 instance=ExtResource("1_l7bi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="tileBrickB_small" parent="Tiles/tileBrickB_small_gltf2" index="0" unique_id=846739595]
+surface_material_override/0 = SubResource("StandardMaterial3D_nkcln")
+
+[node name="tileBrickB_small_gltf3" parent="Tiles" unique_id=740455237 instance=ExtResource("1_l7bi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+
+[node name="tileBrickB_small" parent="Tiles/tileBrickB_small_gltf3" index="0" unique_id=846739595]
+surface_material_override/0 = SubResource("StandardMaterial3D_nkcln")
+
+[node name="tileBrickB_small_gltf4" parent="Tiles" unique_id=1662694916 instance=ExtResource("1_l7bi3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="tileBrickB_small" parent="Tiles/tileBrickB_small_gltf4" index="0" unique_id=846739595]
+surface_material_override/0 = SubResource("StandardMaterial3D_nkcln")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=417270251]
+libraries/ = SubResource("AnimationLibrary_3gtsf")
+
+[editable path="Tiles/tileBrickB_small_gltf"]
+[editable path="Tiles/tileBrickB_small_gltf2"]
+[editable path="Tiles/tileBrickB_small_gltf3"]
+[editable path="Tiles/tileBrickB_small_gltf4"]

@@ -10,6 +10,10 @@ extends Node3D
 
 
 func _ready() -> void:
+	enable(false)
+
+
+func enable(bake: bool = true) -> void:
 	if is_instance_valid(door):
 		door.disabled = true
 
@@ -20,6 +24,9 @@ func _ready() -> void:
 	for spike: MeshInstance3D in spike_tiles:
 		if is_instance_valid(spike):
 			spike.visible = true
+
+	if is_instance_valid(navigation_region) and bake:
+		navigation_region.bake_navigation_mesh(true)
 
 
 func disable() -> void:

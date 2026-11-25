@@ -8,8 +8,9 @@ signal state_changed
 var _state: GameState = GameState.NONE
 
 # state
-var intro_completed: bool = false
-var merge_spell_learned: bool = false
+var intro_completed: bool
+var merge_spell_learned: bool
+var mind_control_spell_learned: bool
 
 
 func _ready() -> void:
@@ -34,4 +35,5 @@ func get_state() -> GameState:
 func _reset_state() -> void:
 	intro_completed = false
 	merge_spell_learned = false
+	mind_control_spell_learned = false
 	Dialogue.forcibly_end_dialogue()
