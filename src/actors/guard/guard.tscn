@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5hvr4v56puru" path="res://src/actors/guard/guard.gd" id="1_fwpfe"]
 [ext_resource type="Texture2D" uid="uid://dcuihs6i5rhqr" path="res://src/sprites/alert_icon.png" id="2_7eg61"]
+[ext_resource type="PackedScene" uid="uid://cq1p48ao6jkuj" path="res://assets/characters/guard.gltf" id="2_co8qj"]
 [ext_resource type="AudioStream" uid="uid://dmvdi57my3035" path="res://src/sounds/bleep.wav" id="3_6ewyv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cyf0t"]
@@ -14,15 +15,24 @@ size = Vector3(0.54626465, 0.2442627, 0.3914795)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cyf0t"]
 
-[node name="Guard" type="CharacterBody3D" unique_id=1592633665 groups=["Guard"]]
+[node name="Guard" type="CharacterBody3D" unique_id=1592633665 node_paths=PackedStringArray("visual_pivot") groups=["Guard"]]
 script = ExtResource("1_fwpfe")
+visual_pivot = NodePath("VisualPivot")
+bob_frequency = 12.0
+bob_height = 0.3
+lean_amount = 0.2
 vision_obstacle_layer = 4
 max_movement_speed = 2.5
 torque = 10.195
 
+[node name="VisualPivot" type="Node3D" parent="." unique_id=1021064575]
+
+[node name="guard" parent="VisualPivot" unique_id=889698027 instance=ExtResource("2_co8qj")]
+
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1897320302]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_cyf0t")
 
 [node name="Eyes" type="Marker3D" parent="Body" unique_id=219243429]

@@ -19,6 +19,14 @@ signal player_caught
 @export var sleep: bool
 @export var player: Player
 
+@export_group("Bob Visual")
+@export var visual_pivot: Node3D
+@export var bob_frequency: float = 8.0
+@export var bob_height: float = 0.08
+@export var bob_weight: float = 8.0
+@export var lean_amount: float = 0.08
+@export var lean_weight: float = 10.0
+
 @export_category("Vision")
 @export_range(60.0, 120.0) var fov_degrees := 90.0
 @export_range(0.0, 20.0) var max_vision_range := 10.0
@@ -53,6 +61,11 @@ var _anger_spell: AngerSpell
 var _fight_focus_point: Vector3
 var _vision_range_scale := 1.0
 
+# bob visual
+var bob_time: float = 0.0
+var initial_visual_pivot_position: Vector3
+var initial_visual_pivot_rotation: Vector3
+
 @onready var _eyes: Marker3D = %Eyes
 @onready var _navigation_agent_3d: NavigationAgent3D = %NavigationAgent3D
 @onready var _body: MeshInstance3D = %Body
@@ -65,6 +78,10 @@ var _vision_range_scale := 1.0
 
 
 func _ready() -> void:
+	# it's always zero but if it changes it should continue to work as expected
+	initial_visual_pivot_position = visual_pivot.position
+	initial_visual_pivot_rotation = visual_pivot.rotation
+
 	_alert_icon.visible = false
 	_navigation_agent_3d.navigation_finished.connect(func() -> void:
 		if _current_state != States.MIND_CONTROLLED:
@@ -97,7 +114,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if sleep:
 		return
-	
+
 	var sense_result := _sense()
 	_think(sense_result)
 	_act()
@@ -118,6 +135,8 @@ func _act() -> void:
 
 			_move_along_path()
 		States.SURVEY:
+			# survey rotation happens in tween, need to update bob while surveying.
+			_update_visual_bob(true)
 			return
 		States.INVESTIGATE:
 			if _navigation_agent_3d.is_navigation_finished():
@@ -129,20 +148,24 @@ func _act() -> void:
 			_move_mind_controlled()
 		States.FIGHTING:
 			_face_fight_focus_point()
+			_update_visual_bob(true)
 
 
 func _move_along_path() -> void:
 	var direction := global_position\
 		.direction_to(_navigation_agent_3d.get_next_path_position())
-	var body_rotation = _body.global_rotation.y
+	var body_rotation = global_rotation.y
 	var target_rotation = atan2(direction.x, direction.z)
 	var desired_velocity = direction * max_movement_speed
 	velocity = velocity.move_toward(
 		desired_velocity,
 		acceleration * get_physics_process_delta_time()
 	)
-	_body.global_rotation.y = rotate_toward(body_rotation, target_rotation, torque * get_process_delta_time())
+	global_rotation.y = rotate_toward(body_rotation, target_rotation, torque * get_process_delta_time())
 	move_and_slide()
+
+	var moving: bool = velocity.length_squared() > 0.01
+	_update_visual_bob(moving)
 
 
 func _face_fight_focus_point() -> void:
@@ -150,7 +173,7 @@ func _face_fight_focus_point() -> void:
 	if Vector2(offset.x, offset.z).length() <= 0.01:
 		return
 	var target_rotation := atan2(offset.x, offset.z)
-	_body.global_rotation.y = rotate_toward(_body.global_rotation.y, target_rotation, torque * get_physics_process_delta_time())
+	global_rotation.y = rotate_toward(global_rotation.y, target_rotation, torque * get_physics_process_delta_time())
 
 
 func _move_mind_controlled() -> void:
@@ -164,8 +187,38 @@ func _move_mind_controlled() -> void:
 
 	velocity = offset_to_next.normalized() * max_movement_speed * _mind_control_spell.speed_multiplier
 	var weight := 1.0 - exp(-player.rotation_speed * get_physics_process_delta_time())
-	_body.global_rotation.y = lerp_angle(_body.global_rotation.y, atan2(flat_direction.x, flat_direction.z), weight)
+	global_rotation.y = lerp_angle(global_rotation.y, atan2(flat_direction.x, flat_direction.z), weight)
 	move_and_slide()
+
+	var moving: bool = velocity.length_squared() > 0.01
+	_update_visual_bob(moving)
+
+
+func _update_visual_bob(active: bool) -> void:
+	var delta: float = get_physics_process_delta_time()
+	if not is_instance_valid(visual_pivot):
+		return
+
+	var target_y: float = initial_visual_pivot_position.y
+	var target_lean: float = 0.0
+
+	if active:
+		bob_time += delta * bob_frequency
+		target_y += absf(sin(bob_time)) * bob_height
+		target_lean = sin(bob_time) * lean_amount
+	else:
+		bob_time = 0.0
+
+	visual_pivot.position.y = lerpf(
+			visual_pivot.position.y,
+			target_y,
+			bob_weight * delta
+	)
+	visual_pivot.rotation.z = lerpf(
+			visual_pivot.rotation.z,
+			initial_visual_pivot_rotation.z + target_lean,
+			lean_weight * delta
+	)
 
 
 func _choose_next_position() -> void:
@@ -187,7 +240,7 @@ func _sense() -> Dictionary:
 			"noticed": false,
 			"clear_sight": false
 		}
-	
+
 	var can_see_player := not player.is_merged() and _can_see(player.global_position)
 	var distance := 0.0
 
@@ -235,15 +288,17 @@ func _think(sense_result) -> void:
 func _enter(new_state: States) -> void:
 	if sleep:
 		return
-	
+
 	if new_state != States.SURVEY:
 		_survey_timer.stop()
+		_update_visual_bob(false)  # reset bob
 
 	if new_state != States.MIND_CONTROLLED:
 		_mind_control_timer.stop()
 
 	if new_state != States.FIGHTING:
 		_fight_timer.stop()
+		_update_visual_bob(false)  # reset bob
 		_vision_range_scale = 1.0
 
 	if new_state == States.STUNNED:
@@ -271,8 +326,8 @@ func _enter(new_state: States) -> void:
 			_survey_tween = null
 
 		_survey_tween = create_tween().set_parallel(false)
-		_survey_tween.tween_property(_body, "global_rotation:y", deg_to_rad(rad_to_deg(_body.global_rotation.y) + 40), _survey_timer.wait_time / 2.0)
-		_survey_tween.tween_property(_body, "global_rotation:y", deg_to_rad(rad_to_deg(_body.global_rotation.y) - 40), _survey_timer.wait_time / 2.0)
+		_survey_tween.tween_property(self, "global_rotation:y", deg_to_rad(rad_to_deg(self.global_rotation.y) + 40), _survey_timer.wait_time / 2.0)
+		_survey_tween.tween_property(self, "global_rotation:y", deg_to_rad(rad_to_deg(self.global_rotation.y) - 40), _survey_timer.wait_time / 2.0)
 		_survey_tween.play()
 	elif new_state == States.INVESTIGATE:
 		var target_position := _spell_cast_position if _current_state == States.STUNNED else player.global_position
