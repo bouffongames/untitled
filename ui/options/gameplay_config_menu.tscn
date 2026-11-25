@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://nj5o0xkeegam" path="res://ui/options/controls/value_spinner_control.tscn" id="3_pfkaw"]
 
 [node name="GameplayConfigMenu" type="VBoxContainer" unique_id=27677380 node_paths=PackedStringArray("reset_button")]
-visible = false
 size_flags_vertical = 3
 script = ExtResource("1_5y1rf")
 resource = ExtResource("2_gomqj")
 reset_button = NodePath("ResetAllButton")
 
 [node name="HideHUDControl" parent="." unique_id=723793488 instance=ExtResource("3_pfkaw")]
+visible = false
 layout_mode = 2
 _values = {
 false: "off",

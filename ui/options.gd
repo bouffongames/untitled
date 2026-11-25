@@ -21,14 +21,12 @@ enum MenuState { NONE, GAMEPLAY, DISPLAY, AUDIO, CONTROLS }
 @export var gameplay_menu_button: Button
 @export var display_menu_button: Button
 @export var audio_menu_button: Button
-@export var controls_menu_button: Button
 @export var back_button: Button
 
 @export_group("Submenu")
 @export var gameplay_menu: Control
 @export var display_menu: Control
 @export var audio_menu: Control
-@export var controls_menu: Control
 
 
 func _ready() -> void:
@@ -36,7 +34,6 @@ func _ready() -> void:
 		gameplay_menu_button.pressed.connect(func() -> void: state = MenuState.GAMEPLAY)
 		display_menu_button.pressed.connect(func() -> void: state = MenuState.DISPLAY)
 		audio_menu_button.pressed.connect(func() -> void: state = MenuState.AUDIO)
-		controls_menu_button.pressed.connect(func() -> void: state = MenuState.CONTROLS)
 		back_button.pressed.connect(func() -> void: state = MenuState.NONE)
 	state = state
 
@@ -49,8 +46,6 @@ func _refresh() -> void:
 		display_menu_button.visible = is_root_menu
 	if is_instance_valid(audio_menu_button):
 		audio_menu_button.visible = is_root_menu
-	if is_instance_valid(controls_menu_button):
-		controls_menu_button.visible = is_root_menu
 	if is_instance_valid(back_button):
 		back_button.visible = not is_root_menu
 	if is_instance_valid(gameplay_menu):
@@ -59,5 +54,3 @@ func _refresh() -> void:
 		display_menu.visible = state == MenuState.DISPLAY
 	if is_instance_valid(audio_menu):
 		audio_menu.visible = state == MenuState.AUDIO
-	if is_instance_valid(controls_menu):
-		controls_menu.visible = state == MenuState.CONTROLS

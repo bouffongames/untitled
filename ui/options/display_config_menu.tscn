@@ -87,6 +87,7 @@ key = "brightness"
 title = "brightness"
 
 [node name="FOVSliderControl" parent="." unique_id=1429480646 instance=ExtResource("4_t7ssb")]
+visible = false
 layout_mode = 2
 min_value = 7000.0
 max_value = 9000.0

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dcj8i1iuuxwol"]
 
+[ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://dlnvnhmdq57n8" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cc2wi6cmg5xw1" path="res://ui/credits.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cnnt08qldu1nf" path="res://ui/options.tscn" id="3_h2yge"]
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_1bvp3")
 script = ExtResource("1_ig7tw")
 version_label = NodePath("VersionLabel")
 play_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/PlayMenuButton")
