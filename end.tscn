@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dp46kkon5x0gs"]
+
+[ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="1_egc6y"]
+[ext_resource type="Script" uid="uid://kvvcgtj72e3l" path="res://end.gd" id="1_n735c"]
+
+[node name="End" type="Control" unique_id=161604807 groups=["loadable"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_egc6y")
+script = ExtResource("1_n735c")
+
+[node name="Control" type="Control" parent="." unique_id=927170383]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1172562667]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.00844152, 0.15226799, 1)
+
+[node name="Label" type="Label" parent="Control" unique_id=769729595]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.5
+offset_right = 20.0
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"HeaderLarge"
+text = "Thanks for playing!"
