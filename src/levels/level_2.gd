@@ -33,6 +33,7 @@ func _ready() -> void:
 
 	if Global.game.merge_spell_learned:
 		player.global_position = checkpoint_player_marker.global_position
+		player.global_rotation = checkpoint_player_marker.global_rotation
 
 	if Global.game.get_state() == Game.GameState.NONE:
 		Global.game.set_state(Game.GameState.PLAYING)
