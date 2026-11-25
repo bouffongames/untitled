@@ -99,6 +99,7 @@ exit_spell={
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Obstacle"
 3d_physics/layer_4="interactable"
+3d_physics/layer_6="guard"
 3d_navigation/layer_8="nav"
 
 [physics]
