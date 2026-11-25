@@ -4,13 +4,27 @@ extends Node
 enum GameState { NONE, PLAYING, PAUSED }
 
 signal state_changed
+signal spell_learned
 
 var _state: GameState = GameState.NONE
 
 # state
 var intro_completed: bool
-var merge_spell_learned: bool
-var mind_control_spell_learned: bool
+var merge_spell_learned: bool:
+	set(value):
+		merge_spell_learned = value  # only emit when the spell is learned
+		if value:
+			spell_learned.emit()
+var mind_control_spell_learned: bool:
+	set(value):
+		mind_control_spell_learned = value
+		if value:
+			spell_learned.emit()  # only emit when the spell is learned
+var anger_spell_learned: bool:
+	set(value):
+		anger_spell_learned = value
+		if value:
+			spell_learned.emit()  # only emit when the spell is learned
 
 
 func _ready() -> void:
@@ -36,4 +50,5 @@ func _reset_state() -> void:
 	intro_completed = false
 	merge_spell_learned = false
 	mind_control_spell_learned = false
+	anger_spell_learned = false
 	Dialogue.forcibly_end_dialogue()

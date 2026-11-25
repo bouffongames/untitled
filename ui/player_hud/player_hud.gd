@@ -59,6 +59,7 @@ func _ready() -> void:
 	for button: SpellButton in _spell_buttons:
 		if button.spell != null:
 			button.pressed.connect(_on_spell_button_pressed.bind(button.spell))
+	Global.game.spell_learned.connect(enable_spells)
 
 
 func _process(_delta: float) -> void:
@@ -112,6 +113,31 @@ func _on_mind_control_started(guard: Guard, spell: MindControlSpell) -> void:
 
 func _on_merge_started(spell: MergeSpell) -> void:
 	_active_spell_hud.start(spell.display_name, spell.duration, _player.get_merge_time_left)
+
+
+func disable_spells() -> void:
+	# guard is blocking the spells
+	for button: SpellButton in _spell_buttons:
+		var spell_name: String = button.spell.display_name.to_lower()
+		button.disabled = true
+		if spell_name == "merge":
+			button.disabled = false
+
+
+func enable_spells(except_spell_name: String = "") -> void:
+	for button: SpellButton in _spell_buttons:
+		var spell_name: String = button.spell.display_name.to_lower()
+		if spell_name == except_spell_name:
+			button.disabled = true
+			continue
+		
+		if (Global.game.merge_spell_learned and spell_name == "merge") \
+			or (Global.game.mind_control_spell_learned and spell_name == "mind control") \
+			or (Global.game.anger_spell_learned and spell_name == "anger") \
+			or spell_name == "read mind":
+			button.disabled = false
+		else:
+			button.disabled = true
 
 
 func _start_aiming(spell: GuardSpell) -> void:

@@ -9,6 +9,7 @@ extends Node3D
 
 func _ready() -> void:
 	# reset to default state
+	player.hud.enable_spells()
 	key.visible = false
 	guard.sleep = true
 	player.hud.visible = false

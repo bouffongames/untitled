@@ -14,6 +14,8 @@ extends Node3D
 
 
 func _ready() -> void:
+	player.hud.enable_spells("merge")  # exclude merge spell in case we loaded a checkpoint
+	
 	# if player gets to close to boundaries reset level
 	guard_area.monitoring = true
 	guard_area.area_entered.connect(

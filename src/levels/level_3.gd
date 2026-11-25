@@ -10,6 +10,8 @@ extends Node3D
 
 
 func _ready() -> void:
+	player.hud.enable_spells("mind control")  # exclude mind control spell in case we loaded a checkpoint
+	
 	for g: Guard in get_tree().get_nodes_in_group("Guard"):
 		g.player = player
 		g.player_caught.connect(_reset_level)  # reset the level if the player is caught
