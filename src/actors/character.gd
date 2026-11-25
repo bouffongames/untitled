@@ -30,14 +30,13 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if disabled:
+	if not _is_moving:
 		return
 
-	if _is_moving:
-		var distance_to_target: float = global_position.distance_to(_navigation_agent.target_position)
-		if distance_to_target <= stopping_distance or _navigation_agent.is_navigation_finished():
-			if _is_moving:
-				_finish_movement()
+	var distance_to_target: float = global_position.distance_to(_navigation_agent.target_position)
+	if distance_to_target <= stopping_distance or _navigation_agent.is_navigation_finished():
+		_finish_movement()
+		return
 
 	_update_movement(delta)
 

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://mwravk8e3ie4"]
+
+[ext_resource type="PackedScene" uid="uid://fp1kr3qrb8qj" path="res://src/3d_models/cat_witch/model/cat_witch.glb" id="1_vjcy5"]
+[ext_resource type="Script" uid="uid://cjvil0qk3cfy7" path="res://src/actors/player/cat_witch_skin.gd" id="2_ggon8"]
+
+[node name="cat_witch" unique_id=1012981101 instance=ExtResource("1_vjcy5")]
+script = ExtResource("2_ggon8")
+
+[node name="Skeleton3D" parent="Rig_Medium" parent_id_path=PackedInt32Array(1944609849) index="0" unique_id=384904716]
+bones/0/position = Vector3(8.271806e-25, -0.0013171624, 4.5084533e-11)
+bones/1/rotation = Quaternion(-2.1369163e-16, -0.02617702, 1.2290096e-17, 0.99965733)
+bones/2/rotation = Quaternion(0.07845915, 8.6392915e-10, 2.7674762e-09, 0.99691737)
+bones/3/rotation = Quaternion(0.014756, 7.909959e-10, -2.553966e-11, 0.99989116)
+bones/4/rotation = Quaternion(-0.092627555, -0.009874778, 0.011960242, 0.99558)
+bones/5/rotation = Quaternion(-0.55070585, -0.39698568, -0.69592744, 0.2341164)
+bones/6/rotation = Quaternion(-0.24529053, 0.013584554, -0.6053508, 0.7570987)
+bones/8/rotation = Quaternion(-0.10480339, 3.963221e-08, 0.122143455, 0.98696375)
+bones/10/rotation = Quaternion(-0.4470657, 0.4560715, 0.7590879, 0.12616105)
+bones/11/rotation = Quaternion(-0.11514525, -0.0063769105, 0.4440223, 0.88856363)
+bones/13/rotation = Quaternion(-0.17331804, 1.4670161e-08, -0.041189846, 0.9840042)
+bones/15/rotation = Quaternion(0.9848215, -8.165438e-08, -5.5703133e-08, 0.17357086)
+bones/16/rotation = Quaternion(0.24357909, 7.3052945e-08, -8.185081e-08, 0.96988106)
+bones/17/rotation = Quaternion(-0.43963155, 6.924564e-08, -4.0144542e-08, 0.8981782)
+bones/18/rotation = Quaternion(-1.1847101e-08, 0.9203548, -0.3910845, 1.7827766e-07)
+bones/19/rotation = Quaternion(0.9945137, 5.872359e-08, 1.08180565e-07, -0.10460663)
+bones/20/rotation = Quaternion(0.24357907, -5.7233912e-08, 8.73247e-08, 0.9698811)
+bones/21/rotation = Quaternion(-0.5012144, 6.559753e-08, -4.6679894e-08, 0.8653232)
+bones/22/rotation = Quaternion(6.955301e-08, 0.81893176, -0.573891, 3.3800116e-08)
+
+[node name="head" parent="Rig_Medium/Skeleton3D" index="0" unique_id=2112542077]
+transform = Transform3D(0.99700284, -0.021997597, -0.07417126, 0.02196244, 0.999758, -0.0012896657, 0.07418168, -0.00034317374, 0.99724466, -0.005679807, 1.2308257, 0.10837728)
