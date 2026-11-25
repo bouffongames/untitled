@@ -47,13 +47,13 @@ jobs:
             artifact_name: linux
             preset_name: "Itch.io Linux Desktop"
             output_dir: .bin/linux
-            output_path: .bin/linux/untitled.x86_64
+            output_path: .bin/linux/the-witch-and-the-pig-king.x86_64
 
           - name: Windows
             artifact_name: windows
             preset_name: "Itch.io Windows Desktop"
             output_dir: .bin/windows
-            output_path: .bin/windows/untitled.exe
+            output_path: .bin/windows/the-witch-and-the-pig-king.exe
   
           - name: Web
             artifact_name: web

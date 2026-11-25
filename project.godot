@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="untitled"
+config/name="The Witch and the Pig King"
 config/version="1.0.0-alpha+{BUILD_NUMBER}"
 run/main_scene="uid://dcj8i1iuuxwol"
 config/features=PackedStringArray("4.7")
