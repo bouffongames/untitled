@@ -17,6 +17,7 @@ size = Vector3(0.54626465, 0.2442627, 0.3914795)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cyf0t"]
 
 [node name="Guard" type="CharacterBody3D" unique_id=1592633665 node_paths=PackedStringArray("visual_pivot") groups=["Guard"]]
+collision_layer = 32
 script = ExtResource("1_fwpfe")
 visual_pivot = NodePath("VisualPivot")
 bob_frequency = 12.0
