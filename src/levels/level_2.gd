@@ -63,7 +63,7 @@ func _on_journal_interacted() -> void:
 	journal.hide()
 	Dialogue.play_from_string("""
 	You have learned the Merge spell!
-	You can now quickly evade guard's by merging with the floor.
+	You can now quickly evade guards by merging with the floor.
 	Press 'R' to quickly hide and evade chasing guards!
 	""")
 

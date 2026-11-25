@@ -39,7 +39,7 @@ func _on_scene_changed() -> void:
 		await get_tree().create_timer(0.333).timeout  # small pause in between different dialogues
 
 		Dialogue.play_from_string("""
-			Witch: I should use my mind reading spell on the guard to find the missing key.
+			Press 'W' and left click on the guard to read the guard's mind to find out how to free yourself from this cell.
 		""")
 		await Dialogue.dialogue_ended
 		player.hud.visible = true  # show spells hud
