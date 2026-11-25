@@ -162,7 +162,7 @@ func _resume_game() -> void:
 func _restart_level() -> void:
 	_was_paused_before = false
 	get_tree().paused = false
-	_scene.change(_scene._scene_path)
+	_scene.restart_scene()
 	visible = false
 	if _last_mouse_mode != Input.MOUSE_MODE_VISIBLE:
 		Input.mouse_mode = _last_mouse_mode

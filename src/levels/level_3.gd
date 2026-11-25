@@ -26,6 +26,7 @@ func _ready() -> void:
 		_on_scene_changed()
 
 	Global.scene.changed.connect(_on_scene_changed)
+	Global.scene.restarting.connect(_on_scene_restarting)
 	journal.interacted.connect(_on_journal_interacted)
 	door.interacted.connect(_on_door_interacted)
 	pressure_tile.state_changed.connect(_on_pressure_tile_state_changed)
@@ -34,6 +35,14 @@ func _ready() -> void:
 func _on_scene_changed() -> void:
 	if Global.scene.changed.is_connected(_on_scene_changed):
 		Global.scene.changed.disconnect(_on_scene_changed)
+
+
+func _on_scene_restarting() -> void:
+	if Global.scene.restarting.is_connected(_on_scene_restarting):
+		Global.scene.restarting.disconnect(_on_scene_restarting)
+
+	# reset level state if the player has requested to restart the level
+	Global.game.mind_control_spell_learned = false
 
 
 func _on_journal_interacted() -> void:

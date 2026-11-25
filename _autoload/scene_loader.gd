@@ -1,6 +1,7 @@
 class_name SceneLoader
 extends CanvasLayer
 
+signal restarting
 signal changed
 
 const LOADABLE: String = "loadable"
@@ -18,6 +19,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if _loading:
 		_handle_scene_loading()
+
+
+func restart_scene() -> void:
+	restarting.emit()
+	change(_scene_path)
 
 
 func change(path: String) -> bool:

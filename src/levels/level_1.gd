@@ -20,6 +20,7 @@ func _ready() -> void:
 		_on_scene_changed()
 
 	Global.scene.changed.connect(_on_scene_changed)
+	Global.scene.restarting.connect(_on_scene_restarting)
 	door.interacted.connect(_on_door_interacted)
 
 
@@ -29,10 +30,10 @@ func _on_scene_changed() -> void:
 
 	if not Global.game.intro_completed:
 		Dialogue.play_from_string("""
-			Guard 1: Ha ha.
-			Guard 1: You're not so tough without all your spells.
-			Guard 1: Ha ha.
-			Guard 2: Stop antagonizing the prisoner.
+			Guard #1: Ha ha.
+			Guard #1: You're not so tough without all your spells.
+			Guard #1: Ha ha.
+			Guard #2: Stop antagonizing the prisoner.
 		""")
 		await Dialogue.dialogue_ended
 		
@@ -61,6 +62,14 @@ func _on_scene_changed() -> void:
 	await key.interacted
 	key.visible = false
 	door_gate.open_door()  # animates the door opening and rebakes the navigation
+
+
+func _on_scene_restarting() -> void:
+	if Global.scene.restarting.is_connected(_on_scene_restarting):
+		Global.scene.restarting.disconnect(_on_scene_restarting)
+
+	# reset level state if the player has requested to restart the level
+	Global.game.intro_completed = false
 
 
 func _on_door_interacted() -> void:

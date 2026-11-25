@@ -43,6 +43,7 @@ func _ready() -> void:
 		_on_scene_changed()
 
 	Global.scene.changed.connect(_on_scene_changed)
+	Global.scene.restarting.connect(_on_scene_restarting)
 	journal.interacted.connect(_on_journal_interacted)
 	door.interacted.connect(_on_door_interacted)
 
@@ -55,6 +56,13 @@ func _on_scene_changed() -> void:
 		Dialogue.play_from_string("""
 		Witch: I need to escape from this dungeon and find my journals!
 		""")
+
+func _on_scene_restarting() -> void:
+	if Global.scene.restarting.is_connected(_on_scene_restarting):
+		Global.scene.restarting.disconnect(_on_scene_restarting)
+
+	# reset level state if the player has requested to restart the level
+	Global.game.merge_spell_learned = false
 
 
 func _on_journal_interacted() -> void:
