@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 Global="*uid://ctrvyy3ig3g2p"
 Dialogue="*uid://c3kgblex5wnxt"
+AudioManager="*uid://0iu4i4ldepgt"
 
 [debug]
 

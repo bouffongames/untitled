@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://0iu4i4ldepgt"]
+
+[ext_resource type="Script" uid="uid://8qxbds6vjmgv" path="res://_autoload/audio_manager.gd" id="1_ttvpj"]
+[ext_resource type="AudioStream" uid="uid://bdrqp2f1komg8" path="res://assets/music/the_witch_music_theme.ogg" id="2_8stsb"]
+[ext_resource type="AudioStream" uid="uid://dbci1sx540rx3" path="res://assets/sfx/the_witch_UI_start_stinger.wav" id="3_u40qb"]
+[ext_resource type="AudioStream" uid="uid://dr6fjtvu1t6tr" path="res://assets/sfx/the_witch_UI_hover.wav" id="4_4l6d1"]
+
+[node name="AudioManager" type="Node2D" unique_id=1475408820]
+script = ExtResource("1_ttvpj")
+music_library = Dictionary[String, AudioStream]({
+"theme": ExtResource("2_8stsb")
+})
+ui_library = Dictionary[String, AudioStream]({
+"hover": ExtResource("4_4l6d1"),
+"start_stinger": ExtResource("3_u40qb")
+})

@@ -94,3 +94,8 @@ text = "v.0.0.0"
 [node name="Credits" parent="." unique_id=75008228 instance=ExtResource("2_h2yge")]
 visible = false
 layout_mode = 1
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/PlayMenuButton" to="." method="_on_play_menu_button_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsMenuButton" to="." method="_on_options_menu_button_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/CreditsMenuButton" to="." method="_on_credits_menu_button_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/ExitMenuButton" to="." method="_on_exit_menu_button_mouse_entered"]

@@ -29,6 +29,7 @@ var _is_ready: bool = false
 
 func _ready() -> void:
 	_is_ready = true
+	AudioManager.play_music("theme", -2.0)
 
 	if not OS.has_feature("debug"):
 		state = MenuState.NONE
@@ -83,6 +84,8 @@ func _refresh() -> void:
 
 
 func _start_game() -> void:
+	AudioManager.stop_music(1.0)
+	AudioManager.play_ui("start_stinger")
 	Global.game.set_state(Game.GameState.PLAYING)
 	Global.scene.change(Const.SCENE_LEVEL_01)
 
@@ -94,3 +97,19 @@ func _show_credits() -> void:
 
 func _exit() -> void:
 	get_tree().quit.call_deferred()
+
+
+func _on_play_menu_button_mouse_entered() -> void:
+	AudioManager.play_ui("hover", -6.0)
+
+
+func _on_options_menu_button_mouse_entered() -> void:
+	AudioManager.play_ui("hover", -6.0)
+
+
+func _on_credits_menu_button_mouse_entered() -> void:
+	AudioManager.play_ui("hover", -6.0)
+
+
+func _on_exit_menu_button_mouse_entered() -> void:
+	AudioManager.play_ui("hover", -6.0)
