@@ -81,8 +81,6 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 geometry_parsed_geometry_type = 1
 geometry_collision_mask = 1
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ofrt1"]
-
 [sub_resource type="Resource" id="Resource_6u8ge"]
 script = ExtResource("54_f54mj")
 text = "I lost the witch's cell key...
@@ -93,6 +91,11 @@ metadata/_custom_type_script = "uid://bmhnud26sb0hs"
 [sub_resource type="Resource" id="Resource_f54mj"]
 script = ExtResource("54_f54mj")
 text = "Where could that key be?!"
+metadata/_custom_type_script = "uid://bmhnud26sb0hs"
+
+[sub_resource type="Resource" id="Resource_a63mu"]
+script = ExtResource("54_f54mj")
+text = "I don't get paid enough to watch over a cat..."
 metadata/_custom_type_script = "uid://bmhnud26sb0hs"
 
 [node name="Level1" type="Node3D" unique_id=673513718 node_paths=PackedStringArray("player", "guard", "door", "door_gate", "key") groups=["loadable"]]
@@ -526,10 +529,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.040817, 0, 10.439823)
 [node name="Key" parent="." unique_id=960946689 instance=ExtResource("55_rxcxo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2861896, 1.8014402, -6.003717)
 
-[node name="GuardPlaceholder" type="MeshInstance3D" parent="." unique_id=2042357080]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2, 2, -2)
-mesh = SubResource("CapsuleMesh_ofrt1")
-
 [node name="PatrolMarker3D" type="Marker3D" parent="." unique_id=120696510]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4.7999997, 1, -1.3)
 
@@ -546,6 +545,12 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.70
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.9, 1, 1.8000002)
 sleep = true
 thoughts = Array[ExtResource("54_f54mj")]([SubResource("Resource_6u8ge"), SubResource("Resource_f54mj")])
+patrolling_points = Array[NodePath]([NodePath("../PatrolMarker3D"), NodePath("../PatrolMarker3D2"), NodePath("../PatrolMarker3D3"), NodePath("../PatrolMarker3D4")])
+
+[node name="Guard2" parent="." unique_id=927176163 instance=ExtResource("53_6u8ge")]
+transform = Transform3D(-0.9848077, 0, -0.17364827, 0, 1, 0, 0.17364827, 0, -0.9848077, -10.8, 1, -1.8999999)
+sleep = true
+thoughts = Array[ExtResource("54_f54mj")]([SubResource("Resource_a63mu")])
 patrolling_points = Array[NodePath]([NodePath("../PatrolMarker3D"), NodePath("../PatrolMarker3D2"), NodePath("../PatrolMarker3D3"), NodePath("../PatrolMarker3D4")])
 
 [editable path="NavigationRegion3D/Objects/DoorGate"]
