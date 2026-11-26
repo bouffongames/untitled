@@ -3,7 +3,7 @@ extends Node
 const MAX_DEPTH: int = 16
 
 # Adjust pool size depending on how many simultaneous sound effects you expect
-@export var ui_pool_size: int = 4
+@export var ui_pool_size: int = 6
 @export var sfx_pool_size: int = 12
 @export var pitch_variation_percent: float = 0
 
