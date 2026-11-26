@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://7c7pscfiq7mm"]
 
 [ext_resource type="Script" uid="uid://bfsy4uc5vfvat" path="res://_autoload/fps_counter.gd" id="1_s20nj"]
+[ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="2_51ako"]
 
 [node name="FPSCounter" type="CanvasLayer" unique_id=1290143388 node_paths=PackedStringArray("label")]
 script = ExtResource("1_s20nj")
@@ -9,6 +10,7 @@ label = NodePath("MarginContainer/Label")
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=205520767]
 offset_right = 121.0
 offset_bottom = 39.0
+theme = ExtResource("2_51ako")
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 
