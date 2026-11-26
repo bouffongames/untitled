@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cnvnal4hpoool"]
 
 [ext_resource type="Script" uid="uid://cype7eb0x0a4y" path="res://minigames/input/input_minigame.gd" id="1_6ocit"]
-[ext_resource type="Texture2D" uid="uid://dcjpvout2j8f8" path="res://assets/icons/keyboard/keyboard_arrow_down.svg" id="2_f03gt"]
-[ext_resource type="Texture2D" uid="uid://qwruv4b0caqu" path="res://assets/icons/keyboard/keyboard_arrow_left.svg" id="3_xtg5w"]
-[ext_resource type="Texture2D" uid="uid://do1befyplyfvx" path="res://assets/icons/keyboard/keyboard_arrow_right.svg" id="4_f3ejw"]
-[ext_resource type="Texture2D" uid="uid://dvmhqln32wmh0" path="res://assets/icons/keyboard/keyboard_arrow_up.svg" id="5_dq15w"]
+[ext_resource type="Texture2D" uid="uid://dcjpvout2j8f8" path="res://assets/vectors/icons/keyboard/keyboard_arrow_down.svg" id="2_f03gt"]
+[ext_resource type="Texture2D" uid="uid://qwruv4b0caqu" path="res://assets/vectors/icons/keyboard/keyboard_arrow_left.svg" id="3_xtg5w"]
+[ext_resource type="Texture2D" uid="uid://do1befyplyfvx" path="res://assets/vectors/icons/keyboard/keyboard_arrow_right.svg" id="4_f3ejw"]
+[ext_resource type="Texture2D" uid="uid://dvmhqln32wmh0" path="res://assets/vectors/icons/keyboard/keyboard_arrow_up.svg" id="5_dq15w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtg5w"]
 bg_color = Color(0.7411765, 0.7411765, 0.7411765, 1)

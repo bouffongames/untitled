@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://jwjvgs3cvshm"]
 
 [ext_resource type="Script" uid="uid://lv0ouebpfqgg" path="res://minigames/circle/circle_minigame.gd" id="1_id8fv"]
-[ext_resource type="Texture2D" uid="uid://bktf73tquq1f4" path="res://assets/icons/keyboard/keyboard_space.svg" id="2_tvv3i"]
+[ext_resource type="Texture2D" uid="uid://bktf73tquq1f4" path="res://assets/vectors/icons/keyboard/keyboard_space.svg" id="2_tvv3i"]
 [ext_resource type="Texture2D" uid="uid://hov0f5swyoyy" path="res://minigames/circle/thick_circle.svg" id="3_tvv3i"]
 [ext_resource type="Texture2D" uid="uid://goe7lvj57trr" path="res://minigames/circle/circular_progress.svg" id="5_tvv3i"]
 [ext_resource type="Texture2D" uid="uid://ddufagmp2ukp4" path="res://minigames/circle/thin_circle.svg" id="6_7aw4x"]
