@@ -2,7 +2,12 @@
 
 [ext_resource type="FontFile" uid="uid://bh0y0ptkg76kr" path="res://assets/fonts/germania_one/germania_one_regular.ttf" id="1_e7bfs"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lquwl"]
+
 [resource]
 default_font = ExtResource("1_e7bfs")
 DisabledLabel/base_type = &"Label"
 DisabledLabel/colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0.5019608)
+MainMenuButton/base_type = &"Button"
+MainMenuButton/font_sizes/font_size = 24
+MainMenuButton/styles/normal = SubResource("StyleBoxEmpty_lquwl")

@@ -1,0 +1,25 @@
+[gd_resource type="Theme" format=3 uid="uid://cn0rckn5j2dwh"]
+
+[ext_resource type="FontFile" uid="uid://bh0y0ptkg76kr" path="res://assets/fonts/germania_one/germania_one_regular.ttf" id="1_2krdf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ymh7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ena0y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7mycd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sojpq"]
+
+[resource]
+default_font = ExtResource("1_2krdf")
+Button/colors/font_color = Color(0.90359825, 0.90359825, 0.9035982, 1)
+Button/colors/font_hover_color = Color(0.808998, 0.8089984, 0.808998, 1)
+Button/font_sizes/font_size = 24
+Button/styles/disabled = SubResource("StyleBoxEmpty_3ymh7")
+Button/styles/hover = SubResource("StyleBoxEmpty_ena0y")
+Button/styles/normal = SubResource("StyleBoxEmpty_7mycd")
+Button/styles/pressed = SubResource("StyleBoxEmpty_sojpq")
+DisabledLabel/base_type = &"Label"
+DisabledLabel/colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0.5019608)
+DisabledLabel/font_sizes/font_size = 20
+Label/font_sizes/font_size = 20

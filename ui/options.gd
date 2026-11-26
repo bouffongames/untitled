@@ -18,6 +18,7 @@ enum MenuState { NONE, GAMEPLAY, DISPLAY, AUDIO, CONTROLS }
 		return state
 
 @export_group("Root menu")
+@export var options_menu_container: VBoxContainer
 @export var gameplay_menu_button: Button
 @export var display_menu_button: Button
 @export var audio_menu_button: Button
@@ -40,12 +41,8 @@ func _ready() -> void:
 
 func _refresh() -> void:
 	var is_root_menu: bool = state == MenuState.NONE
-	if is_instance_valid(gameplay_menu_button):
-		gameplay_menu_button.visible = is_root_menu
-	if is_instance_valid(display_menu_button):
-		display_menu_button.visible = is_root_menu
-	if is_instance_valid(audio_menu_button):
-		audio_menu_button.visible = is_root_menu
+	if is_instance_valid(options_menu_container):
+		options_menu_container.visible = is_root_menu
 	if is_instance_valid(back_button):
 		back_button.visible = not is_root_menu
 	if is_instance_valid(gameplay_menu):

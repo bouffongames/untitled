@@ -14,6 +14,7 @@ enum MenuState { NONE, PLAY, OPTIONS, CREDITS, EXIT }
 @export var version_label: Label
 
 @export_group("Root menu")
+@export var main_menu_container: VBoxContainer
 @export var play_menu_button: Button
 @export var options_menu_button: Button
 @export var credits_menu_button: Button
@@ -29,13 +30,14 @@ var _is_ready: bool = false
 
 func _ready() -> void:
 	_is_ready = true
-	AudioManager.play_music("theme", -2.0)
 
 	if not OS.has_feature("debug"):
 		state = MenuState.NONE
 		options_menu.state = Options.MenuState.NONE
 
 	if not Engine.is_editor_hint():
+		AudioManager.play_music("theme", -2.0)
+
 		version_label.text = "v." + ProjectSettings.get_setting("application/config/version")
 
 		credits.back_button_pressed.connect(func() -> void: state = MenuState.NONE)
@@ -58,12 +60,8 @@ func _refresh() -> void:
 	var is_root_menu: bool = (
 		state == MenuState.NONE or state == MenuState.PLAY or state == MenuState.CREDITS
 	)
-	if is_instance_valid(play_menu_button):
-		play_menu_button.visible = is_root_menu
-	if is_instance_valid(options_menu_button):
-		options_menu_button.visible = is_root_menu
-	if is_instance_valid(credits_menu_button):
-		credits_menu_button.visible = is_root_menu
+	if is_instance_valid(main_menu_container):
+		main_menu_container.visible = is_root_menu
 	if is_instance_valid(exit_menu_button):
 		exit_menu_button.visible = is_root_menu and not OS.has_feature("web")
 	if is_instance_valid(back_button):
