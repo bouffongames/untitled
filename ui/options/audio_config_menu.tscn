@@ -36,6 +36,7 @@ key = "music_volume"
 title = "music"
 
 [node name="AmbientVolumeSliderControl" parent="." unique_id=111419675 instance=ExtResource("4_n0xj0")]
+visible = false
 layout_mode = 2
 key = "ambient_volume"
 title = "ambient"
