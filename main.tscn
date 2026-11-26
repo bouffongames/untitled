@@ -15,61 +15,53 @@ grow_vertical = 2
 theme = ExtResource("1_1bvp3")
 script = ExtResource("1_ig7tw")
 version_label = NodePath("VersionLabel")
-play_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/PlayMenuButton")
-options_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/OptionsMenuButton")
-credits_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/CreditsMenuButton")
-exit_menu_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/ExitMenuButton")
-back_button = NodePath("MarginContainer/VBoxContainer/BackButton")
-options_menu = NodePath("MarginContainer/VBoxContainer/OptionsMenu")
+play_menu_button = NodePath("VBoxContainer/VBoxContainer/PlayMenuButton")
+options_menu_button = NodePath("VBoxContainer/VBoxContainer/OptionsMenuButton")
+credits_menu_button = NodePath("VBoxContainer/VBoxContainer/CreditsMenuButton")
+exit_menu_button = NodePath("VBoxContainer/VBoxContainer/ExitMenuButton")
+back_button = NodePath("VBoxContainer/BackButton")
+options_menu = NodePath("VBoxContainer/OptionsMenu")
 credits = NodePath("Credits")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1087950935]
-custom_minimum_size = Vector2(0, 180)
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2083225805]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -90.0
-offset_right = 200.0
-offset_bottom = 90.0
+offset_left = -192.0
+offset_top = -60.0
+offset_right = 192.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_right = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2083225805]
-layout_mode = 2
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=136374453]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=136374453]
 layout_mode = 2
 
-[node name="PlayMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1515677787]
+[node name="PlayMenuButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1515677787]
 layout_mode = 2
 text = "Play"
 
-[node name="OptionsMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=2128485731]
+[node name="OptionsMenuButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=2128485731]
 layout_mode = 2
 text = "Options"
 
-[node name="CreditsMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=749066692]
+[node name="CreditsMenuButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=749066692]
 layout_mode = 2
 text = "Credits"
 
-[node name="ExitMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1563592612]
+[node name="ExitMenuButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1563592612]
 layout_mode = 2
 text = "Exit"
 
-[node name="OptionsMenu" parent="MarginContainer/VBoxContainer" unique_id=1883654004 instance=ExtResource("3_h2yge")]
+[node name="OptionsMenu" parent="VBoxContainer" unique_id=1883654004 instance=ExtResource("3_h2yge")]
 visible = false
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=688415665]
+[node name="BackButton" type="Button" parent="VBoxContainer" unique_id=688415665]
 visible = false
 layout_mode = 2
 text = "Back"
@@ -94,8 +86,3 @@ text = "v.0.0.0"
 [node name="Credits" parent="." unique_id=75008228 instance=ExtResource("2_h2yge")]
 visible = false
 layout_mode = 1
-
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/PlayMenuButton" to="." method="_on_play_menu_button_mouse_entered"]
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsMenuButton" to="." method="_on_options_menu_button_mouse_entered"]
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/CreditsMenuButton" to="." method="_on_credits_menu_button_mouse_entered"]
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/ExitMenuButton" to="." method="_on_exit_menu_button_mouse_entered"]

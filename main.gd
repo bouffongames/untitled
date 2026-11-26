@@ -97,19 +97,3 @@ func _show_credits() -> void:
 
 func _exit() -> void:
 	get_tree().quit.call_deferred()
-
-
-func _on_play_menu_button_mouse_entered() -> void:
-	AudioManager.play_ui("hover", -6.0)
-
-
-func _on_options_menu_button_mouse_entered() -> void:
-	AudioManager.play_ui("hover", -6.0)
-
-
-func _on_credits_menu_button_mouse_entered() -> void:
-	AudioManager.play_ui("hover", -6.0)
-
-
-func _on_exit_menu_button_mouse_entered() -> void:
-	AudioManager.play_ui("hover", -6.0)

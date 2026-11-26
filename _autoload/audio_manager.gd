@@ -1,5 +1,7 @@
 extends Node
 
+const MAX_DEPTH: int = 16
+
 # Adjust pool size depending on how many simultaneous sound effects you expect
 @export var ui_pool_size: int = 4
 @export var sfx_pool_size: int = 12
@@ -23,6 +25,9 @@ var ui_players: Array[AudioStreamPlayer] = []
 var _music_tween: Tween
 
 func _ready() -> void:
+	_recursive_connect_ui_sounds(get_tree().root)
+	get_tree().node_added.connect(_on_node_added)
+	
 	# Process even when the scene tree is paused
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
@@ -44,6 +49,18 @@ func _ready() -> void:
 		player.bus = "UI"
 		add_child(player)
 		ui_players.append(player)
+
+
+func _on_node_added(node: Node) -> void:
+	if node is Button:
+		var button: Button = node as Button
+		# if the added node is button, it should play a sound when the mouse is entered
+		button.mouse_entered.connect(
+			func() -> void:
+				if not button.disabled:
+					play_ui("hover", -6.0)
+		)
+
 
 func play_ui(key: String, volume_db: float = 0.0) -> void:
 	if not ui_library.has(key) or ui_library[key] == null:
@@ -125,3 +142,10 @@ func update_bus_volume(index: int, value: float) -> void:
 	AudioServer.set_bus_volume_db(index, linear_to_db(value))
 	print(AudioServer.get_bus_volume_db(index))
 	
+
+func _recursive_connect_ui_sounds(current_node: Node, current_depth: int = 0) -> void:
+	if current_depth >= MAX_DEPTH:
+		return
+	for node: Node in current_node.get_children():
+		_on_node_added(node)
+		_recursive_connect_ui_sounds(node, current_depth + 1)
