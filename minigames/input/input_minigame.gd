@@ -155,6 +155,7 @@ func _animate_hide() -> void:
 			Color(Color.WHITE, 0),
 			0.433
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_callback(closed.emit)
 
 
 func _animate_failure() -> void:

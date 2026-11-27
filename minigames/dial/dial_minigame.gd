@@ -252,6 +252,7 @@ func _animate_hide() -> void:
 			0.433
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_callback(func() -> void: visible = false)
+	tween.tween_callback(closed.emit)
 
 
 func _animate_lock_arrow() -> void:

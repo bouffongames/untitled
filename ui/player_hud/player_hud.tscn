@@ -12,25 +12,17 @@
 [ext_resource type="PackedScene" uid="uid://egfl2r0qyg1n" path="res://ui/player_hud/read_mind_hud.tscn" id="8_read_hud"]
 [ext_resource type="PackedScene" uid="uid://71ndh3h0cmnd" path="res://src/actors/player/spread_arrow.tscn" id="9_arrow"]
 [ext_resource type="Texture2D" uid="uid://cqnm3voecw7i5" path="res://assets/vectors/spells/mind_read_spell.svg" id="9_ohebb"]
-[ext_resource type="Texture2D" uid="uid://c2bkitm3lytvg" path="res://assets/vectors/eye/closed_eye.svg" id="10_8xek4"]
+[ext_resource type="Texture2D" uid="uid://4yir8cpreqp8" path="res://assets/vectors/spells/spell_background.svg" id="11_o6l3t"]
 [ext_resource type="Texture2D" uid="uid://sesd4k70458l" path="res://assets/vectors/spells/mind_control_spell.svg" id="11_vd2g3"]
+[ext_resource type="Texture2D" uid="uid://c0dn5wjwn0sxt" path="res://assets/vectors/spells/key_box.svg" id="12_7m4f0"]
 [ext_resource type="Texture2D" uid="uid://bd7fgdme4rbx6" path="res://assets/vectors/spells/inverted_spell_click_mask.svg" id="12_74l5y"]
+[ext_resource type="LabelSettings" uid="uid://bcn71y8refyu4" path="res://ui/player_hud/cooldown_label_settings.tres" id="12_666g4"]
+[ext_resource type="FontFile" uid="uid://bh0y0ptkg76kr" path="res://assets/fonts/germania_one/germania_one_regular.ttf" id="13_7m4f0"]
 [ext_resource type="Texture2D" uid="uid://bkgrg5ugbwnlx" path="res://assets/vectors/spells/spell_click_mask.svg" id="13_hyt24"]
 [ext_resource type="Texture2D" uid="uid://cgyyu120wl1do" path="res://assets/vectors/spells/paranoia_spell.svg" id="13_uqc4p"]
+[ext_resource type="Texture2D" uid="uid://c6yntiba6sjxl" path="res://assets/vectors/spells/inverted_spell_background.svg" id="15_666g4"]
 [ext_resource type="Texture2D" uid="uid://cmk33nqbtbk5b" path="res://assets/vectors/spells/spell_border.svg" id="16_yfus2"]
 [ext_resource type="PackedScene" uid="uid://8gaovlmy1ly" path="res://ui/player_hud/guard_detection_hud.tscn" id="19_aoar4"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_r"]
-keycode = 82
-
-[sub_resource type="Shortcut" id="Shortcut_r"]
-events = [SubResource("InputEventKey_r")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_w"]
-keycode = 87
-
-[sub_resource type="Shortcut" id="Shortcut_w"]
-events = [SubResource("InputEventKey_w")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_q"]
 keycode = 81
@@ -38,13 +30,31 @@ keycode = 81
 [sub_resource type="Shortcut" id="Shortcut_q"]
 events = [SubResource("InputEventKey_q")]
 
-[sub_resource type="BitMap" id="BitMap_74l5y"]
+[sub_resource type="InputEventKey" id="InputEventKey_w"]
+keycode = 87
+
+[sub_resource type="Shortcut" id="Shortcut_w"]
+events = [SubResource("InputEventKey_w")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_e"]
 keycode = 69
 
 [sub_resource type="Shortcut" id="Shortcut_e"]
 events = [SubResource("InputEventKey_e")]
+
+[sub_resource type="BitMap" id="BitMap_74l5y"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_r"]
+keycode = 82
+
+[sub_resource type="Shortcut" id="Shortcut_r"]
+events = [SubResource("InputEventKey_r")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bh0t8"]
+font = ExtResource("13_7m4f0")
+font_size = 13
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
 
 [node name="PlayerHUD" type="CanvasLayer" unique_id=923500982]
 process_mode = 3
@@ -95,23 +105,6 @@ layout_mode = 1
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="EyeTexture" type="TextureRect" parent="Control" unique_id=962724470]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -230.0
-offset_right = 64.0
-offset_bottom = -102.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-texture = ExtResource("10_8xek4")
-stretch_mode = 5
-
 [node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=133127366]
 layout_mode = 1
 anchors_preset = 7
@@ -130,43 +123,168 @@ theme_override_constants/separation = -71
 [node name="MergeButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=1475874978]
 unique_name_in_owner = true
 layout_mode = 2
+offset_transform_enabled = true
 focus_mode = 0
-shortcut = SubResource("Shortcut_r")
+shortcut = SubResource("Shortcut_q")
 texture_normal = ExtResource("6_hbnkv")
 script = ExtResource("2_spell")
 spell = ExtResource("6_merge")
 click_mask = ExtResource("13_hyt24")
+background_texture = ExtResource("11_o6l3t")
+background_color = Color(0.47843137, 0.7294118, 0.003921569, 1)
+cooldown_label_settings = ExtResource("12_666g4")
 
 [node name="ReadMindButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=1754202930]
 unique_name_in_owner = true
 layout_mode = 2
+offset_transform_enabled = true
 focus_mode = 0
 shortcut = SubResource("Shortcut_w")
 texture_normal = ExtResource("9_ohebb")
 script = ExtResource("2_spell")
 spell = ExtResource("4_read")
 click_mask = ExtResource("12_74l5y")
+background_texture = ExtResource("15_666g4")
+background_color = Color(0.54509807, 0.043137256, 1, 1)
+background_fills_downward = true
+cooldown_label_settings = ExtResource("12_666g4")
 
 [node name="MindControlButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=358388381]
 unique_name_in_owner = true
 layout_mode = 2
+offset_transform_enabled = true
 focus_mode = 0
-shortcut = SubResource("Shortcut_q")
+shortcut = SubResource("Shortcut_e")
 texture_normal = ExtResource("11_vd2g3")
 texture_click_mask = SubResource("BitMap_74l5y")
 script = ExtResource("2_spell")
 spell = ExtResource("3_mind")
 click_mask = ExtResource("13_hyt24")
+background_texture = ExtResource("11_o6l3t")
+background_color = Color(1, 0.19607843, 1, 1)
+cooldown_label_settings = ExtResource("12_666g4")
 
 [node name="AngerButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=1725647837]
 unique_name_in_owner = true
 layout_mode = 2
+offset_transform_enabled = true
 focus_mode = 0
-shortcut = SubResource("Shortcut_e")
+shortcut = SubResource("Shortcut_r")
 texture_normal = ExtResource("13_uqc4p")
 script = ExtResource("2_spell")
 spell = ExtResource("5_anger")
 click_mask = ExtResource("12_74l5y")
+background_texture = ExtResource("15_666g4")
+background_color = Color(1, 0.32941177, 0, 1)
+background_fills_downward = true
+cooldown_label_settings = ExtResource("12_666g4")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control" unique_id=1272707210]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -153.0
+offset_top = -40.0
+offset_right = 151.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -71
+
+[node name="KeybindGuide" type="TextureRect" parent="Control/HBoxContainer2" unique_id=508974785]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("12_7m4f0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/HBoxContainer2/KeybindGuide" unique_id=1511767679]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -8.0
+offset_right = 3.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Q"
+label_settings = SubResource("LabelSettings_bh0t8")
+
+[node name="KeybindGuide2" type="TextureRect" parent="Control/HBoxContainer2" unique_id=479648098]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("12_7m4f0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/HBoxContainer2/KeybindGuide2" unique_id=302778564]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -8.0
+offset_right = 3.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "W"
+label_settings = SubResource("LabelSettings_bh0t8")
+
+[node name="KeybindGuide3" type="TextureRect" parent="Control/HBoxContainer2" unique_id=91631555]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("12_7m4f0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/HBoxContainer2/KeybindGuide3" unique_id=157083631]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -8.0
+offset_right = 3.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "E"
+label_settings = SubResource("LabelSettings_bh0t8")
+
+[node name="KeybindGuide4" type="TextureRect" parent="Control/HBoxContainer2" unique_id=50899941]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("12_7m4f0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/HBoxContainer2/KeybindGuide4" unique_id=603815582]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -8.0
+offset_right = 3.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "R"
+label_settings = SubResource("LabelSettings_bh0t8")
 
 [node name="SpellBorderTexture" type="TextureRect" parent="Control" unique_id=904510249]
 layout_mode = 1
@@ -176,9 +294,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -243.0
-offset_top = -99.0
+offset_top = -73.0
 offset_right = 241.0
-offset_bottom = 29.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2

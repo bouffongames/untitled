@@ -211,12 +211,12 @@ func _update_visual_bob(active: bool) -> void:
 		bob_time += delta * bob_frequency
 		target_y += absf(sin(bob_time)) * bob_height
 		target_lean = sin(bob_time) * lean_amount
-		
+
 		var step_index: int = int(bob_time / PI)
 		if step_index != _last_step_index:
 			_last_step_index = step_index
 			guard_steps.play()
-		
+
 	else:
 		bob_time = 0.0
 
@@ -288,7 +288,7 @@ func _think(sense_result) -> void:
 			elif sense_result["noticed"]:
 				# keep adjusting the target position until the guard no longer sees the player
 				_navigation_agent_3d.target_position = player.global_position
-			
+
 		States.CAUGHT:
 			player_caught.emit()
 			sleep = true

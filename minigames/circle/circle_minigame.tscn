@@ -19,6 +19,13 @@ _inner_texture = NodePath("InnerTexture")
 _outer_texture = NodePath("OuterTexture")
 _progress_bar = NodePath("TextureProgressBar")
 
+[node name="Background" type="ColorRect" parent="." unique_id=585465452]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6)
+
 [node name="InputTexture" type="TextureRect" parent="." unique_id=853047972]
 layout_mode = 1
 anchors_preset = 8

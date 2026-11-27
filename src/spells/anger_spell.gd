@@ -37,4 +37,4 @@ func get_spread_targets(target: Guard) -> Array[Guard]:
 
 
 func can_cast_on(target: Guard) -> bool:
-	return not get_spread_targets(target).is_empty()
+	return super(target) and not get_spread_targets(target).is_empty()

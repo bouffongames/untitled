@@ -29,5 +29,5 @@ func get_spread_targets(_target: Guard) -> Array[Guard]:
 	return no_targets
 
 
-func can_cast_on(_target: Guard) -> bool:
-	return true
+func can_cast_on(target: Guard) -> bool:
+	return not target.is_fighting()

@@ -12,6 +12,8 @@ extends CanvasLayer
 @export var _idle_color: Color = Color(1.0, 1.0, 1.0, 0.6)
 @export var _in_range_color: Color = Color(0.3, 1.0, 0.3, 0.9)
 @export var _blocked_color: Color = Color(1.0, 0.85, 0.2, 0.9)
+## Color of the circle when the hovered guard can't be affected by the spell, for example while it's fighting.
+@export var _invalid_color: Color = Color(1.0, 0.25, 0.25, 0.9)
 @export var _ring_thickness: float = 0.08
 ## Opacity of the inside of the circle, relative to the ring color.
 @export_range(0.0, 1.0) var _fill_opacity: float = 0.25
@@ -55,6 +57,10 @@ func _ready() -> void:
 	_player.mind_control_ended.connect(_active_spell_hud.stop.unbind(1))
 	_player.merge_started.connect(_on_merge_started)
 	_player.merge_ended.connect(_active_spell_hud.stop)
+	_player.mind_control_started.connect(_update_spells_blocked.unbind(2))
+	_player.mind_control_ended.connect(_update_spells_blocked.unbind(1))
+	_player.merge_started.connect(_update_spells_blocked.unbind(1))
+	_player.merge_ended.connect(_update_spells_blocked)
 	_player.thought_read.connect(_read_mind_hud.show_thought)
 	for button: SpellButton in _spell_buttons:
 		if button.spell != null:
@@ -68,14 +74,18 @@ func _process(_delta: float) -> void:
 	if _aiming_spell == null:
 		return
 
-	var color: Color = _idle_color
+	var color: Color
 	var guard: Guard = _get_hovered_guard()
 	var in_range: bool = guard != null and _is_in_range(_aiming_spell, guard)
 	var can_target: bool = in_range and not _is_blocked(_aiming_spell, guard)
-	if in_range:
-		color = _in_range_color if can_target else _blocked_color
+	if not can_target:
+		color = _blocked_color if in_range else _idle_color
+	elif _aiming_spell.can_cast_on(guard):
+		color = _in_range_color
+	else:
+		color = _invalid_color
 	_set_indicator_color(_range_indicator, _range_fill, color)
-	_update_spread_indicator(guard if can_target else null)
+	_update_spread_indicator(guard if can_target and not guard.is_fighting() else null)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -100,7 +110,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_spell_button_pressed(spell: Spell) -> void:
-	if _minigame != null or _player.get_mind_controlled_guard() != null or _player.is_merged():
+	if _are_spells_blocked():
+		return
+	if _get_spell_button(spell).is_on_cooldown():
 		return
 	_stop_aiming()
 	if spell is GuardSpell:
@@ -138,7 +150,7 @@ func enable_spells(except_spell_name: String = "") -> void:
 		if spell_name == except_spell_name:
 			button.set_disable(true)
 			continue
-		
+
 		if (Global.game.merge_spell_learned and spell_name == "merge") \
 			or (Global.game.mind_control_spell_learned and spell_name == "mind control") \
 			or (Global.game.anger_spell_learned and spell_name == "anger") \
@@ -148,8 +160,26 @@ func enable_spells(except_spell_name: String = "") -> void:
 			button.set_disable(true)
 
 
+func _are_spells_blocked() -> bool:
+	return _minigame != null or _player.get_mind_controlled_guard() != null or _player.is_merged()
+
+
+func _update_spells_blocked() -> void:
+	var blocked: bool = _are_spells_blocked()
+	for button: SpellButton in _spell_buttons:
+		button.set_blocked(blocked)
+
+
+func _get_spell_button(spell: Spell) -> SpellButton:
+	for button: SpellButton in _spell_buttons:
+		if button.spell == spell:
+			return button
+	return null
+
+
 func _start_aiming(spell: GuardSpell) -> void:
 	_aiming_spell = spell
+	_get_spell_button(spell).set_selected(true)
 	_set_indicator_radius(_range_indicator, _range_fill, spell.cast_range)
 	if spell.get_spread_range() > 0.0:
 		_set_indicator_radius(_spread_indicator, _spread_fill, spell.get_spread_range())
@@ -157,6 +187,8 @@ func _start_aiming(spell: GuardSpell) -> void:
 
 
 func _stop_aiming() -> void:
+	if _aiming_spell != null:
+		_get_spell_button(_aiming_spell).set_selected(false)
 	_aiming_spell = null
 	_range_indicator.visible = false
 	_spread_indicator.visible = false
@@ -247,6 +279,8 @@ func _start_minigame(spell: Spell, guard: Guard = null) -> void:
 		push_warning("%s has no minigame scene assigned." % spell.resource_path)
 		return
 	_minigame = spell.minigame_scene.instantiate() as Minigame
+	_minigame.accent_color = _get_spell_button(spell).background_color
+	_update_spells_blocked()
 	_control.add_child(_minigame)
 	_minigame.succeed.connect(_on_minigame_finished.bind(true))
 	_minigame.failed.connect(_on_minigame_finished.bind(false))
@@ -267,6 +301,8 @@ func _on_minigame_finished(success: bool) -> void:
 		return
 	print("Spell minigame ", "succeeded" if success else "failed")
 	_player.finish_casting()
+	var button: SpellButton = _get_spell_button(_casting_spell)
+	button.start_cooldown()
 	if _casting_spell is GuardSpell:
 		AudioManager.play_sfx("spell success")
 		_finish_guard_spell(_casting_spell as GuardSpell, success)
@@ -275,9 +311,13 @@ func _on_minigame_finished(success: bool) -> void:
 	_spell_target = null
 	_spell_spread_targets = []
 	_casting_spell = null
-	await get_tree().create_timer(1.0).timeout
+	await _minigame.closed
+	_minigame.hide()
+	if not success:
+		await button.shake()
 	_minigame.queue_free()
 	_minigame = null
+	_update_spells_blocked()
 
 
 func _finish_guard_spell(spell: GuardSpell, success: bool) -> void:

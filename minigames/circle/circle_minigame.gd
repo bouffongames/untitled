@@ -2,7 +2,6 @@ class_name CircleMinigame
 extends Minigame
 
 const WHITE_COLOR: Color = Color.WHITE
-const GREEN_COLOR: Color = Color(0.396, 0.816, 0.38)
 const RED_COLOR: Color = Color(0.82, 0.384, 0.384)
 
 @export var duration: float = 5.0
@@ -159,11 +158,12 @@ func _animate_hide() -> void:
 			Color(Color.WHITE, 0),
 			0.433
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_callback(closed.emit)
 
 
 func _animate_reset() -> void:
 	var tween: Tween = create_tween()
-	var current_inner_color: Color = GREEN_COLOR
+	var current_inner_color: Color = accent_color
 	var current_outer_color: Color = WHITE_COLOR
 	_inner_texture.modulate = Color(current_inner_color, 0)
 	_outer_texture.modulate = Color(current_outer_color, 0)
@@ -194,7 +194,7 @@ func _animate_success() -> void:
 	tween.tween_property(
 			_outer_texture,
 			"modulate",
-			GREEN_COLOR,
+			accent_color,
 			0.133
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(
@@ -214,13 +214,13 @@ func _animate_success() -> void:
 	tween.tween_property(
 			_outer_texture,
 			"modulate",
-			Color(GREEN_COLOR, 0),
+			Color(accent_color, 0),
 			0.433
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).set_delay(0.3)
 	tween.tween_property(
 			_inner_texture,
 			"modulate",
-			Color(GREEN_COLOR, 0),
+			Color(accent_color, 0),
 			0.433
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).set_delay(0.3)
 
