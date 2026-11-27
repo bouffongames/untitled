@@ -14,7 +14,7 @@ config/name="The Witch and the Pig King"
 config/version="1.0.0-alpha+{BUILD_NUMBER}"
 run/main_scene="uid://dcj8i1iuuxwol"
 config/features=PackedStringArray("4.7")
-config/icon="res://icon.svg"
+config/icon="uid://b8xfta1waw3vj"
 
 [autoload]
 
