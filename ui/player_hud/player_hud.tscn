@@ -3,19 +3,28 @@
 [ext_resource type="Script" uid="uid://b1iksigl0pwft" path="res://ui/player_hud/player_hud.gd" id="1_vyppb"]
 [ext_resource type="Script" uid="uid://clpn0lvg7se0v" path="res://ui/player_hud/spell_button.gd" id="2_spell"]
 [ext_resource type="Resource" uid="uid://f8e5av8n7hts" path="res://src/spells/mind_control.tres" id="3_mind"]
+[ext_resource type="Theme" uid="uid://cn0rckn5j2dwh" path="res://ui/menu_theme.tres" id="3_rmjiu"]
 [ext_resource type="Resource" uid="uid://c7os00fr0msos" path="res://src/spells/read_mind.tres" id="4_read"]
 [ext_resource type="Resource" uid="uid://dvptqumcymwni" path="res://src/spells/anger.tres" id="5_anger"]
+[ext_resource type="Texture2D" uid="uid://byjwq0nrrwuq" path="res://assets/vectors/spells/merge_spell.svg" id="6_hbnkv"]
 [ext_resource type="Resource" uid="uid://cfpn5c6xs22x3" path="res://src/spells/merge.tres" id="6_merge"]
 [ext_resource type="PackedScene" uid="uid://cer01ojs6sc10" path="res://ui/player_hud/active_spell_hud.tscn" id="7_active_hud"]
 [ext_resource type="PackedScene" uid="uid://egfl2r0qyg1n" path="res://ui/player_hud/read_mind_hud.tscn" id="8_read_hud"]
 [ext_resource type="PackedScene" uid="uid://71ndh3h0cmnd" path="res://src/actors/player/spread_arrow.tscn" id="9_arrow"]
-[ext_resource type="PackedScene" uid="uid://8gaovlmy1ly" path="res://ui/player_hud/guard_detection_hud.tscn" id="10_8xek4"]
+[ext_resource type="Texture2D" uid="uid://cqnm3voecw7i5" path="res://assets/vectors/spells/mind_read_spell.svg" id="9_ohebb"]
+[ext_resource type="Texture2D" uid="uid://c2bkitm3lytvg" path="res://assets/vectors/eye/closed_eye.svg" id="10_8xek4"]
+[ext_resource type="Texture2D" uid="uid://sesd4k70458l" path="res://assets/vectors/spells/mind_control_spell.svg" id="11_vd2g3"]
+[ext_resource type="Texture2D" uid="uid://bd7fgdme4rbx6" path="res://assets/vectors/spells/inverted_spell_click_mask.svg" id="12_74l5y"]
+[ext_resource type="Texture2D" uid="uid://bkgrg5ugbwnlx" path="res://assets/vectors/spells/spell_click_mask.svg" id="13_hyt24"]
+[ext_resource type="Texture2D" uid="uid://cgyyu120wl1do" path="res://assets/vectors/spells/paranoia_spell.svg" id="13_uqc4p"]
+[ext_resource type="Texture2D" uid="uid://cmk33nqbtbk5b" path="res://assets/vectors/spells/spell_border.svg" id="16_yfus2"]
+[ext_resource type="PackedScene" uid="uid://8gaovlmy1ly" path="res://ui/player_hud/guard_detection_hud.tscn" id="19_aoar4"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_q"]
-keycode = 81
+[sub_resource type="InputEventKey" id="InputEventKey_r"]
+keycode = 82
 
-[sub_resource type="Shortcut" id="Shortcut_q"]
-events = [SubResource("InputEventKey_q")]
+[sub_resource type="Shortcut" id="Shortcut_r"]
+events = [SubResource("InputEventKey_r")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_w"]
 keycode = 87
@@ -23,17 +32,19 @@ keycode = 87
 [sub_resource type="Shortcut" id="Shortcut_w"]
 events = [SubResource("InputEventKey_w")]
 
+[sub_resource type="InputEventKey" id="InputEventKey_q"]
+keycode = 81
+
+[sub_resource type="Shortcut" id="Shortcut_q"]
+events = [SubResource("InputEventKey_q")]
+
+[sub_resource type="BitMap" id="BitMap_74l5y"]
+
 [sub_resource type="InputEventKey" id="InputEventKey_e"]
 keycode = 69
 
 [sub_resource type="Shortcut" id="Shortcut_e"]
 events = [SubResource("InputEventKey_e")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_r"]
-keycode = 82
-
-[sub_resource type="Shortcut" id="Shortcut_r"]
-events = [SubResource("InputEventKey_r")]
 
 [node name="PlayerHUD" type="CanvasLayer" unique_id=923500982]
 process_mode = 3
@@ -49,8 +60,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("3_rmjiu")
 
 [node name="ColorRect" type="ColorRect" parent="Control" unique_id=269087794]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -66,48 +79,13 @@ grow_vertical = 0
 color = Color(0.21435988, 0.21435991, 0.21435988, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/ColorRect" unique_id=1978109061]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="MindControlButton" type="Button" parent="Control/ColorRect/HBoxContainer" unique_id=1516566626]
-unique_name_in_owner = true
-layout_mode = 2
-focus_mode = 0
-shortcut = SubResource("Shortcut_q")
-text = "Mind Control (Q)"
-script = ExtResource("2_spell")
-spell = ExtResource("3_mind")
-
-[node name="ReadMindButton" type="Button" parent="Control/ColorRect/HBoxContainer" unique_id=1609478576]
-unique_name_in_owner = true
-layout_mode = 2
-focus_mode = 0
-shortcut = SubResource("Shortcut_w")
-text = "Read Mind (W)"
-script = ExtResource("2_spell")
-spell = ExtResource("4_read")
-
-[node name="AngerButton" type="Button" parent="Control/ColorRect/HBoxContainer" unique_id=1533299924]
-unique_name_in_owner = true
-layout_mode = 2
-focus_mode = 0
-shortcut = SubResource("Shortcut_e")
-text = "Anger (E)"
-script = ExtResource("2_spell")
-spell = ExtResource("5_anger")
-
-[node name="MergeButton" type="Button" parent="Control/ColorRect/HBoxContainer" unique_id=1223880386]
-unique_name_in_owner = true
-layout_mode = 2
-focus_mode = 0
-shortcut = SubResource("Shortcut_r")
-text = "Merge (R)"
-script = ExtResource("2_spell")
-spell = ExtResource("6_merge")
 
 [node name="ActiveSpellHUD" parent="Control" unique_id=1840562198 instance=ExtResource("7_active_hud")]
 unique_name_in_owner = true
@@ -117,6 +95,96 @@ layout_mode = 1
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="GuardDetectionHud" parent="Control" unique_id=1047256423 instance=ExtResource("10_8xek4")]
+[node name="EyeTexture" type="TextureRect" parent="Control" unique_id=962724470]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -230.0
+offset_right = 64.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("10_8xek4")
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=133127366]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -71
+
+[node name="MergeButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=1475874978]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+shortcut = SubResource("Shortcut_r")
+texture_normal = ExtResource("6_hbnkv")
+script = ExtResource("2_spell")
+spell = ExtResource("6_merge")
+click_mask = ExtResource("13_hyt24")
+
+[node name="ReadMindButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=1754202930]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+shortcut = SubResource("Shortcut_w")
+texture_normal = ExtResource("9_ohebb")
+script = ExtResource("2_spell")
+spell = ExtResource("4_read")
+click_mask = ExtResource("12_74l5y")
+
+[node name="MindControlButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=358388381]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+shortcut = SubResource("Shortcut_q")
+texture_normal = ExtResource("11_vd2g3")
+texture_click_mask = SubResource("BitMap_74l5y")
+script = ExtResource("2_spell")
+spell = ExtResource("3_mind")
+click_mask = ExtResource("13_hyt24")
+
+[node name="AngerButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=1725647837]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+shortcut = SubResource("Shortcut_e")
+texture_normal = ExtResource("13_uqc4p")
+script = ExtResource("2_spell")
+spell = ExtResource("5_anger")
+click_mask = ExtResource("12_74l5y")
+
+[node name="SpellBorderTexture" type="TextureRect" parent="Control" unique_id=904510249]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -243.0
+offset_top = -99.0
+offset_right = 241.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("16_yfus2")
+stretch_mode = 5
+
+[node name="GuardDetectionHud" parent="Control" unique_id=1047256423 instance=ExtResource("19_aoar4")]
 unique_name_in_owner = true
 layout_mode = 1

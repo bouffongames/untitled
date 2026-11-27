@@ -127,25 +127,25 @@ func disable_spells() -> void:
 	# guard is blocking the spells
 	for button: SpellButton in _spell_buttons:
 		var spell_name: String = button.spell.display_name.to_lower()
-		button.disabled = true
+		button.set_disable(true)
 		if spell_name == "merge":
-			button.disabled = false
+			button.set_disable(false)
 
 
 func enable_spells(except_spell_name: String = "") -> void:
 	for button: SpellButton in _spell_buttons:
 		var spell_name: String = button.spell.display_name.to_lower()
 		if spell_name == except_spell_name:
-			button.disabled = true
+			button.set_disable(true)
 			continue
 		
 		if (Global.game.merge_spell_learned and spell_name == "merge") \
 			or (Global.game.mind_control_spell_learned and spell_name == "mind control") \
 			or (Global.game.anger_spell_learned and spell_name == "anger") \
 			or spell_name == "read mind":
-			button.disabled = false
+			button.set_disable(false)
 		else:
-			button.disabled = true
+			button.set_disable(true)
 
 
 func _start_aiming(spell: GuardSpell) -> void:
