@@ -5,6 +5,11 @@ extends Control
 signal failed
 @warning_ignore("unused_signal")
 signal succeed
+@warning_ignore("unused_signal")
+signal closed
+
+## Main color of the minigame. The HUD sets it to the background color of the spell's button.
+@export var accent_color: Color = Color(0.396, 0.816, 0.38)
 
 
 @abstract func reset() -> void

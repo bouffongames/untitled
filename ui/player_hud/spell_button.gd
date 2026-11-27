@@ -17,7 +17,22 @@ const DISABLED_COLOR: Color = Color(0.45, 0.45, 0.45)
 ## Font, size, color and outline of the seconds left shown while the spell cools down.
 @export var cooldown_label_settings: LabelSettings
 
+@export_group("Selected")
+## Size the button grows to while its spell is being aimed. 1.15 means 15% bigger.
+@export var selected_scale: float = 1.15
+@export var selected_tween_duration: float = 0.15
+
+@export_group("Fail Shake")
+## How far the button moves sideways while shaking after a failed minigame, in pixels.
+@export var fail_shake_strength: float = 8.0
+@export var fail_shake_duration: float = 0.4
+## How many times the button moves back and forth while shaking.
+@export var fail_shake_count: int = 4
+
 var _locked: bool = false
+var _blocked: bool = false
+var _selected_tween: Tween
+var _shake_tween: Tween
 var _cooldown_left: float = 0.0
 var _background: TextureProgressBar
 var _background_start: float = 0.0
@@ -76,6 +91,34 @@ func _ready() -> void:
 		#text += " (%s)" % shortcut.get_as_text()
 
 
+func set_selected(selected: bool) -> void:
+	if _selected_tween != null and _selected_tween.is_valid():
+		_selected_tween.kill()
+	if selected:
+		z_index = 1
+	_selected_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	_selected_tween.tween_property(
+			self,
+			"offset_transform_scale",
+			Vector2.ONE * (selected_scale if selected else 1.0),
+			selected_tween_duration
+	).set_trans(Tween.TRANS_BACK if selected else Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	if not selected:
+		_selected_tween.tween_callback(set.bind("z_index", 0))
+
+
+func shake() -> void:
+	if _shake_tween != null and _shake_tween.is_valid():
+		_shake_tween.kill()
+	_shake_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	_shake_tween.tween_method(_apply_shake, 0.0, 1.0, fail_shake_duration)
+	await _shake_tween.finished
+
+
+func _apply_shake(progress: float) -> void:
+	offset_transform_position.x = sin(progress * TAU * fail_shake_count) * fail_shake_strength * (1.0 - progress)
+
+
 func _process(delta: float) -> void:
 	_cooldown_left = maxf(_cooldown_left - delta, 0.0)
 	_update_cooldown()
@@ -83,6 +126,11 @@ func _process(delta: float) -> void:
 
 func set_disable(value: bool) -> void:
 	_locked = value
+	_update_cooldown()
+
+
+func set_blocked(value: bool) -> void:
+	_blocked = value
 	_update_cooldown()
 
 
@@ -106,14 +154,14 @@ func get_cooldown_progress() -> float:
 
 
 func _update_cooldown() -> void:
-	disabled = _locked or is_on_cooldown()
+	disabled = _locked or _blocked or is_on_cooldown()
 	set_process(is_on_cooldown())
 	if _cooldown_label != null:
 		_cooldown_label.visible = is_on_cooldown()
 		_cooldown_label.text = str(ceili(_cooldown_left))
 	if _background != null:
 		_background.value = _background_start + _background_span * get_cooldown_progress()
-		_background.self_modulate = DISABLED_COLOR if _locked else Color.WHITE
+		_background.self_modulate = DISABLED_COLOR if _locked or (_blocked and not is_on_cooldown()) else Color.WHITE
 	_update()
 
 

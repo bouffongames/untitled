@@ -56,6 +56,13 @@ _dial_parent = NodePath("PipsMask/Pips")
 _dial_pip_texture = ExtResource("2_65qpx")
 _pip_textures = Array[DPITexture]([ExtResource("4_tbljk"), ExtResource("5_2ynar"), ExtResource("6_n7r2b"), ExtResource("7_8ww1v"), ExtResource("8_ae6nn"), ExtResource("10_6akol"), ExtResource("4_2ynar"), ExtResource("12_olvau"), ExtResource("14_akw22"), ExtResource("15_lowpq"), ExtResource("17_pljjf"), ExtResource("18_6lvhs")])
 
+[node name="Background" type="ColorRect" parent="." unique_id=1663756714]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6)
+
 [node name="PipsMask" type="Control" parent="." unique_id=1296315938]
 clip_children = 1
 clip_contents = true

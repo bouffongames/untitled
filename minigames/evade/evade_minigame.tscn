@@ -62,6 +62,13 @@ obstacles = Array[ExtResource("2_qvupv")]([SubResource("Resource_k4nyy"), SubRes
 _progress_bar = NodePath("ProgressBar")
 _time_limit_progress_bar = NodePath("TimeLimitProgressBar")
 
+[node name="Background" type="ColorRect" parent="." unique_id=625593556]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6)
+
 [node name="InputTexture" type="TextureRect" parent="." unique_id=962802610]
 layout_mode = 1
 anchors_preset = 8
