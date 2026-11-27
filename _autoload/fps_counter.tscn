@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="2_51ako"]
 
 [node name="FPSCounter" type="CanvasLayer" unique_id=1290143388 node_paths=PackedStringArray("label")]
+layer = 98
 script = ExtResource("1_s20nj")
 label = NodePath("MarginContainer/Label")
 
