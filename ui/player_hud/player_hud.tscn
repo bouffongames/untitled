@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cer01ojs6sc10" path="res://ui/player_hud/active_spell_hud.tscn" id="7_active_hud"]
 [ext_resource type="PackedScene" uid="uid://egfl2r0qyg1n" path="res://ui/player_hud/read_mind_hud.tscn" id="8_read_hud"]
 [ext_resource type="PackedScene" uid="uid://71ndh3h0cmnd" path="res://src/actors/player/spread_arrow.tscn" id="9_arrow"]
+[ext_resource type="PackedScene" uid="uid://8gaovlmy1ly" path="res://ui/player_hud/guard_detection_hud.tscn" id="10_8xek4"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_q"]
 keycode = 81
@@ -113,5 +114,9 @@ unique_name_in_owner = true
 layout_mode = 1
 
 [node name="ReadMindHUD" parent="Control" unique_id=1840562207 instance=ExtResource("8_read_hud")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="GuardDetectionHud" parent="Control" unique_id=1047256423 instance=ExtResource("10_8xek4")]
 unique_name_in_owner = true
 layout_mode = 1
