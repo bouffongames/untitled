@@ -1,29 +1,36 @@
 [gd_scene format=3 uid="uid://cgyopjxyixneo"]
 
 [ext_resource type="Script" uid="uid://ct15jyyh5yvj8" path="res://_autoload/menu.gd" id="1_bxvrb"]
-[ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="2_ighfc"]
+[ext_resource type="Theme" uid="uid://cn0rckn5j2dwh" path="res://ui/menu_theme.tres" id="2_ayqse"]
 [ext_resource type="PackedScene" uid="uid://cnnt08qldu1nf" path="res://ui/options.tscn" id="2_tickj"]
+[ext_resource type="Shader" uid="uid://ckvountsdo2ir" path="res://shaders/blur.gdshader" id="3_ayqse"]
+[ext_resource type="Texture2D" uid="uid://b8xfta1waw3vj" path="res://assets/vectors/the_witch_UI_logo.svg" id="4_m5mp6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ighfc"]
+shader = ExtResource("3_ayqse")
+shader_parameter/blur_amount = 1.5000000712500001
 
 [node name="Menu" type="CanvasLayer" unique_id=1980467688 node_paths=PackedStringArray("resume_game_menu_button", "restart_level_menu_button", "options_menu_button", "return_to_main_menu_button", "back_button", "options_menu")]
 layer = 10
 script = ExtResource("1_bxvrb")
-resume_game_menu_button = NodePath("Control/MarginContainer/VBoxContainer/VBoxContainer/ResumeGameMenuButton")
-restart_level_menu_button = NodePath("Control/MarginContainer/VBoxContainer/VBoxContainer/RestartLevelMenuButton")
-options_menu_button = NodePath("Control/MarginContainer/VBoxContainer/VBoxContainer/OptionsMenuButton")
-return_to_main_menu_button = NodePath("Control/MarginContainer/VBoxContainer/VBoxContainer/ReturnToMainMenuButton")
-back_button = NodePath("Control/MarginContainer/VBoxContainer/BackButton")
-options_menu = NodePath("Control/MarginContainer/VBoxContainer/OptionsMenu")
+resume_game_menu_button = NodePath("Menu/VBoxContainer/VBoxContainer/ResumeGameMenuButton")
+restart_level_menu_button = NodePath("Menu/VBoxContainer/VBoxContainer/RestartLevelMenuButton")
+options_menu_button = NodePath("Menu/VBoxContainer/VBoxContainer/OptionsMenuButton")
+return_to_main_menu_button = NodePath("Menu/VBoxContainer/VBoxContainer/ReturnToMainMenuButton")
+back_button = NodePath("Menu/VBoxContainer/BackButton")
+options_menu = NodePath("Menu/VBoxContainer/OptionsMenu")
 
-[node name="Control" type="Control" parent="." unique_id=1903534975]
+[node name="Menu" type="Control" parent="." unique_id=1903534975]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_ighfc")
+theme = ExtResource("2_ayqse")
 
-[node name="ColorRect" type="ColorRect" parent="Control" unique_id=486860872]
+[node name="ColorRect" type="ColorRect" parent="Menu" unique_id=486860872]
+material = SubResource("ShaderMaterial_ighfc")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,53 +40,67 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.7764706)
 
-[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=360692389]
-custom_minimum_size = Vector2(0, 180)
+[node name="LogoTexture" type="TextureRect" parent="Menu" unique_id=1997958581]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -90.0
-offset_right = 200.0
-offset_bottom = 90.0
+offset_left = -216.0
+offset_top = -265.0
+offset_right = 168.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_m5mp6")
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu" unique_id=1049850135]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 36.0
+offset_right = 192.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/VBoxContainer" unique_id=1091362025]
+layout_mode = 2
+
+[node name="ResumeGameMenuButton" type="Button" parent="Menu/VBoxContainer/VBoxContainer" unique_id=1086945809]
+layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_right = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=1049850135]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=1091362025]
-layout_mode = 2
-
-[node name="ResumeGameMenuButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1086945809]
-layout_mode = 2
 text = "Resume"
 
-[node name="RestartLevelMenuButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=170270822]
+[node name="RestartLevelMenuButton" type="Button" parent="Menu/VBoxContainer/VBoxContainer" unique_id=170270822]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Restart level"
 
-[node name="OptionsMenuButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1625029114]
+[node name="OptionsMenuButton" type="Button" parent="Menu/VBoxContainer/VBoxContainer" unique_id=1625029114]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Options"
 
-[node name="ReturnToMainMenuButton" type="Button" parent="Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=918656008]
+[node name="ReturnToMainMenuButton" type="Button" parent="Menu/VBoxContainer/VBoxContainer" unique_id=918656008]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Return to main menu"
 
-[node name="OptionsMenu" parent="Control/MarginContainer/VBoxContainer" unique_id=2083225805 instance=ExtResource("2_tickj")]
+[node name="OptionsMenu" parent="Menu/VBoxContainer" unique_id=2083225805 instance=ExtResource("2_tickj")]
 visible = false
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="Control/MarginContainer/VBoxContainer" unique_id=1688089533]
+[node name="BackButton" type="Button" parent="Menu/VBoxContainer" unique_id=1688089533]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Back"
