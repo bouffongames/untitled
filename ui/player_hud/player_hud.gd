@@ -260,6 +260,7 @@ func _on_minigame_finished(success: bool) -> void:
 	print("Spell minigame ", "succeeded" if success else "failed")
 	_player.finish_casting()
 	if _casting_spell is GuardSpell:
+		AudioManager.play_sfx("spell success")
 		_finish_guard_spell(_casting_spell as GuardSpell, success)
 	elif _casting_spell is SelfSpell:
 		_finish_self_spell(_casting_spell as SelfSpell, success)

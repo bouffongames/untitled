@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://m1o2leelubn7" path="res://src/actors/player/player.gd" id="1_1x8di"]
 [ext_resource type="PackedScene" uid="uid://mwravk8e3ie4" path="res://src/actors/player/cat_witch_skin.tscn" id="2_hod3v"]
 [ext_resource type="PackedScene" uid="uid://bjqdo8ql7afc7" path="res://ui/player_hud/player_hud.tscn" id="3_u8v1j"]
+[ext_resource type="AudioStream" uid="uid://cxoudhyr87g3f" path="res://assets/sfx/the_witch_sfx_walk.wav" id="4_6llfm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_og1q0"]
 radius = 0.4
@@ -47,6 +48,11 @@ albedo_color = Color(0.3, 1, 0.3, 0.225)
 material = SubResource("StandardMaterial3D_spread_fill")
 height = 0.01
 rings = 0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4kxuq"]
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("4_6llfm")
 
 [node name="Player" type="Node3D" unique_id=606182360 node_paths=PackedStringArray("hud", "_character_skin", "_navigation_agent", "_collision_object") groups=["Player"]]
 script = ExtResource("1_1x8di")
@@ -104,3 +110,10 @@ _idle_color = Color(0.4117647, 1, 1, 0.6)
 [node name="MergeTimer" type="Timer" parent="." unique_id=1840562231]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1815732968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5757513, 0)
+current = true
+
+[node name="Steps" type="AudioStreamPlayer3D" parent="." unique_id=1200836878]
+stream = SubResource("AudioStreamRandomizer_4kxuq")

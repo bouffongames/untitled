@@ -73,6 +73,7 @@ func _on_scene_restarting() -> void:
 
 
 func _on_door_interacted() -> void:
+	AudioManager.play_sfx("wood_door_next_level")
 	Global.scene.change(Const.SCENE_LEVEL_02)
 
 

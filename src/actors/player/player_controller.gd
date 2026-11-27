@@ -124,6 +124,7 @@ func _handle_movement(event: InputEvent) -> bool:
 		print("Didn't click the ground")
 	else:
 		print("Clicked the ground at ", result.position)
+		AudioManager.play_ui("move_click", -8.0)
 		@warning_ignore("unsafe_call_argument")
 		_spawn_click_particle(result.position)
 

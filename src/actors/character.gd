@@ -110,7 +110,7 @@ func _update_movement(delta: float) -> void:
 		step = distance_to_next_position
 
 	global_position += direction * step
-
+	
 	if direction.length() > 0.01:
 		_face_direction(direction)
 

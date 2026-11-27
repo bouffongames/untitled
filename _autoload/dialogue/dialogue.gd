@@ -5,6 +5,8 @@ signal _typing_finished
 signal dialogue_ended
 signal dialogue_signal(value: String)
 
+@onready var blip: AudioStreamPlayer2D = $Blip
+
 @export var text_speed_multiplier: float = 1.0
 
 @export var _speaker_label: Label
@@ -104,6 +106,9 @@ func _type_characters(text: String) -> void:
 		if _interrupt:
 			break
 		_text_label.visible_characters = i + 1
+		if i % 5  == 0 and not blip.playing:
+			blip.play()
+		blip.play()
 		var wait_time: float = normal_delay
 		if text[i] in [".", ",", "!", "?", ";", ":", "~", "(", ")", "*"]:
 			wait_time = punctuation_delay

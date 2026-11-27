@@ -2,15 +2,33 @@
 
 [ext_resource type="Script" uid="uid://8qxbds6vjmgv" path="res://_autoload/audio_manager.gd" id="1_ttvpj"]
 [ext_resource type="AudioStream" uid="uid://bdrqp2f1komg8" path="res://assets/music/the_witch_music_theme.ogg" id="2_8stsb"]
+[ext_resource type="AudioStream" uid="uid://bqhxd0vx4xqqe" path="res://assets/sfx/the_witch_sfx_open_metal_door.wav" id="2_k1njh"]
 [ext_resource type="AudioStream" uid="uid://dbci1sx540rx3" path="res://assets/sfx/the_witch_UI_start_stinger.wav" id="3_u40qb"]
+[ext_resource type="AudioStream" uid="uid://d2m0qacrb2yei" path="res://assets/sfx/the_witch_sfx_open_wood_door_next_level.wav" id="3_x0xga"]
 [ext_resource type="AudioStream" uid="uid://dr6fjtvu1t6tr" path="res://assets/sfx/the_witch_UI_hover.wav" id="4_4l6d1"]
+[ext_resource type="AudioStream" uid="uid://ctsugxornubj" path="res://assets/sfx/the_witch_sfx_witch_step1.wav" id="4_xk672"]
+[ext_resource type="AudioStream" uid="uid://q4mm5x7xm8p0" path="res://assets/sfx/the_witch_UI_validate.wav" id="5_avxdq"]
+[ext_resource type="AudioStream" uid="uid://juemigqc3l4f" path="res://assets/sfx/the_witch_sfx_read_mind_success.wav" id="5_vm143"]
+[ext_resource type="AudioStream" uid="uid://6ce1xryve380" path="res://assets/sfx/the_witch_UI_esc.wav" id="6_gv0l6"]
+[ext_resource type="AudioStream" uid="uid://dth11jtu74ds7" path="res://assets/sfx/the_witch_sfx_movement_click.wav" id="7_gv0l6"]
+[ext_resource type="AudioStream" uid="uid://5hc8sokaigio" path="res://assets/sfx/the_witch_sfx_minigame_circle_step_success.wav" id="11_3gghr"]
 
 [node name="AudioManager" type="Node2D" unique_id=1475408820]
 script = ExtResource("1_ttvpj")
+sfx_library = Dictionary[String, AudioStream]({
+"guard_step": ExtResource("4_xk672"),
+"open_metal_door": ExtResource("2_k1njh"),
+"spell_success": ExtResource("5_vm143"),
+"wood_door_next_level": ExtResource("3_x0xga")
+})
 music_library = Dictionary[String, AudioStream]({
 "theme": ExtResource("2_8stsb")
 })
 ui_library = Dictionary[String, AudioStream]({
+"esc": ExtResource("6_gv0l6"),
 "hover": ExtResource("4_4l6d1"),
-"start_stinger": ExtResource("3_u40qb")
+"minigame_circle_step_success": ExtResource("11_3gghr"),
+"move_click": ExtResource("7_gv0l6"),
+"start_stinger": ExtResource("3_u40qb"),
+"validate": ExtResource("5_avxdq")
 })

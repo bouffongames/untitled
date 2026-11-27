@@ -393,7 +393,7 @@ script = ExtResource("24_owqi3")
 _body = NodePath("StaticBody3D")
 _navigation_region = NodePath("../..")
 
-[node name="door_gate" parent="NavigationRegion3D/Objects/DoorGate" index="0" unique_id=643566056]
+[node name="door_gate" parent="NavigationRegion3D/Objects/DoorGate" index="0" unique_id=1479359491]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
 
 [node name="StaticBody3D" parent="NavigationRegion3D/Objects/DoorGate" index="1" unique_id=1215096006]
@@ -517,7 +517,7 @@ transform = Transform3D(0.9979803, 0.06257694, 0.010927665, -0.06332877, 0.96660
 [node name="crate_gltf" parent="NavigationRegion3D/Decorations" unique_id=881540509 instance=ExtResource("55_4vvpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.909088, 0, 12.742737)
 
-[node name="crate" parent="NavigationRegion3D/Decorations/crate_gltf" index="0" unique_id=269847566]
+[node name="crate" parent="NavigationRegion3D/Decorations/crate_gltf" index="0" unique_id=1191946455]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
 
 [node name="crateDark_gltf" parent="NavigationRegion3D/Decorations" unique_id=1850862491 instance=ExtResource("56_263vh")]

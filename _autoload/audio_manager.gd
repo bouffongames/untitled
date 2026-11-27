@@ -58,7 +58,12 @@ func _on_node_added(node: Node) -> void:
 		button.mouse_entered.connect(
 			func() -> void:
 				if not button.disabled:
-					play_ui("hover", -6.0)
+					play_ui("hover", -7.0)
+		)
+		button.pressed.connect(
+			func() -> void:
+				if not button.disabled:
+					play_ui("validate", -4.0)
 		)
 
 
@@ -134,9 +139,9 @@ func play_ambient_loop(key: String, min_pitch: float = 1.0 - pitch_variation_per
 			player.play()
 			return
 
-func play_random_step() -> void:
-	var steps = ["step1", "step2", "step3"]
-	play_sfx(steps.pick_random())
+## func play_random_step() -> void:
+##	var steps = ["witch_step1", "witch_step2", "witch_step3", "witch_step3"]
+## 	play_sfx(steps.pick_random())
 
 func update_bus_volume(index: int, value: float) -> void:
 	AudioServer.set_bus_volume_db(index, linear_to_db(value))

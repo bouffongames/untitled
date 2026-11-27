@@ -16,6 +16,10 @@ enum States {
 signal mind_control_ended
 signal player_caught
 
+var _last_step_index: int = 0
+
+@onready var guard_steps: AudioStreamPlayer3D = $GuardSteps
+
 @export var sleep: bool
 @export var player: Player
 
@@ -206,6 +210,12 @@ func _update_visual_bob(active: bool) -> void:
 		bob_time += delta * bob_frequency
 		target_y += absf(sin(bob_time)) * bob_height
 		target_lean = sin(bob_time) * lean_amount
+		
+		var step_index: int = int(bob_time / PI)
+		if step_index != _last_step_index:
+			_last_step_index = step_index
+			guard_steps.play()
+		
 	else:
 		bob_time = 0.0
 

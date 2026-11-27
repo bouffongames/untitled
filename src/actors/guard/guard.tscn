@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://b5hvr4v56puru" path="res://src/actors/guard/guard.gd" id="1_fwpfe"]
 [ext_resource type="Texture2D" uid="uid://dcuihs6i5rhqr" path="res://src/sprites/alert_icon.png" id="2_7eg61"]
 [ext_resource type="PackedScene" uid="uid://cq1p48ao6jkuj" path="res://assets/characters/guard.gltf" id="2_co8qj"]
-[ext_resource type="AudioStream" uid="uid://dmvdi57my3035" path="res://src/sounds/bleep.wav" id="3_6ewyv"]
+[ext_resource type="AudioStream" uid="uid://pgx1uukagc21" path="res://assets/sfx/the_witch_sfx_detected.wav" id="4_rxtwr"]
 [ext_resource type="PackedScene" uid="uid://cmpxkabyjy3gv" path="res://vfx/dust_trail/dust_trail_particles.tscn" id="5_5pxcb"]
+[ext_resource type="AudioStream" uid="uid://c4ppsxggynurd" path="res://assets/sfx/the_witch_sfx_guard_step1.wav" id="6_rxtwr"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cyf0t"]
 
@@ -15,6 +16,11 @@ albedo_color = Color(1, 0, 0, 1)
 size = Vector3(0.54626465, 0.2442627, 0.3914795)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cyf0t"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4kxuq"]
+random_pitch = 1.1201304
+streams_count = 1
+stream_0/stream = ExtResource("6_rxtwr")
 
 [node name="Guard" type="CharacterBody3D" unique_id=1592633665 node_paths=PackedStringArray("visual_pivot") groups=["Guard"]]
 collision_layer = 32
@@ -82,7 +88,12 @@ texture = ExtResource("2_7eg61")
 
 [node name="AlertSound" type="AudioStreamPlayer" parent="." unique_id=1171141708]
 unique_name_in_owner = true
-stream = ExtResource("3_6ewyv")
+stream = ExtResource("4_rxtwr")
 
 [node name="DustTrailParticles" parent="." unique_id=2005103538 instance=ExtResource("5_5pxcb")]
 transform = Transform3D(0.938493, 0, 0.3452982, 0, 1, 0, -0.3452982, 0, 0.938493, 0, 0.3, 0)
+
+[node name="GuardSteps" type="AudioStreamPlayer3D" parent="." unique_id=1889369308]
+stream = SubResource("AudioStreamRandomizer_4kxuq")
+volume_db = -12.0
+max_distance = 14.0

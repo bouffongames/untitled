@@ -72,6 +72,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_is_moving = false
 		if _is_in_window():
 			_current_stage += 1
+			AudioManager.play_ui("minigame_circle_step_success")
 			_animate_success()
 
 			if _current_stage >= stage_scale_ranges.size():

@@ -32,12 +32,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = -247.0
-offset_right = 192.0
-offset_bottom = 5.0
+offset_left = -216.0
+offset_top = -265.0
+offset_right = 168.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_lquwl")
 stretch_mode = 3
 
@@ -52,9 +53,11 @@ offset_right = 192.0
 offset_bottom = 480.0
 grow_horizontal = 2
 size_flags_vertical = 4
+theme_override_constants/separation = 4
 
 [node name="MainMenuContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=136374453]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="PlayMenuButton" type="Button" parent="VBoxContainer/MainMenuContainer" unique_id=1515677787]
 layout_mode = 2

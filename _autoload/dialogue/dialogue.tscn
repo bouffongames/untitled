@@ -3,6 +3,20 @@
 [ext_resource type="Script" uid="uid://dtbhdkr2v56rl" path="res://_autoload/dialogue/dialogue.gd" id="1_hstrk"]
 [ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="2_cji0o"]
 [ext_resource type="Texture2D" uid="uid://duhqlv5ttqdxg" path="res://_autoload/dialogue/arrow.svg" id="2_d4idm"]
+[ext_resource type="AudioStream" uid="uid://cfy81g226dg6t" path="res://assets/sfx/the_witch_sfx_guard_talk1.wav" id="4_npk7x"]
+[ext_resource type="AudioStream" uid="uid://cav2btnecwrq3" path="res://assets/sfx/the_witch_sfx_guard_talk2.wav" id="5_i1pto"]
+[ext_resource type="AudioStream" uid="uid://qqqdrqgqonum" path="res://assets/sfx/the_witch_sfx_guard_talk3.wav" id="6_tdwrk"]
+[ext_resource type="AudioStream" uid="uid://dh7ntucy6eiv6" path="res://assets/sfx/the_witch_sfx_guard_talk4.wav" id="7_fhw26"]
+[ext_resource type="AudioStream" uid="uid://cihgvknwhhf1q" path="res://assets/sfx/the_witch_sfx_guard_talk5.wav" id="8_y1np6"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4kxuq"]
+random_pitch = 1.0899409
+streams_count = 6
+stream_0/stream = ExtResource("4_npk7x")
+stream_1/stream = ExtResource("5_i1pto")
+stream_2/stream = ExtResource("6_tdwrk")
+stream_3/stream = ExtResource("7_fhw26")
+stream_4/stream = ExtResource("8_y1np6")
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1432498365 node_paths=PackedStringArray("_speaker_label", "_text_label", "_response_container", "_continue_container", "_continue_arrow")]
 layer = 9
@@ -93,3 +107,8 @@ custom_maximum_size = Vector2(12, 12)
 layout_mode = 2
 texture = ExtResource("2_d4idm")
 stretch_mode = 5
+
+[node name="Blip" type="AudioStreamPlayer2D" parent="." unique_id=1368822954]
+stream = SubResource("AudioStreamRandomizer_4kxuq")
+volume_db = -2.0
+bus = &"SFX"
