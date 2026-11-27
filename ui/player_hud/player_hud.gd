@@ -102,6 +102,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_spell_button_pressed(spell: Spell) -> void:
 	if _minigame != null or _player.get_mind_controlled_guard() != null or _player.is_merged():
 		return
+	if _get_spell_button(spell).is_on_cooldown():
+		return
 	_stop_aiming()
 	if spell is GuardSpell:
 		_start_aiming(spell as GuardSpell)
@@ -146,6 +148,13 @@ func enable_spells(except_spell_name: String = "") -> void:
 			button.set_disable(false)
 		else:
 			button.set_disable(true)
+
+
+func _get_spell_button(spell: Spell) -> SpellButton:
+	for button: SpellButton in _spell_buttons:
+		if button.spell == spell:
+			return button
+	return null
 
 
 func _start_aiming(spell: GuardSpell) -> void:
@@ -267,6 +276,7 @@ func _on_minigame_finished(success: bool) -> void:
 		return
 	print("Spell minigame ", "succeeded" if success else "failed")
 	_player.finish_casting()
+	_get_spell_button(_casting_spell).start_cooldown()
 	if _casting_spell is GuardSpell:
 		AudioManager.play_sfx("spell success")
 		_finish_guard_spell(_casting_spell as GuardSpell, success)

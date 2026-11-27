@@ -13,10 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://71ndh3h0cmnd" path="res://src/actors/player/spread_arrow.tscn" id="9_arrow"]
 [ext_resource type="Texture2D" uid="uid://cqnm3voecw7i5" path="res://assets/vectors/spells/mind_read_spell.svg" id="9_ohebb"]
 [ext_resource type="Texture2D" uid="uid://c2bkitm3lytvg" path="res://assets/vectors/eye/closed_eye.svg" id="10_8xek4"]
+[ext_resource type="Texture2D" uid="uid://4yir8cpreqp8" path="res://assets/vectors/spells/spell_background.svg" id="11_o6l3t"]
 [ext_resource type="Texture2D" uid="uid://sesd4k70458l" path="res://assets/vectors/spells/mind_control_spell.svg" id="11_vd2g3"]
 [ext_resource type="Texture2D" uid="uid://bd7fgdme4rbx6" path="res://assets/vectors/spells/inverted_spell_click_mask.svg" id="12_74l5y"]
+[ext_resource type="LabelSettings" uid="uid://bcn71y8refyu4" path="res://ui/player_hud/cooldown_label_settings.tres" id="12_666g4"]
 [ext_resource type="Texture2D" uid="uid://bkgrg5ugbwnlx" path="res://assets/vectors/spells/spell_click_mask.svg" id="13_hyt24"]
 [ext_resource type="Texture2D" uid="uid://cgyyu120wl1do" path="res://assets/vectors/spells/paranoia_spell.svg" id="13_uqc4p"]
+[ext_resource type="Texture2D" uid="uid://c6yntiba6sjxl" path="res://assets/vectors/spells/inverted_spell_background.svg" id="15_666g4"]
 [ext_resource type="Texture2D" uid="uid://cmk33nqbtbk5b" path="res://assets/vectors/spells/spell_border.svg" id="16_yfus2"]
 [ext_resource type="PackedScene" uid="uid://8gaovlmy1ly" path="res://ui/player_hud/guard_detection_hud.tscn" id="19_aoar4"]
 
@@ -136,6 +139,8 @@ texture_normal = ExtResource("6_hbnkv")
 script = ExtResource("2_spell")
 spell = ExtResource("6_merge")
 click_mask = ExtResource("13_hyt24")
+background_texture = ExtResource("11_o6l3t")
+cooldown_label_settings = ExtResource("12_666g4")
 
 [node name="ReadMindButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=1754202930]
 unique_name_in_owner = true
@@ -146,6 +151,10 @@ texture_normal = ExtResource("9_ohebb")
 script = ExtResource("2_spell")
 spell = ExtResource("4_read")
 click_mask = ExtResource("12_74l5y")
+background_texture = ExtResource("15_666g4")
+background_color = Color(0.84313726, 0.7647059, 0, 0.8509804)
+background_fills_downward = true
+cooldown_label_settings = ExtResource("12_666g4")
 
 [node name="MindControlButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=358388381]
 unique_name_in_owner = true
@@ -157,6 +166,9 @@ texture_click_mask = SubResource("BitMap_74l5y")
 script = ExtResource("2_spell")
 spell = ExtResource("3_mind")
 click_mask = ExtResource("13_hyt24")
+background_texture = ExtResource("11_o6l3t")
+background_color = Color(0.16078432, 0.85882354, 0.24313726, 0.8509804)
+cooldown_label_settings = ExtResource("12_666g4")
 
 [node name="AngerButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=1725647837]
 unique_name_in_owner = true
@@ -167,6 +179,10 @@ texture_normal = ExtResource("13_uqc4p")
 script = ExtResource("2_spell")
 spell = ExtResource("5_anger")
 click_mask = ExtResource("12_74l5y")
+background_texture = ExtResource("15_666g4")
+background_color = Color(0.85882354, 0.05490196, 0.22352941, 0.8509804)
+background_fills_downward = true
+cooldown_label_settings = ExtResource("12_666g4")
 
 [node name="SpellBorderTexture" type="TextureRect" parent="Control" unique_id=904510249]
 layout_mode = 1
