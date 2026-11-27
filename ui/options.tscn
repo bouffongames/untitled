@@ -33,14 +33,17 @@ layout_mode = 2
 
 [node name="GameplayMenuButton" type="Button" parent="OptionsMenuContainer" unique_id=1489226727]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Gameplay"
 
 [node name="DisplayMenuButton" type="Button" parent="OptionsMenuContainer" unique_id=2048892653]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Display"
 
 [node name="AudioMenuButton" type="Button" parent="OptionsMenuContainer" unique_id=1170752938]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Audio"
 
 [node name="GameplayMenu" parent="." unique_id=27677380 instance=ExtResource("3_bnx2y")]
@@ -60,4 +63,5 @@ size_flags_vertical = 3
 [node name="BackButton" type="Button" parent="." unique_id=688415665]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Back"

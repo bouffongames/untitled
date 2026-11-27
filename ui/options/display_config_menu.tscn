@@ -110,4 +110,5 @@ title = "max fps"
 
 [node name="ResetAllButton" type="Button" parent="." unique_id=473693551]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Reset All"

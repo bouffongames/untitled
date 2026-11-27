@@ -48,4 +48,5 @@ title = "sfx"
 
 [node name="ResetAllButton" type="Button" parent="." unique_id=807598856]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Reset All"

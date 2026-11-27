@@ -23,3 +23,4 @@ DisabledLabel/base_type = &"Label"
 DisabledLabel/colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0.5019608)
 DisabledLabel/font_sizes/font_size = 20
 Label/font_sizes/font_size = 20
+VBoxContainer/constants/separation = 8

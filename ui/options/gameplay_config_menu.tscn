@@ -31,4 +31,5 @@ title = "show fps counter"
 
 [node name="ResetAllButton" type="Button" parent="." unique_id=242446803]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Reset All"

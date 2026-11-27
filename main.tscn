@@ -25,7 +25,7 @@ back_button = NodePath("VBoxContainer/BackButton")
 options_menu = NodePath("VBoxContainer/OptionsMenu")
 credits = NodePath("Credits")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=519348441]
+[node name="LogoTexture" type="TextureRect" parent="." unique_id=519348441]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -53,29 +53,31 @@ offset_right = 192.0
 offset_bottom = 480.0
 grow_horizontal = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 4
 
 [node name="MainMenuContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=136374453]
 layout_mode = 2
-theme_override_constants/separation = 8
 
 [node name="PlayMenuButton" type="Button" parent="VBoxContainer/MainMenuContainer" unique_id=1515677787]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_type_variation = &"MainMenuButton"
 text = "Play"
 
 [node name="OptionsMenuButton" type="Button" parent="VBoxContainer/MainMenuContainer" unique_id=2128485731]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_type_variation = &"MainMenuButton"
 text = "Options"
 
 [node name="CreditsMenuButton" type="Button" parent="VBoxContainer/MainMenuContainer" unique_id=749066692]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_type_variation = &"MainMenuButton"
 text = "Credits"
 
 [node name="ExitMenuButton" type="Button" parent="VBoxContainer/MainMenuContainer" unique_id=1563592612]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_type_variation = &"MainMenuButton"
 text = "Exit"
 
@@ -86,6 +88,7 @@ layout_mode = 2
 [node name="BackButton" type="Button" parent="VBoxContainer" unique_id=688415665]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 4
 theme_type_variation = &"MainMenuButton"
 text = "Back"
 
