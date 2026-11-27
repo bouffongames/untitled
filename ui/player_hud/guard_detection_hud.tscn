@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://8gaovlmy1ly"]
+
+[ext_resource type="Texture2D" uid="uid://d3c6tttyvd6p" path="res://src/sprites/eye_normal.png" id="1_50l44"]
+[ext_resource type="Script" uid="uid://c65bff4qx6ly1" path="res://ui/player_hud/guard_detection_hud.gd" id="1_srvey"]
+
+[node name="GuardDetectionHud" type="Control" unique_id=1047256423]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_srvey")
+
+[node name="EyeIndicator" type="TextureRect" parent="." unique_id=87626601]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.0
+offset_top = 18.0
+offset_right = 19.0
+offset_bottom = 56.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("1_50l44")
+expand_mode = 1
+stretch_mode = 5

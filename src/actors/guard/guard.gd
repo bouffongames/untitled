@@ -64,6 +64,7 @@ var _next_thought_index := 0
 var _anger_spell: AngerSpell
 var _fight_focus_point: Vector3
 var _vision_range_scale := 1.0
+var _is_searching := false
 
 # bob visual
 var bob_time: float = 0.0
@@ -332,6 +333,7 @@ func _enter(new_state: States) -> void:
 		_anger_particles = null
 
 	if new_state == States.SURVEY:
+		_is_searching = _current_state == States.INVESTIGATE
 		if _survey_timer.time_left == 0:
 				_survey_timer.start()
 
@@ -436,6 +438,21 @@ func get_mind_control_time_left() -> float:
 
 func is_mind_controlled() -> bool:
 	return _current_state == States.MIND_CONTROLLED
+
+
+func is_alerted() -> bool:
+	match _current_state:
+		States.INVESTIGATE:
+			return true
+		States.SURVEY:
+			return _is_searching
+		States.STUNNED:
+			return _alert_after_stun
+	return false
+
+
+func has_caught_player() -> bool:
+	return _current_state == States.CAUGHT
 
 
 func _freeze() -> void:

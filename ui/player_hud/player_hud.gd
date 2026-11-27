@@ -60,6 +60,8 @@ func _ready() -> void:
 		if button.spell != null:
 			button.pressed.connect(_on_spell_button_pressed.bind(button.spell))
 	Global.game.spell_learned.connect(enable_spells)
+	Dialogue.visibility_changed.connect(_on_dialogue_visibility_changed)
+	_on_dialogue_visibility_changed()
 
 
 func _process(_delta: float) -> void:
@@ -105,6 +107,12 @@ func _on_spell_button_pressed(spell: Spell) -> void:
 		_start_aiming(spell as GuardSpell)
 	elif spell is SelfSpell:
 		_start_minigame(spell)
+
+
+func _on_dialogue_visibility_changed() -> void:
+	_control.visible = not Dialogue.visible
+	if Dialogue.visible:
+		_stop_aiming()
 
 
 func _on_mind_control_started(guard: Guard, spell: MindControlSpell) -> void:
