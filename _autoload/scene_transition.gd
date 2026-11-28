@@ -1,4 +1,4 @@
-class_name Transition
+class_name SceneTransition
 extends Control
 
 signal finished

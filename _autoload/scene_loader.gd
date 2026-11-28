@@ -9,7 +9,7 @@ const LOADABLE: String = "loadable"
 var _loading: bool = false
 var _scene_path: String
 
-@export var _transition: Transition
+@export var _transition: SceneTransition
 
 
 func _ready() -> void:
