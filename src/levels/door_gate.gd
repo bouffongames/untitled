@@ -7,7 +7,7 @@ extends Node3D
 
 
 func open_door() -> void:
-	AudioManager.play_sfx("open_metal_door")
+	AudioManager.play_sfx("open metal door", -3.0)
 	if is_instance_valid(_body):
 		_body.collision_layer = 0
 	if is_instance_valid(_navigation_region):

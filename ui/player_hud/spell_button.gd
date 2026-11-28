@@ -122,6 +122,8 @@ func _apply_shake(progress: float) -> void:
 func _process(delta: float) -> void:
 	_cooldown_left = maxf(_cooldown_left - delta, 0.0)
 	_update_cooldown()
+	if _cooldown_left == 0.0:
+		AudioManager.play_sfx("active spell", 3.0, 3.0, -10.0)
 
 
 func set_disable(value: bool) -> void:

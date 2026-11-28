@@ -89,11 +89,12 @@ texture = ExtResource("2_7eg61")
 [node name="AlertSound" type="AudioStreamPlayer" parent="." unique_id=1171141708]
 unique_name_in_owner = true
 stream = ExtResource("4_rxtwr")
+volume_db = -3.0
 
 [node name="DustTrailParticles" parent="." unique_id=2005103538 instance=ExtResource("5_5pxcb")]
 transform = Transform3D(0.938493, 0, 0.3452982, 0, 1, 0, -0.3452982, 0, 0.938493, 0, 0.3, 0)
 
 [node name="GuardSteps" type="AudioStreamPlayer3D" parent="." unique_id=1889369308]
 stream = SubResource("AudioStreamRandomizer_4kxuq")
-volume_db = -12.0
-max_distance = 14.0
+volume_db = -13.0
+max_distance = 16.0

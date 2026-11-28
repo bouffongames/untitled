@@ -123,13 +123,13 @@ navigation_region = NodePath("../..")
 [node name="floor_tile_big_spikes2" parent="NavigationRegion3D/Floor/TrapFloor" unique_id=140091081 instance=ExtResource("19_7pmeb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.964196, 0.962142, -2)
 
-[node name="floor_tile_big_spikes" parent="NavigationRegion3D/Floor/TrapFloor/floor_tile_big_spikes2" index="0" unique_id=671996688]
+[node name="floor_tile_big_spikes" parent="NavigationRegion3D/Floor/TrapFloor/floor_tile_big_spikes2" index="0" unique_id=550836998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 0, 0)
 
 [node name="floor_tile_big_spikes3" parent="NavigationRegion3D/Floor/TrapFloor" unique_id=961473235 instance=ExtResource("19_7pmeb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.164196, 0.962142, 1.6000004)
 
-[node name="floor_tile_big_spikes" parent="NavigationRegion3D/Floor/TrapFloor/floor_tile_big_spikes3" index="0" unique_id=671996688]
+[node name="floor_tile_big_spikes" parent="NavigationRegion3D/Floor/TrapFloor/floor_tile_big_spikes3" index="0" unique_id=550836998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
 [node name="TileBrickLarge" parent="NavigationRegion3D/Floor/TrapFloor" unique_id=1480762600 instance=ExtResource("7_q0622")]

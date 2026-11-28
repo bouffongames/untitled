@@ -45,6 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tx23v")
 duration = 15.0
+speed = 40.0
 _root = NodePath(".")
 _arrow_texture = NodePath("DialArrowTexture")
 _sequence_arrow_texture = NodePath("SequenceArrowTexture")

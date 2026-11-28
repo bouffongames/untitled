@@ -58,6 +58,7 @@ func _on_journal_interacted() -> void:
 
 func _on_door_interacted() -> void:
 	# TODO end level or new level?
+	AudioManager.play_sfx("wood door next level")
 	Global.scene.change(Const.SCENE_MAIN)
 
 

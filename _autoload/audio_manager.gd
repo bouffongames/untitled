@@ -58,7 +58,7 @@ func _on_node_added(node: Node) -> void:
 		button.mouse_entered.connect(
 			func() -> void:
 				if not button.disabled:
-					play_ui("hover", -7.0)
+					play_ui("hover", -12.0)
 		)
 		button.pressed.connect(
 			func() -> void:

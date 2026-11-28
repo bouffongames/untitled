@@ -13,6 +13,7 @@ func _ready() -> void:
 	key.visible = false
 	guard.sleep = true
 	player.hud.visible = false
+	start_music_later()
 
 	if Global.game.get_state() == Game.GameState.NONE:
 		Global.game.set_state(Game.GameState.PLAYING)
@@ -24,6 +25,11 @@ func _ready() -> void:
 	door.interacted.connect(_on_door_interacted)
 
 
+func start_music_later() -> void:
+	await get_tree().create_timer(2.3).timeout
+	AudioManager.play_music("level1")
+	
+	
 func _on_scene_changed() -> void:
 	if Global.scene.changed.is_connected(_on_scene_changed):
 		Global.scene.changed.disconnect(_on_scene_changed)
@@ -73,7 +79,7 @@ func _on_scene_restarting() -> void:
 
 
 func _on_door_interacted() -> void:
-	AudioManager.play_sfx("wood_door_next_level")
+	AudioManager.play_sfx("wood door next level")
 	Global.scene.change(Const.SCENE_LEVEL_02)
 
 

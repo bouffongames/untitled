@@ -2,26 +2,32 @@
 
 [ext_resource type="Script" uid="uid://8qxbds6vjmgv" path="res://_autoload/audio_manager.gd" id="1_ttvpj"]
 [ext_resource type="AudioStream" uid="uid://bdrqp2f1komg8" path="res://assets/music/the_witch_music_theme.ogg" id="2_8stsb"]
-[ext_resource type="AudioStream" uid="uid://bqhxd0vx4xqqe" path="res://assets/sfx/the_witch_sfx_open_metal_door.wav" id="2_k1njh"]
+[ext_resource type="AudioStream" uid="uid://bipkoppybk27e" path="res://assets/sfx/the_witch_sfx_spell_success.wav" id="2_aboh3"]
+[ext_resource type="AudioStream" uid="uid://x7fegewg3xv2" path="res://assets/sfx/the_witch_sfx_spell_failed.wav" id="3_3gghr"]
 [ext_resource type="AudioStream" uid="uid://dbci1sx540rx3" path="res://assets/sfx/the_witch_UI_start_stinger.wav" id="3_u40qb"]
-[ext_resource type="AudioStream" uid="uid://d2m0qacrb2yei" path="res://assets/sfx/the_witch_sfx_open_wood_door_next_level.wav" id="3_x0xga"]
+[ext_resource type="AudioStream" uid="uid://d2m0qacrb2yei" path="res://assets/sfx/the_witch_sfx_open_wood_door_next_level.wav" id="4_3gghr"]
 [ext_resource type="AudioStream" uid="uid://dr6fjtvu1t6tr" path="res://assets/sfx/the_witch_UI_hover.wav" id="4_4l6d1"]
-[ext_resource type="AudioStream" uid="uid://ctsugxornubj" path="res://assets/sfx/the_witch_sfx_witch_step1.wav" id="4_xk672"]
 [ext_resource type="AudioStream" uid="uid://q4mm5x7xm8p0" path="res://assets/sfx/the_witch_UI_validate.wav" id="5_avxdq"]
-[ext_resource type="AudioStream" uid="uid://juemigqc3l4f" path="res://assets/sfx/the_witch_sfx_read_mind_success.wav" id="5_vm143"]
+[ext_resource type="AudioStream" uid="uid://bqhxd0vx4xqqe" path="res://assets/sfx/the_witch_sfx_open_metal_door.wav" id="5_vm143"]
+[ext_resource type="AudioStream" uid="uid://b1khwhdppkvq3" path="res://assets/sfx/the_witch_sfx_active_spell.wav" id="6_buyb6"]
 [ext_resource type="AudioStream" uid="uid://6ce1xryve380" path="res://assets/sfx/the_witch_UI_esc.wav" id="6_gv0l6"]
 [ext_resource type="AudioStream" uid="uid://dth11jtu74ds7" path="res://assets/sfx/the_witch_sfx_movement_click.wav" id="7_gv0l6"]
+[ext_resource type="AudioStream" uid="uid://ddhxyl4uo0ijp" path="res://assets/sfx/the_witch_sfx_journal_discovered.wav" id="7_k2rf7"]
+[ext_resource type="AudioStream" uid="uid://cukhmb7ktpxd6" path="res://assets/music/the_witch_level1.ogg" id="7_xk672"]
 [ext_resource type="AudioStream" uid="uid://5hc8sokaigio" path="res://assets/sfx/the_witch_sfx_minigame_circle_step_success.wav" id="11_3gghr"]
 
 [node name="AudioManager" type="Node2D" unique_id=1475408820]
 script = ExtResource("1_ttvpj")
 sfx_library = Dictionary[String, AudioStream]({
-"guard_step": ExtResource("4_xk672"),
-"open_metal_door": ExtResource("2_k1njh"),
-"spell_success": ExtResource("5_vm143"),
-"wood_door_next_level": ExtResource("3_x0xga")
+"active spell": ExtResource("6_buyb6"),
+"journal discovered": ExtResource("7_k2rf7"),
+"open metal door": ExtResource("5_vm143"),
+"spell failed": ExtResource("3_3gghr"),
+"spell success": ExtResource("2_aboh3"),
+"wood door next level": ExtResource("4_3gghr")
 })
 music_library = Dictionary[String, AudioStream]({
+"level1": ExtResource("7_xk672"),
 "theme": ExtResource("2_8stsb")
 })
 ui_library = Dictionary[String, AudioStream]({

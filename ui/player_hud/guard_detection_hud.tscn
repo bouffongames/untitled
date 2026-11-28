@@ -15,6 +15,7 @@ script = ExtResource("1_srvey")
 
 [node name="EyeIndicator" type="TextureRect" parent="." unique_id=87626601]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

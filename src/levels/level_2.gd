@@ -66,6 +66,7 @@ func _on_scene_restarting() -> void:
 
 
 func _on_journal_interacted() -> void:
+	AudioManager.play_sfx("journal discovered")
 	Global.game.merge_spell_learned = true
 
 	journal.hide()
@@ -139,6 +140,7 @@ func _on_journal_interacted() -> void:
 
 
 func _on_door_interacted() -> void:
+	AudioManager.play_sfx("wood door next level")
 	Global.scene.change(Const.SCENE_LEVEL_03)
 
 

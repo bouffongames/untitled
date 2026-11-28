@@ -5,7 +5,18 @@ signal _typing_finished
 signal dialogue_ended
 signal dialogue_signal(value: String)
 
-@onready var blip: AudioStreamPlayer2D = $Blip
+enum Voice { NARRATOR, GUARD, WITCH }
+
+@onready var guard_blip: AudioStreamPlayer2D = $GuardBlip
+@onready var witch_blip: AudioStreamPlayer2D = $WitchBlip
+@onready var narrator_blip: AudioStreamPlayer2D = $NarratorBlip
+
+var narrator_blip_interval: int = 1
+var guard_blip_interval: int = 3
+var witch_blip_interval: int = 1
+
+var _current_blip: AudioStreamPlayer2D
+var _current_blip_interval: int = 5
 
 @export var text_speed_multiplier: float = 1.0
 
@@ -89,8 +100,24 @@ func _set_text(new_text: String) -> void:
 	else:
 		_speaker_label.visible = false
 		_speaker_label.text = ""
+	_current_blip = _get_blip_player(_speaker_label.text)
 	await _type_characters(new_text)
+	
 
+func _get_blip_player(speaker: String) -> AudioStreamPlayer2D:
+	var s := speaker.strip_edges().to_lower()
+
+	if s == "":
+		return narrator_blip
+		_current_blip_interval = narrator_blip_interval
+	if s.begins_with("guard"):
+		return guard_blip
+		_current_blip_interval = guard_blip_interval
+	if s.begins_with("witch"):  # ajuste para o nome que a bruxa usa nos diálogos
+		return witch_blip
+		_current_blip_interval = witch_blip_interval
+
+	return narrator_blip
 
 func _type_characters(text: String) -> void:
 	if _active:
@@ -106,9 +133,9 @@ func _type_characters(text: String) -> void:
 		if _interrupt:
 			break
 		_text_label.visible_characters = i + 1
-		if i % 5  == 0 and not blip.playing:
-			blip.play()
-		blip.play()
+		if _current_blip and i % _current_blip_interval == 0 and not _current_blip.playing:
+			_current_blip.play()
+		
 		var wait_time: float = normal_delay
 		if text[i] in [".", ",", "!", "?", ";", ":", "~", "(", ")", "*"]:
 			wait_time = punctuation_delay

@@ -3,14 +3,14 @@ extends Control
 
 signal finished
 
-@export var duration: float = 1.0
+@export var duration: float = 2.0
 @export var color_rect: ColorRect
 
 var _material: ShaderMaterial
 
 var _target: float = 0.0
 var _progress: float = 0.0
-var _progress_speed: float = 1.0
+var _progress_speed: float = 2.0
 var _is_active: bool = false
 
 var _max_progress: float

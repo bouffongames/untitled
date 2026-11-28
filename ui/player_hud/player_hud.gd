@@ -178,6 +178,7 @@ func _get_spell_button(spell: Spell) -> SpellButton:
 
 
 func _start_aiming(spell: GuardSpell) -> void:
+	
 	_aiming_spell = spell
 	_get_spell_button(spell).set_selected(true)
 	_set_indicator_radius(_range_indicator, _range_fill, spell.cast_range)
@@ -300,11 +301,11 @@ func _on_minigame_finished(success: bool) -> void:
 	if _casting_spell == null:
 		return
 	print("Spell minigame ", "succeeded" if success else "failed")
+	AudioManager.play_sfx("spell success" if success else "spell failed")
 	_player.finish_casting()
 	var button: SpellButton = _get_spell_button(_casting_spell)
 	button.start_cooldown()
 	if _casting_spell is GuardSpell:
-		AudioManager.play_sfx("spell success")
 		_finish_guard_spell(_casting_spell as GuardSpell, success)
 	elif _casting_spell is SelfSpell:
 		_finish_self_spell(_casting_spell as SelfSpell, success)
@@ -332,3 +333,7 @@ func _finish_self_spell(spell: SelfSpell, success: bool) -> void:
 		spell.apply(_player)
 	else:
 		spell.fail(_player)
+
+
+func _on_read_mind_button_pressed() -> void:
+	AudioManager.play_sfx("active spell", 0.0, 0.0, -15.0)
