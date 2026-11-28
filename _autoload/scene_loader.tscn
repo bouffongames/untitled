@@ -95,7 +95,7 @@ script = ExtResource("1_l76y0")
 _transition = NodePath("SceneTransition")
 
 [node name="SceneTransition" parent="." unique_id=2073735306 instance=ExtResource("2_53itn")]
-duration = 0.66
+duration = 2.0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=82702261]
 visible = false
