@@ -12,7 +12,6 @@ script = ExtResource("3_ebjd3")
 source_key = "window_mode"
 expected_values = [3]
 target_key = "resolution"
-metadata/_custom_type_script = "uid://b82d8peuolwss"
 
 [node name="DisplayConfigMenu" type="VBoxContainer" unique_id=1180570212 node_paths=PackedStringArray("reset_button")]
 anchors_preset = 8
@@ -79,6 +78,19 @@ title = "vsync"
 script = ExtResource("4_r4mdo")
 target = NodePath("..")
 
+[node name="MaxFPSSpinnerControl" parent="." unique_id=723793488 instance=ExtResource("2_jt0n4")]
+layout_mode = 2
+_values = {
+0: "unlimited",
+30: "30",
+60: "60",
+120: "120",
+180: "180",
+240: "240"
+}
+key = "max_fps"
+title = "max fps"
+
 [node name="BrightnessSliderControl" parent="." unique_id=607555833 instance=ExtResource("4_t7ssb")]
 layout_mode = 2
 max_value = 200.0
@@ -94,19 +106,6 @@ max_value = 9000.0
 step = 100.0
 key = "field_of_view"
 title = "field of view"
-
-[node name="MaxFPSSpinnerControl" parent="." unique_id=723793488 instance=ExtResource("2_jt0n4")]
-layout_mode = 2
-_values = {
-0: "unlimited",
-30: "30",
-60: "60",
-120: "120",
-180: "180",
-240: "240"
-}
-key = "max_fps"
-title = "max fps"
 
 [node name="ResetAllButton" type="Button" parent="." unique_id=473693551]
 layout_mode = 2
