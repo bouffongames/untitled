@@ -165,13 +165,13 @@ offset_right = 12.0
 offset_bottom = -127.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -3.1415927
 pivot_offset = Vector2(12, 12)
 texture = ExtResource("3_yjbub")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="SequenceArrowTexture" type="TextureRect" parent="." unique_id=1844002413]
+visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8

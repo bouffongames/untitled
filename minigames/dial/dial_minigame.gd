@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 		if _angle_is_inside_arc(0, _dial_parent.rotation_degrees + p.angle, p.arc_size):
 			_letter_texture.texture = p.letter.texture
 
-	_sequence_arrow_texture.visible = not _sequence.is_empty()
+	#_sequence_arrow_texture.visible = not _sequence.is_empty()
 	if _sequence.is_empty():
 		_letter_texture.texture = null
 
