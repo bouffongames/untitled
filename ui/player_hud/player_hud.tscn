@@ -21,8 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://bkgrg5ugbwnlx" path="res://assets/vectors/spells/spell_click_mask.svg" id="13_hyt24"]
 [ext_resource type="Texture2D" uid="uid://cgyyu120wl1do" path="res://assets/vectors/spells/paranoia_spell.svg" id="13_uqc4p"]
 [ext_resource type="Texture2D" uid="uid://c6yntiba6sjxl" path="res://assets/vectors/spells/inverted_spell_background.svg" id="15_666g4"]
-[ext_resource type="Texture2D" uid="uid://cmk33nqbtbk5b" path="res://assets/vectors/spells/spell_border.svg" id="16_yfus2"]
 [ext_resource type="PackedScene" uid="uid://8gaovlmy1ly" path="res://ui/player_hud/guard_detection_hud.tscn" id="19_aoar4"]
+[ext_resource type="Texture2D" uid="uid://c7tmvr36egq4x" path="res://assets/vectors/spells/polymorph_spell.svg" id="20_7m4f0"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_q"]
 keycode = 81
@@ -112,9 +112,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -149.0
+offset_left = -178.0
 offset_top = -150.0
-offset_right = 150.0
+offset_right = 178.0
 offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -179,6 +179,22 @@ background_color = Color(1, 0.32941177, 0, 1)
 background_fills_downward = true
 cooldown_label_settings = ExtResource("12_666g4")
 
+[node name="PolymorphButton" type="TextureButton" parent="Control/HBoxContainer" unique_id=63448519]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_enabled = true
+focus_mode = 0
+disabled = true
+shortcut = SubResource("Shortcut_e")
+texture_normal = ExtResource("20_7m4f0")
+texture_click_mask = SubResource("BitMap_74l5y")
+script = ExtResource("2_spell")
+spell = ExtResource("3_mind")
+click_mask = ExtResource("13_hyt24")
+background_texture = ExtResource("11_o6l3t")
+background_color = Color(1, 0.19607843, 1, 1)
+cooldown_label_settings = ExtResource("12_666g4")
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control" unique_id=1272707210]
 layout_mode = 1
 anchors_preset = 7
@@ -186,13 +202,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -153.0
+offset_left = -152.0
 offset_top = -40.0
-offset_right = 151.0
+offset_right = 152.0
 offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = -71
+theme_override_constants/separation = -19
 
 [node name="KeybindGuide" type="TextureRect" parent="Control/HBoxContainer2" unique_id=508974785]
 layout_mode = 2
@@ -286,22 +302,28 @@ grow_vertical = 2
 text = "R"
 label_settings = SubResource("LabelSettings_bh0t8")
 
-[node name="SpellBorderTexture" type="TextureRect" parent="Control" unique_id=904510249]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -243.0
-offset_top = -73.0
-offset_right = 241.0
-offset_bottom = 55.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-texture = ExtResource("16_yfus2")
+[node name="KeybindGuide5" type="TextureRect" parent="Control/HBoxContainer2" unique_id=1460935246]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("12_7m4f0")
+expand_mode = 1
 stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/HBoxContainer2/KeybindGuide5" unique_id=1691796819]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -8.0
+offset_right = 3.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "T"
+label_settings = SubResource("LabelSettings_bh0t8")
 
 [node name="GuardDetectionHud" parent="Control" unique_id=1047256423 instance=ExtResource("19_aoar4")]
 unique_name_in_owner = true

@@ -84,7 +84,9 @@ func _ready() -> void:
 	_cooldown_label.label_settings = cooldown_label_settings
 	add_child(_cooldown_label)
 	_cooldown_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	_update_cooldown()
+	# skip the cooldown update if the spell was disabled within the editor
+	if not disabled:  
+		_update_cooldown()
 
 	#text = spell.display_name
 	#if shortcut != null and not shortcut.get_as_text().is_empty():
