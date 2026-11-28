@@ -112,10 +112,12 @@ func play_sfx(key: String, min_pitch: float = 1.0 - pitch_variation_percent/100,
 		push_warning("SFX key not found in sfx_library: " + key)
 		return
 		
-	var stream = sfx_library[key]
-	var pitch = randf_range(min_pitch, max_pitch)
+	var stream: AudioStream = sfx_library[key]
+	var pitch: float = randf_range(min_pitch, max_pitch)
+	if pitch <= 0.0:
+		pitch = 1.0  # pitch can't be lower than zero
 	
-	for player in sfx_players:
+	for player: AudioStreamPlayer in sfx_players:
 		if not player.playing:
 			player.stream = stream
 			player.volume_db = volume_db
@@ -128,10 +130,12 @@ func play_ambient_loop(key: String, min_pitch: float = 1.0 - pitch_variation_per
 		push_warning("SFX key not found in ambient_library: " + key)
 		return
 		
-	var stream = ambient_library[key]
-	var pitch = randf_range(min_pitch, max_pitch)
+	var stream: AudioStream = ambient_library[key]
+	var pitch: float = randf_range(min_pitch, max_pitch)
+	if pitch <= 0.0:
+		pitch = 1.0  # pitch can't be lower than zero
 	
-	for player in sfx_players:
+	for player: AudioStreamPlayer in sfx_players:
 		if not player.playing:
 			player.stream = stream
 			player.volume_db = volume_db
