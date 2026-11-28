@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cc2wi6cmg5xw1"]
 
 [ext_resource type="Script" uid="uid://bj3t0x1y3viee" path="res://ui/credits.gd" id="1_7wvov"]
-[ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="1_gbqio"]
 
 [node name="Credits" type="Control" unique_id=75008228 node_paths=PackedStringArray("scroll_container", "header_space", "credits_label", "footer_space", "back_button")]
 layout_mode = 3
@@ -10,7 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_gbqio")
 script = ExtResource("1_7wvov")
 h1_font_size = 72
 h2_font_size = 56
