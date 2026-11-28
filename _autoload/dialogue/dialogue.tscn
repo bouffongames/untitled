@@ -3,11 +3,13 @@
 [ext_resource type="Script" uid="uid://dtbhdkr2v56rl" path="res://_autoload/dialogue/dialogue.gd" id="1_hstrk"]
 [ext_resource type="Theme" uid="uid://dvw7pvrwkjekv" path="res://default_theme.tres" id="2_cji0o"]
 [ext_resource type="Texture2D" uid="uid://duhqlv5ttqdxg" path="res://_autoload/dialogue/arrow.svg" id="2_d4idm"]
+[ext_resource type="Texture2D" uid="uid://3xfrvbnncvv5" path="res://assets/vectors/border/main_border.svg" id="3_tdwrk"]
 [ext_resource type="AudioStream" uid="uid://cfy81g226dg6t" path="res://assets/sfx/the_witch_sfx_guard_talk1.wav" id="4_npk7x"]
 [ext_resource type="AudioStream" uid="uid://cav2btnecwrq3" path="res://assets/sfx/the_witch_sfx_guard_talk2.wav" id="5_i1pto"]
 [ext_resource type="AudioStream" uid="uid://qqqdrqgqonum" path="res://assets/sfx/the_witch_sfx_guard_talk3.wav" id="6_tdwrk"]
 [ext_resource type="AudioStream" uid="uid://dh7ntucy6eiv6" path="res://assets/sfx/the_witch_sfx_guard_talk4.wav" id="7_fhw26"]
 [ext_resource type="AudioStream" uid="uid://cihgvknwhhf1q" path="res://assets/sfx/the_witch_sfx_guard_talk5.wav" id="8_y1np6"]
+[ext_resource type="Shader" uid="uid://ckvountsdo2ir" path="res://shaders/blur.gdshader" id="9_fhw26"]
 [ext_resource type="AudioStream" uid="uid://t4pody5hjwrc" path="res://assets/sfx/the_witch_sfx_witch_meow1.wav" id="9_vd0nb"]
 [ext_resource type="AudioStream" uid="uid://bve6ksoko2y1d" path="res://assets/sfx/the_witch_sfx_narrator_blip1.wav" id="9_y1np6"]
 [ext_resource type="AudioStream" uid="uid://j3nxub7h5gsi" path="res://assets/sfx/the_witch_sfx_witch_meow2.wav" id="10_jbflo"]
@@ -36,95 +38,28 @@ streams_count = 3
 stream_0/stream = ExtResource("9_y1np6")
 stream_1/stream = ExtResource("10_st1m1")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdwrk"]
+shader = ExtResource("9_fhw26")
+shader_parameter/blur_amount = 2.0
+shader_parameter/mix_amount = 0.5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xrvps"]
+texture = ExtResource("3_tdwrk")
+texture_margin_left = 40.0
+texture_margin_top = 40.29779
+texture_margin_right = 40.0
+texture_margin_bottom = 40.0
+region_rect = Rect2(0, 0, 256, 256)
+
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1432498365 node_paths=PackedStringArray("_speaker_label", "_text_label", "_response_container", "_continue_container", "_continue_arrow")]
 layer = 9
 script = ExtResource("1_hstrk")
 text_speed_multiplier = 3.0
-_speaker_label = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SpeakerLabel")
-_text_label = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TextLabel")
-_response_container = NodePath("VBoxContainer/ResponseContainer")
-_continue_container = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer")
-_continue_arrow = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer/ContinueArrowContainer")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2139262146]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -16.5
-offset_top = -55.0
-offset_right = 16.5
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("2_cji0o")
-
-[node name="ResponseContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1891265771]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Button" type="Button" parent="VBoxContainer/ResponseContainer" unique_id=2100121624]
-layout_mode = 2
-text = "Response #1"
-
-[node name="Button2" type="Button" parent="VBoxContainer/ResponseContainer" unique_id=655709450]
-layout_mode = 2
-text = "Response #2"
-
-[node name="Button3" type="Button" parent="VBoxContainer/ResponseContainer" unique_id=1211122572]
-layout_mode = 2
-text = "Response #3"
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1326656581]
-layout_mode = 2
-theme_override_constants/margin_bottom = 16
-
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer" unique_id=299697452]
-custom_minimum_size = Vector2(400, 160)
-custom_maximum_size = Vector2(400, 160)
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/PanelContainer" unique_id=418392808]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer" unique_id=992734869]
-layout_mode = 2
-
-[node name="SpeakerLabel" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=331967853]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.7162962, 0.7162962, 0.7162962, 1)
-text = "Speaker"
-
-[node name="TextLabel" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=380433813]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Dialogue"
-autowrap_mode = 2
-
-[node name="ContinueContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1168338291]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-
-[node name="ContinueLabel" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer" unique_id=1663925635]
-layout_mode = 2
-text = "Press Space / Enter"
-
-[node name="ContinueArrowContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer" unique_id=1523139843]
-layout_mode = 2
-
-[node name="ContinueArrowRect" type="TextureRect" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer/ContinueArrowContainer" unique_id=1909982299]
-custom_maximum_size = Vector2(12, 12)
-layout_mode = 2
-texture = ExtResource("2_d4idm")
-stretch_mode = 5
+_speaker_label = NodePath("Dialogue/DialoguePanel/PanelContainer/MarginContainer/VBoxContainer/SpeakerLabel")
+_text_label = NodePath("Dialogue/DialoguePanel/PanelContainer/MarginContainer/VBoxContainer/TextLabel")
+_response_container = NodePath("Dialogue/VBoxContainer/ResponseContainer")
+_continue_container = NodePath("Dialogue/DialoguePanel/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer")
+_continue_arrow = NodePath("Dialogue/DialoguePanel/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer/ContinueArrowContainer")
 
 [node name="GuardBlip" type="AudioStreamPlayer2D" parent="." unique_id=1368822954]
 stream = SubResource("AudioStreamRandomizer_4kxuq")
@@ -138,3 +73,120 @@ pitch_scale = 1.6
 [node name="NarratorBlip" type="AudioStreamPlayer2D" parent="." unique_id=911112045]
 stream = SubResource("AudioStreamRandomizer_i1pto")
 volume_db = -9.0
+
+[node name="Dialogue" type="Control" parent="." unique_id=157058502]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_cji0o")
+
+[node name="DialoguePanel" type="Control" parent="Dialogue" unique_id=1351815334]
+custom_minimum_size = Vector2(315, 325)
+anchors_preset = 0
+offset_left = 80.0
+offset_top = 88.0
+offset_right = 395.0
+offset_bottom = 413.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Dialogue/DialoguePanel" unique_id=1511446080]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 13
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="BlurRect" type="ColorRect" parent="Dialogue/DialoguePanel/MarginContainer" unique_id=1833816539]
+material = SubResource("ShaderMaterial_tdwrk")
+layout_mode = 2
+color = Color(0.5411765, 0.5019608, 0.8117647, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="Dialogue/DialoguePanel" unique_id=299697452]
+custom_minimum_size = Vector2(315, 325)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_xrvps")
+
+[node name="MarginContainer" type="MarginContainer" parent="Dialogue/DialoguePanel/PanelContainer" unique_id=1326656581]
+layout_mode = 2
+theme_override_constants/margin_left = -10
+theme_override_constants/margin_top = -10
+theme_override_constants/margin_right = -10
+theme_override_constants/margin_bottom = -20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogue/DialoguePanel/PanelContainer/MarginContainer" unique_id=992734869]
+layout_mode = 2
+
+[node name="SpeakerLabel" type="Label" parent="Dialogue/DialoguePanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=331967853]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.7162962, 0.7162962, 0.7162962, 1)
+text = "Speaker"
+
+[node name="TextLabel" type="Label" parent="Dialogue/DialoguePanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=380433813]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Dialogue"
+autowrap_mode = 2
+
+[node name="ContinueContainer" type="HBoxContainer" parent="Dialogue/DialoguePanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=1168338291]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="ContinueLabel" type="Label" parent="Dialogue/DialoguePanel/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer" unique_id=1663925635]
+layout_mode = 2
+text = "Press Space / Enter"
+
+[node name="ContinueArrowContainer" type="CenterContainer" parent="Dialogue/DialoguePanel/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer" unique_id=1523139843]
+layout_mode = 2
+
+[node name="ContinueArrowRect" type="TextureRect" parent="Dialogue/DialoguePanel/PanelContainer/MarginContainer/VBoxContainer/ContinueContainer/ContinueArrowContainer" unique_id=1909982299]
+modulate = Color(0.96862745, 0.96862745, 0.8784314, 1)
+custom_maximum_size = Vector2(12, 12)
+layout_mode = 2
+texture = ExtResource("2_d4idm")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogue" unique_id=2139262146]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -44.5
+offset_right = 44.0
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_cji0o")
+
+[node name="ResponseContainer" type="VBoxContainer" parent="Dialogue/VBoxContainer" unique_id=1891265771]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="Dialogue/VBoxContainer/ResponseContainer" unique_id=2100121624]
+layout_mode = 2
+text = "Response #1"
+
+[node name="Button2" type="Button" parent="Dialogue/VBoxContainer/ResponseContainer" unique_id=655709450]
+layout_mode = 2
+text = "Response #2"
+
+[node name="Button3" type="Button" parent="Dialogue/VBoxContainer/ResponseContainer" unique_id=1211122572]
+layout_mode = 2
+text = "Response #3"
